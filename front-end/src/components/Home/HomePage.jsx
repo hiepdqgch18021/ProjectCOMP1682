@@ -15,7 +15,6 @@ const dispatch = useDispatch();
 const navigate = useNavigate();
 let axiosJWT = createAxios(user,dispatch,loginSuccess);
 
-
   const handleDelete = (id) => {
     deleteUser(user?.accessToken,dispatch,id,axiosJWT);
   };
