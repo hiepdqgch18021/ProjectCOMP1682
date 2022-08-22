@@ -26,8 +26,6 @@ mongoose.connect(process.env.MONGODB_URL,
       process.exit();
     });
 
-
-
 //middleware 
 app.use(express.json());
 app.use(helmet());
@@ -51,20 +49,10 @@ app.use("/api/user",userRoute)
 const storyRoute =require("./routes/storyRoute");
 app.use("/api/story",storyRoute);
 
-//Route
-
-// app.use('/addStory',require("./routes/storyRoute"))
-
-
 
 app.get('/',(req, res) => {
     res.send("welcome Home!");
 })
-
-
-
-//json web token
-
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => console.log(`Listening to port ${port}`));
