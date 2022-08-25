@@ -59,11 +59,12 @@ export const logout = async(dispatch,id,navigate,accessToken,axiosJWT)=>{
     dispatch(logoutStart());
     try {
         await axiosJWT.post("http://localhost:5000/api/auth/logout",id,{
-            headers: {token:`Bearer ${accessToken}`},
+            header: {token:`Bearer ${accessToken}`},            
         });
         dispatch(logoutSuccess())
         navigate("/login");
-    } catch (error) {
+        localStorage.clear();
+    } catch (err) {
         dispatch(logoutFailed())
     }
 }

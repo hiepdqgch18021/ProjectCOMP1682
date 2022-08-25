@@ -23,7 +23,7 @@ const NavBar = () => {
     <nav className="navbar-container">
       <Link to="/" className="navbar-home"> Home </Link>
       {user? (
-        <>
+      <>
         <p className="navbar-user"> {user.username}  </p>
         <Link 
           to="/login" 
@@ -32,7 +32,8 @@ const NavBar = () => {
              Log out
         </Link>
         </>
-      ) : (    
+      ) : (  
+          
       <>
       <Link to="/login" className="navbar-login"> Login </Link>
       <Link to="/register" className="navbar-register"> Register</Link>
