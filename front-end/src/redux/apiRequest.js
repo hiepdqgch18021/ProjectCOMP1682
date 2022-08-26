@@ -55,19 +55,19 @@ export const deleteUser = async(accessToken,dispatch,id,axiosJWT) => {
     }
 };
 
-export const logout = async(dispatch,id,navigate,accessToken,axiosJWT)=>{
-    dispatch(logoutStart());
-    try {
-        await axiosJWT.post("http://localhost:5000/api/auth/logout",id,{
-            header: {token:`Bearer ${accessToken}`},            
-        });
-        dispatch(logoutSuccess())
-        navigate("/login");
-        localStorage.clear();
-    } catch (err) {
-        dispatch(logoutFailed())
-    }
-}
+// export const logout = async(dispatch,id,navigate,accessToken,axiosJWT)=>{
+//     dispatch(logoutStart());
+//     try {
+//         await axiosJWT.post("http://localhost:5000/api/auth/logout",id,{
+//             header: {token:`Bearer ${accessToken}`},            
+//         });
+//         dispatch(logoutSuccess())
+//         navigate("/login");
+//         localStorage.clear();
+//     } catch (err) {
+//         dispatch(logoutFailed())
+//     }
+// }
 
 
 

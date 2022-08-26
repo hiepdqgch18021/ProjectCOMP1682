@@ -22,10 +22,9 @@ const Login = ()=>{
    }
 return(
     <section className="login-container" >
-    <div className="login-title">Login</div>
-    
-    <form onSubmit={handleLogin}>
-        
+    <div className="login-title">Login</div>   
+
+    <form onSubmit={handleLogin}>       
         <label htmlFor="">USERNAME</label>
         <input 
             type="text" 
@@ -40,7 +39,7 @@ return(
         onChange={(e)=>setPassword(e.target.value)} 
         />
         
-        <button type="submit">Continue</button>
+        <button type="submit">Login</button>
     </form>
 
     <div className="login-register">Don't have an account yet?</div>
@@ -49,7 +48,6 @@ return(
     </Link>
 
     </section>
-
 );
 }
 
