@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import { loginUser } from "../../redux/apiRequest";
 import {useNavigate} from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { Button,FormGroup, Label,Input,Form} from 'reactstrap';
+
 import "./login.css";
 
 const Login = ()=>{
@@ -20,34 +22,67 @@ const Login = ()=>{
     };
     loginUser(newUser, dispatch,navigate);
    }
+
 return(
-    <section className="login-container" >
-    <div className="login-title">Login</div>   
+  <section className="login-container" >              
+      <div className="min-h-full  justify-center py-12 px-4 sm:px-6 lg:px-8">
+      <img
+        className="mx-auto mb-px h-40 w-auto"
+        src="https://img.freepik.com/premium-vector/story-life-book-logo_144543-387.jpg"
+        alt="Workflow"
+      />
+          <div className="max-w-md w-full space-y-8">
+            <div className="login_title">
+              
+              <h2 className="mt-6 text-center text-3xl tracking-tight font-bold text-gray-900">
+                Sign in
+              </h2>
+              <p className="mt-2 text-center text-sm text-gray-600">
+                Or 
+                <Link className="login-register" to="/register">
+                  <Button className="btn-register">
+                    Register        
+                  </Button>
+                </Link>
+              </p>
+            </div>
 
-    <form onSubmit={handleLogin}>       
-        <label htmlFor="">USERNAME</label>
-        <input 
-            type="text" 
-            placeholder="Enter your username" 
-            onChange={(e)=>setUsername(e.target.value)} 
-        />
-        
-        <label htmlFor="">PASSWORD</label>
-        <input 
-        type="password" 
-        placeholder="Enter your password"
-        onChange={(e)=>setPassword(e.target.value)} 
-        />
-        
-        <button type="submit">Login</button>
-    </form>
+            <form className="login_input" onSubmit={handleLogin}>
+              <FormGroup>
+                <Label
+                  for="exampleEmail"
+                  hidden
+                >
+                  Username
+                </Label>
+                <Input
+                  id="exampleEmail"
+                  name="username"
+                  placeholder="Username"
+                  type="text"
+                  onChange={(e)=>setUsername(e.target.value)} 
+                />
+              </FormGroup>
+              
+              <FormGroup>
+                <Label for="examplePassword" hidden>
+                  Password
+                </Label>
+                <Input id="examplePassword"
+                 name="password"
+                 placeholder="Password"  
+                 type="password"
+                 onChange={(e)=>setPassword(e.target.value)} 
+                  />
+              </FormGroup>              
+              <Button className="btn_submit">
+                Submit
+              </Button>
+            </form>
+          </div>
+        </div>
+  </section>
 
-    <div className="login-register">Don't have an account yet?</div>
-    <Link className="login-register" to="/register">
-        Register one for free
-    </Link>
-
-    </section>
 );
 }
 

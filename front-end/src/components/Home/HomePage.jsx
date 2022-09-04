@@ -2,14 +2,17 @@ import {useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import React from 'react';
-import { deleteUser, getAllUsers } from '../../redux/apiRequest';
 import axios from 'axios';
 // import { createAxios } from '../../createInstance';
-import "./home.css";
+// import "./account.css";
+import { Button,FormGroup, Label,Input,ButtonGroup} from 'reactstrap';
+import NavBar from "../NavBar/NavBar";
+
 import { loginSuccess } from '../../redux/authSlice';
 import jwtDecode from "jwt-decode";
-
+import "./home.css"
 const HomePage = () => {
+
 const user = useSelector((state)=>state.auth.login?.currentUser);
 const userList = useSelector((state)=> state.users.users?.allUsers)
 const msg = useSelector((state)=>state.user?.msg);
@@ -18,11 +21,8 @@ const navigate = useNavigate();
 let axiosJWT = axios.create();
 // createAxios(user,dispatch,loginSuccess);
 
-  const handleDelete = (id) => {
-    deleteUser(user?.accessToken,dispatch,id,axiosJWT);
-  };
 
-// has moved to createInstance file 
+
 const refreshToken = async()=>{
   try {
     const res = await axiosJWT.post("http://localhost:5000/api/auth/refreshToken",{
@@ -57,34 +57,66 @@ useEffect(()=>{
   if(!user){
     navigate("/login");
   }
-  if(user?.accessToken){
-    getAllUsers(user?.accessToken,dispatch,axiosJWT);// "?" : ignore null (optional chaining)
-  }  // "?" in if-else : ternary operator
 },[]);
 
   return (
-    <main className="home-container">
-      <div className="home-title">User List</div>
-      <div className="home-role">
-        {`your role: ${user?.admin ? `Admin` : `user`}`}  
-        {/* "?" in if-else : ternary operator */}
+    
+  <div className="home_page">  
+    <div className="nav_bar">
+      <NavBar/>
+    </div>
+
+    <div className="form_middle"> 
+        <div className="form_up_story">
+          <FormGroup>
+              <Label for="exampleSelect">
+                Story Type
+              </Label>
+              <Input
+                id="exampleSelect"
+                name="select"
+                type="select"
+              >
+                <option>
+                  1
+                </option>
+                <option>
+                  2
+                </option>
+                <option>
+                  3
+                </option>
+              </Input>
+              <Label for="exampleText"> Your Story </Label>
+              <Input id="exampleText" name="text" type="textarea" />
+              <Label for="exampleFile"> File </Label>
+              <Input id="exampleFile" name="file" type="file" />
+                <Button> Submit </Button>
+          </FormGroup>
+        </div>
+
+        <div className="display_story">
+          
+        </div>
+    </div>
+      <div className="story_topic">
+        <ButtonGroup vertical>        
+          <Button color="danger">
+            Detective novels
+          </Button>
+          <Button color="warning">
+            Fantasy novels
+          </Button>
+          <Button color="success">
+            Romance novels
+          </Button>
+          <Button color="success">
+            Historical fiction
+          </Button>
+        </ButtonGroup>
       </div>
-      <div className="home-userlist">       
-        {userList?.map((user) => {
-          return (
-            <div className="user-container">
-              <div className="home-user">{user.username}</div>
-              <div className="delete-user" onClick={()=>handleDelete(user._id)}>
-                {" "}
-                Delete {" "} 
-              </div>
-            </div>
-          );
-        })}
-      </div>
-      <div className="errorMsg">{msg}</div>
-    </main>
-  );
+  </div>
+);
 };
 
 export default HomePage;

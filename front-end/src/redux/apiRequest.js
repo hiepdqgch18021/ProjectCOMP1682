@@ -1,5 +1,5 @@
 import axios from "axios";
-import { token } from "morgan";
+// import { token } from "morgan";
 // import { useNavigate } from "react-router-dom";
 import { loginFailed, loginStart, loginSuccess, logoutFailed, logoutStart, logoutSuccess, registerFailed, registerStart, registerSuccess} from "./authSlice";
 import { getUsersStart,getUsersSuccess,getUserFailed, deleteUserFailed, deleteUserSuccess, deleteUserStart  } from "./userSlice";
