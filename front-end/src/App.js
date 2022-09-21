@@ -1,12 +1,22 @@
 import React, { useEffect, useState } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Route, Routes} from "react-router-dom";
+import { DatePicker } from 'antd';
+// ReactDOM.render(<DatePicker />, mountNode);
+// import 'antd/dist/antd.css';
+
 import HomePage from "./components/Home/HomePage";
 import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
-import NavBar from "./components/NavBar/NavBar";
+import Header from "./components/Header/Header";
 import Account from "./components/Account/Account";
-
+import Messenger from "./components/Messenger/Messenger";
+import FormUpStory from "./components/Form/FormUpStory";
+import UserProfile from "./components/User/UserProfile"
+import EditProfile from './components/User/EditProfile';
+import DiaryDetail from './components/Diary/DiaryDetail';
+import DiaryEdit from './components/Diary/DiaryEdit';
+import DiaryForm from './components/Diary/DiaryForm';
 import 'bootstrap/dist/css/bootstrap.min.css'
 // import { useState } from "react";
 import './App.css';
@@ -29,10 +39,19 @@ function App() {
       }}
     >    
       <Routes>   
+          <Route path="/" element={<HomePage />} />
           <Route path="/login" element={ <Login />} />  
           <Route path='/account' element={<Account/>}/>  
-          <Route path="/" element={<HomePage />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/Messenger" element={<Messenger />} />
+          <Route path="/FormUpStory" element={<FormUpStory />} />
+          <Route path="/UserProfile" element={<UserProfile />} />
+          <Route path="/EditProfile" element={<EditProfile />} />
+          <Route path="/DiaryDetail" element={<DiaryDetail />} />
+          <Route path="/DiaryEdit" element={<DiaryEdit />} />
+          <Route path="/DiaryForm" element={<DiaryForm />} />
+
+
       </Routes>      
     </div>
   </Router>

@@ -1,0 +1,101 @@
+/* -----------------------------Diary form */
+main{
+    background-color: #e5e7eb;
+}
+
+.main-diary-form-container .diary-form-container{
+
+}
+
+.diary-form-container .mb-3-middle{
+display:flex;
+
+}
+.mb-3-middle .form-label-middle{
+margin-right: 15px;
+}
+.diary-form-container .mb-3 .form-label-header{
+ font-size:30px;
+ font-weight:bold;
+ display:block;
+}
+.diary-form-container .mb-3 .form-text-header{
+margin-top:30px;
+ /* font-weight:bold; */
+}
+
+.diary-form-container .btn-primary{
+margin-bottom:15px;
+}
+
+footer{
+    background-color: #fff;
+    height: 107px;
+    padding-top:30px;
+ 
+}
+
+
+
+
+
+
+
+
+
+
+/* -------------------------------Diary Edit */
+
+
+
+
+
+
+
+
+
+
+
+/* ----------------------------------Diary Detail */
+
+.diary-detail-container{
+    
+}
+.diary-detail-container .card{
+
+}
+.diary-detail-container .card .card-body{
+background-color: #fff;
+}
+.diary-detail-container .card .diary-detail-date-time{
+display:block;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

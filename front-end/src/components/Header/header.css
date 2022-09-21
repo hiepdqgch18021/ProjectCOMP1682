@@ -1,0 +1,51 @@
+.header-container{
+
+}
+.navbar-container{
+    background:#fff
+}
+
+.modal-content{
+    margin-top:30%;
+}
+
+.modal-header{
+display:flex;
+}
+.modal-header .title-form-up-story{
+margin-left:20px;
+}
+.modal-header .modal-title{
+    display:flex;
+    padding-left:10px;
+    width:100%;
+}
+
+.modal-title .title-up-story{
+    margin-left:30px;
+    
+}
+
+.modal-header .modal-title .btn-close{
+width: 50px;
+}
+
+
+.avt-form-up-story img{
+height: 35px;
+width: 35px;
+border-radius:100%;
+}
+
+.navbar-container .container-fluid .nav{
+margin-right:25%;
+}
+.nav-item-notifications .nav-item .dropdown-toggle{
+
+}
+
+.nav-item-notifications .dropdown-menu-notifications{
+    margin-right:300px;
+}
+
+

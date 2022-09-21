@@ -1,0 +1,77 @@
+.main-user-profile{
+    align-items:stretch;
+    background-color:#fafafa;
+    color:#262626;
+    display:flex;
+    flex-direction:column;
+    font-size:16px;
+    line-height:18px;
+}
+
+.profile-diary-container{
+font-size:15px;
+}
+.profile-diary-container .profile-container{
+
+}
+
+.profile-container .profile-info{
+
+}
+
+.profile-container .profile-parameter{
+    margin-top:15px;
+    margin-bottom:60px;
+}
+.profile-container .profile-parameter .list-inline-item span{
+font-weight:bold;
+}
+
+.profile-container .profile-nick-name span{
+margin-right:60%;
+
+font-weight:bold;
+
+}
+
+.profile-container .profile-story {
+
+    margin-top:15px;
+}
+.profile-container .profile-story span{
+    font-weight:bold;
+
+}
+
+
+
+
+
+.profile-diary-container .profile-container{
+
+}
+
+.rounded{
+ width:100%;
+}
+.story-container{
+    display:flex;
+}
+.story-container .story-container-detail{
+    padding-left:24%;
+}
+
+.profile-diary-container .diary-container{
+    margin-top:60px;
+}
+.diary-container .list-topic{
+
+}
+
+.list-topic .btn-add-diary .nav-link{
+    padding-left:40%;
+    color:#0d6efd;
+
+}
+
+

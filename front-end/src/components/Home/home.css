@@ -1,27 +1,152 @@
-.home_page{
-display: flex;
+.main-home-page{
+    align-items:stretch;
+    background-color:#fafafa;
+    color:#262626;
+    /* display:flex; */
+    /* flex-direction:column; */
+    font-size:16px;
+    line-height:18px;
+    
+  
+}
+.main-home-page .home-page-container {
+    /* align-items:stretch;
+    text-align:center;
+    font-size:15px;
+    justify-content:space-between;
+    display:flex; */
+   
 }
 
-.nav_bar{
+.card-body{
+    background-color:#fd0d0d;
+}
+.me-auto{
+    width:100%;
+    display:flex;
+    /* border:1px solid ##0d6efd; */
+    padding-left:15px;
 
 }
 
-.form-middle{
-
+.me-auto .avt-str-content-display{
+ width: 40px;
+ height:40px;
+ border-radius:40px;
+ margin-right:10px;
+ margin-left:0px;
 }
 
-.form_up_story{
 
+.me-auto span{
+margin-left:10px;
+width:100px;
+display:flex;
+padding-top:10px;
 }
 
-.display_story{
-
+.toast .toast-header .nav-item{
+    margin-left:40%;
 }
 
-.story_topic{
+
+.home-page-container .story-content-container{
+    padding-left:10%;
+
+}
+.story-content-container .rounded{
+    height:480px;
     
 }
 
+.action-content-display{
+    display:inline;
+    margin-top:50px;
+}
+.action-content-display .like-action{
+    display:inline;
+
+}
+.action-content-display .comment-action{
+
+}
+
+
+
+
+.list-topic-container{
+
+}
+.list-topic-container .topic-title{
+    weight:600;
+    width:280px;
+    font-family: "Times New Roman", Times, serif;
+    align-items:stretch;
+    display:flex;
+    flex-direction:column;
+    font-size:15px;
+    justify-content:space-between;
+    padding:12px 16px;
+}
+
+
+
+
+.home-page-container .list-topic{
+    align-items:stretch;
+    background-color:#f7f9f9;
+    border-color:#f7f9f9;
+    border-radius:25px;
+    border-style:solid;
+    border-width:1px;
+    display:flex;
+    flex-direction:column;
+    font-size:15px;
+    margin:0px 0px 16px;
+    width:300px;
+}
+.list-topic .navbar{
+    border-radius:25px;
+}
+.navbar .form-search-topic{
+margin-left:15px;
+}
+.form-search-topic svg{
+margin-top:6px;
+margin-left:2px;
+width:25px;
+height:25px;
+}
+
+
+.list-topic .topic-element{
+    display:block;
+    width:100%;
+    border-radius:25px;
+
+}
+.topic-element .btn-topic-element{
+padding-top:10px;
+padding-bottom:10px;
+transition:0.45s;
+
+}
+.topic-element .btn-topic-element:hover{
+    border:1px solid #f7f9f9 ;
+    background-color:#3285ffbf;
+    border-radius:25px;
+    transform:translateY(-5px);
+    -webkit-box-shadow: -7px 7px 14px -3px rgba(0,0,0,0.5);
+    -moz-box-shadow: -7px 7px 14px -3px rgba(0,0,0,0.5);
+    box-shadow: -7px 7px 14px -3px rgba(0,0,0,0.5);
+
+}
+
+.btn-topic-element .topic-name{
+    
+}
+
+.btn-topic-element .topic-amount{}
 
 
 
