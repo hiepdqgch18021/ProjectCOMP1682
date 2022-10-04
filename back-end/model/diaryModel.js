@@ -6,6 +6,10 @@ const diarySchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     },
+    diaryDateTime: {
+        type: Date,
+        default: Date.now
+    },
     diaryTitle:{ 
         type: String, 
         required: true 
@@ -21,10 +25,11 @@ const diarySchema = new mongoose.Schema({
     userID:{
         type: mongoose.Schema.Types.ObjectId,
         ref:'User'
-    }
-});
+    },    
+},{timestamps:true} 
+);
 
-let Diary = mongoose.model('Diary',storySchema); 
+let Diary = mongoose.model('Diary',diarySchema); 
 module.exports ={Diary}
 
 

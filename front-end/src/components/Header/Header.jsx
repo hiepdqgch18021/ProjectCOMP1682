@@ -18,17 +18,21 @@ import {  DropdownToggle,DropdownMenu,NavbarBrand,Nav,FormGroup,Label,ListGroup,
           ModalHeader,NavLink,NavItem,UncontrolledDropdown,Dropdown } from 'reactstrap';
 
 const Header = ({ direction, ...args}) => {
-
   const user = useSelector((state) => state.auth.login.currentUser);  
+
+// -----------------------------------------------------
   // const [isOpen, setIsOpen] = useState(true);
   const [modal, setModal] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const toggleFormUpStory = () => setModal(!modal);
+// -----------------------------------------------------
 
   return (    
     <div className="header-container">
     <Navbar className="navbar-container">
-      <NavbarBrand href="/">Story</NavbarBrand>
+      <NavbarBrand href="/ListAllUser">Story</NavbarBrand>
+      <NavbarBrand href="/register">Register</NavbarBrand>
+      <NavbarBrand href="/StoryDetail">StoryDetail</NavbarBrand>
         <Nav >
           <NavItem >
             {/* Home */}
@@ -146,7 +150,10 @@ const Header = ({ direction, ...args}) => {
           </NavItem>
 
 {/* profile */}
+
+       
           <UncontrolledDropdown nav inNavbar >
+        
             <DropdownToggle nav caret >
               <img
                 src="https://github.com/mdo.png"
@@ -156,6 +163,7 @@ const Header = ({ direction, ...args}) => {
                 className="rounded-circle"
               />          
             </DropdownToggle>
+                  
             <DropdownMenu right>
               <DropdownItem>
                 <NavLink href="/UserProfile"> Profile </NavLink>
@@ -166,7 +174,9 @@ const Header = ({ direction, ...args}) => {
               <DropdownItem divider />
               <DropdownItem>Logout</DropdownItem>
             </DropdownMenu>
+
           </UncontrolledDropdown>
+          
         </Nav>
       
     </Navbar>

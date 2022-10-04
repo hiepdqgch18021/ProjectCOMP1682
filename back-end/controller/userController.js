@@ -1,3 +1,4 @@
+const { addListener } = require('../model/userModel');
 const User = require('../model/userModel')
 
 const userController ={
@@ -16,7 +17,7 @@ const userController ={
     deleteUser:async(req,res)=>{
     try {
         const user = await User.findByIdAndDelete(req.params.id)
-        res.status(200).json("delete user successfully");  
+        res.status(200).json("delete user successfully");          
     } catch (error) {
         return res.status(500).json(error);
     }

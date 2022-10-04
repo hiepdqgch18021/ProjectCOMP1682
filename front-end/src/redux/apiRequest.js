@@ -8,31 +8,36 @@ import { getUsersStart,getUsersSuccess,getUserFailed, deleteUserFailed, deleteUs
 export const loginUser = async(user,dispatch,navigate )=>{
     dispatch(loginStart());  
     try {
-        const res = await axios.post("http://localhost:5000/api/auth/login",user);
+        const res = await axios.post("http://localhost:5000/api/auth/login",user);        
         dispatch(loginSuccess(res.data));
-        navigate('/')
+        if(res.data.admin)
+        return navigate('/AdminScreen');
+        return navigate('/');
     } catch (err) {
           dispatch(loginFailed())  
     }
-
 };
-
+    
 export const registerUser = async (user,dispatch,navigate) => {
     dispatch(registerStart());
     try {
         const res = await axios.post("http://localhost:5000/api/auth/register",user);
         dispatch(registerSuccess());
-        navigate("/login");
+        navigate("/InputInformationUser");
     } catch (err) {
         dispatch(registerFailed());
     }
+};
+
+export const InputUserInfo = async (user,dispatch,navigate) => {
+
 };
 
 export const getAllUsers = async(accessToken,dispatch,axiosJWT)=>{
     dispatch(getUsersStart());
     try {
         const res = await axiosJWT.get("http://localhost:5000/api/user/getAllUsers",{
-            headers:{
+            headers:{ 
                 token:`Bearer ${accessToken}`,
             }
         });

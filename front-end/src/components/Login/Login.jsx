@@ -6,6 +6,8 @@ import { useDispatch } from "react-redux";
 import { Button,FormGroup, Label,Input} from 'reactstrap';
 
 import "./login.css";
+import { addListener } from "@reduxjs/toolkit";
+import { Alert } from "bootstrap";
 
 const Login = ()=>{
     const [username, setUsername] = useState("");
@@ -49,10 +51,7 @@ return(
 
             <form className="login_input" onSubmit={handleLogin}>
               <FormGroup>
-                <Label
-                  for="exampleEmail"
-                  hidden
-                >
+                <Label for="exampleEmail" hidden>
                   Username
                 </Label>
                 <Input
@@ -62,8 +61,7 @@ return(
                   type="text"
                   onChange={(e)=>setUsername(e.target.value)} 
                 />
-              </FormGroup>
-              
+              </FormGroup>              
               <FormGroup>
                 <Label for="examplePassword" hidden>
                   Password
@@ -79,6 +77,7 @@ return(
                 Submit
               </Button>
             </form>
+            
           </div>
         </div>
   </section>

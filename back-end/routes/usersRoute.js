@@ -6,10 +6,11 @@ router.get("/",(req,res) => {
 })
 
 //get all user
-router.get("/getAllUsers",middlewareController.verifyToken,userController.getAllUsers);
+router.get("/getAllUsers",userController.getAllUsers); //,middlewareController.verifyToken
+
 
 //delete one user 
-router.delete("/:id",middlewareController.verifyTokenAndAdminAuth,userController.deleteUser);
+router.delete("/:id",userController.deleteUser); //,middlewareController.verifyTokenAndAdminAuth
 
 
 

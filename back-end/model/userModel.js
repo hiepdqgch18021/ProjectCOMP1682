@@ -26,11 +26,10 @@ const userSchema = new mongoose.Schema({
     },
     admin:{
         type: Boolean,
-        default: false
+        // default: false
     },
     name: {
         type: String,
-
     },
 
     imageCover:[{

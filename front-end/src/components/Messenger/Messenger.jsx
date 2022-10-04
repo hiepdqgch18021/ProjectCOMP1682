@@ -1,23 +1,28 @@
-import React, { useState } from "react";
+import React, { Component, useState } from "react";
+import { Editor } from "react-draft-wysiwyg";
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import {convertFromRaw, EditorState} from "draft-js";
 import Header from "../Header/Header";
 
-import { Dropdown,  DropdownToggle,DropdownMenu,NavbarBrand,Nav,NavbarText,PopoverBody,
-    DropdownItem,Button,Toast,ToastHeader,Navbar,NavbarToggler,Collapse,PopoverHeader,
-    ToastBody,UncontrolledCollapse,Card,CardBody,NavLink,NavItem,UncontrolledDropdown,UncontrolledPopover} from 'reactstrap';
-  
-        
-const Messenger = () => {
-    
-    return ( 
+import { Dropdown} from 'reactstrap';
 
+    
+ const Messenger  = () => {
+
+        return(
         <>
             <header className='sidebar'>
                 <Header/>
             </header>
-            Messenger page
+
+            <h1>MASSAGE page</h1>
+           
+            
         </>
-     );
+        )
+     
     }
+
 
  
 export default Messenger;

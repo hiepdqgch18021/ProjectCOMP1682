@@ -15,7 +15,9 @@ const middlewareController = {
         });
     }
     else{
-      return  res.status(401).json("You are not authenticated")
+      return  res.status(401).json(
+        'You are not authenticated yet'
+        )
     }
 },
 verifyTokenAndAdminAuth:(req, res,next)=>{

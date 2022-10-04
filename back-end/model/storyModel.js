@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const storySchema = new mongoose.Schema({
     storyTitle:{
-        type: String ,
+        type: String,
         required: true 
     },
     storyContent:{

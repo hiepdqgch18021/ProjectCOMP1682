@@ -12,12 +12,16 @@ import Header from "./components/Header/Header";
 import Account from "./components/Account/Account";
 import Messenger from "./components/Messenger/Messenger";
 import FormUpStory from "./components/Form/FormUpStory";
+import StoryDetail from "./components/Form/StoryDetail";
 import UserProfile from "./components/User/UserProfile"
 import EditProfile from './components/User/EditProfile';
 import DiaryDetail from './components/Diary/DiaryDetail';
 import DiaryEdit from './components/Diary/DiaryEdit';
 import DiaryForm from './components/Diary/DiaryForm';
-import 'bootstrap/dist/css/bootstrap.min.css'
+import InputInformationUser from './components/Register/InputInformation';
+
+import ListAllUser from './components/AdminScreen/ListAllUser';
+import AdminScreen from './components/AdminScreen/AdminScreen.jsx';
 // import { useState } from "react";
 import './App.css';
 
@@ -45,13 +49,15 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/Messenger" element={<Messenger />} />
           <Route path="/FormUpStory" element={<FormUpStory />} />
+          <Route path="/StoryDetail" element={<StoryDetail />} />
           <Route path="/UserProfile" element={<UserProfile />} />
           <Route path="/EditProfile" element={<EditProfile />} />
           <Route path="/DiaryDetail" element={<DiaryDetail />} />
           <Route path="/DiaryEdit" element={<DiaryEdit />} />
           <Route path="/DiaryForm" element={<DiaryForm />} />
-
-
+          <Route path="/ListAllUser" element={<ListAllUser />} />
+          <Route path="/InputInformationUser" element={<InputInformationUser />} />
+          <Route path="/AdminScreen" element={<AdminScreen />} />
       </Routes>      
     </div>
   </Router>

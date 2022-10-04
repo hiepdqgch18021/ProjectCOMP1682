@@ -49,6 +49,9 @@ app.use("/api/user",userRoute)
 const storyRoute =require("./routes/storyRoute");
 app.use("/api/story",storyRoute);
 
+const diaryRoute = require("./routes/diaryRoute");
+app.use("/api/diary",diaryRoute);
+
 
 app.get('/',(req, res) => {
     res.send("welcome Home!");

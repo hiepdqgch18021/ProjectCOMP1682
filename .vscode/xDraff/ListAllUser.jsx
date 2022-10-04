@@ -2,13 +2,13 @@ import {useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import React from 'react';
-import { deleteUser, getAllUsers } from '../../redux/apiRequest';
+import { deleteUser, getAllUsers } from '../../front-end/src/redux/apiRequest';
 import axios from 'axios';
 // import { createAxios } from '../../createInstance';
 // import "./account.css";
-import { loginSuccess } from '../../redux/authSlice';
+import { loginSuccess } from '../../front-end/src/redux/authSlice';
 import jwtDecode from "jwt-decode";
-import "./home.css"
+
 
 const HomePage = () => {
 

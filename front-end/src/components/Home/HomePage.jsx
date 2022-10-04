@@ -11,7 +11,6 @@ import {  Toast,UncontrolledDropdown,
 import { loginSuccess } from '../../redux/authSlice';
 import jwtDecode from "jwt-decode";
 import Header from "../Header/Header";
-import FormUpStory from "../Form/FormUpStory";
 import "./home.css"
 const HomePage = () => {
 
@@ -22,6 +21,7 @@ const dispatch = useDispatch();
 const navigate = useNavigate();
 let axiosJWT = axios.create();
 // createAxios(user,dispatch,loginSuccess);
+
 const refreshToken = async()=>{
   try {
     const res = await axiosJWT.post("http://localhost:5000/api/auth/refreshToken",{
@@ -104,6 +104,7 @@ useEffect(()=>{
                       <div className="story-content-display">
                         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corrupti assumenda quis dolorum vitae ea quam nihil officiis, est sit, aliquid possimus nesciunt nulla eos necessitatibus ducimus? Exercitationem non repellat amet.
                       </div>
+                      
                       <div className="story-image-display">
                       <img
                         className="mx-auto mb-px h-40 w-auto"
