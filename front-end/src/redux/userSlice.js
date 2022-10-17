@@ -4,6 +4,7 @@ import {createSlice} from "@reduxjs/toolkit";
 const userSlice = createSlice({
     name: "users",
     initialState: {
+        //state
         users:{
             allUsers:null,
             isFetching:false,
@@ -39,6 +40,7 @@ const userSlice = createSlice({
             state.users.error = true;     
             state.msg = action.payload;      
         }
+        
     }
 });
 

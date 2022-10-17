@@ -1,4 +1,5 @@
 import axios from "axios";
+import React from "react";
 // import { token } from "morgan";
 // import { useNavigate } from "react-router-dom";
 import { loginFailed, loginStart, loginSuccess, logoutFailed, logoutStart, logoutSuccess, registerFailed, registerStart, registerSuccess} from "./authSlice";
@@ -33,28 +34,14 @@ export const InputUserInfo = async (user,dispatch,navigate) => {
 
 };
 
-export const getAllUsers = async(accessToken,dispatch,axiosJWT)=>{
-    dispatch(getUsersStart());
-    try {
-        const res = await axiosJWT.get("http://localhost:5000/api/user/getAllUsers",{
-            headers:{ 
-                token:`Bearer ${accessToken}`,
-            }
-        });
-        dispatch(getUsersSuccess(res.data));
-    } catch (error) {
-        dispatch(getUserFailed());
-    }
-};
-
 export const deleteUser = async(accessToken,dispatch,id,axiosJWT) => {
     dispatch(deleteUserStart());
     try {
-        const res = await axiosJWT.delete(`http://localhost:5000/api/user/${id}`,{
-            headers: {token:`Bearer ${accessToken}`},
-        });
-        dispatch(deleteUserSuccess(res.data));
-        
+        const res = await axiosJWT.delete(`http://localhost:5000/api/user/${id}`)
+        // ,{
+        //     headers: {token:`Bearer ${accessToken}`},
+        // });
+        dispatch(deleteUserSuccess(res.data));   
     } catch (err) {
         dispatch(deleteUserFailed(err.response.data));
     }
@@ -74,6 +61,20 @@ export const deleteUser = async(accessToken,dispatch,id,axiosJWT) => {
 //     }
 // }
 
+
+//export const getAllUsers = async(accessToken,dispatch,axiosJWT)=>{
+    //     dispatch(getUsersStart());
+    //     try {
+    //         const res = await axiosJWT.get("http://localhost:5000/api/user/getAllUsers",{
+    //             headers:{ 
+    //                 token:`Bearer ${accessToken}`,
+    //             }
+    //         });
+    //         dispatch(getUsersSuccess(res.data));
+    //     } catch (error) {
+    //         dispatch(getUserFailed());
+    //     }
+    // };
 
 
 

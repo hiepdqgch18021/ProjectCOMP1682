@@ -7,18 +7,18 @@ const upload = require("../utils/multer")
 router.post('/uploadDiary',upload.single('DiaryImage'),diaryController.addDiary);
 
 //update diary
-router.put("/:id",diaryController.updateDiary);
+router.put("/updateDiary/:id",diaryController.updateDiary);
 
 //get all diary
 
-router.get('/',storyController.getAllStory);
+router.get('/getAllDiary',diaryController.getAllDiary);
 
 //get a story
-router.get('/:diaryId',storyController.getOneStory);
+router.get('/getOneDiary/:diaryId',diaryController.getOneDiary);
 
 //delete a Story
 
-router.delete('/:diaryId',storyController.deleteStory);
+router.delete('/:diaryId',diaryController.deleteDiary);
 
 
 module.exports = router;

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
+import { createDispatchHook, useDispatch, useSelector } from 'react-redux';
 import React from 'react';
 
 import { Table,Button } from 'reactstrap';
@@ -8,38 +8,49 @@ import Header from "../Header/Header";
 import { getAllUsers,deleteUser } from '../../redux/apiRequest';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-
-
-
-
-const ListAllUser = () => {
-
-// const user = useSelector((state) =>state.auth.login?.currentUser);
-// const userList = useSelector((state) => state.users.users?.allUsers);
-
-const[ListAllUser,setListAllUser] = useState([]);
-
+import { Component } from 'react';
+import {useParams } from 'react-router-dom';
 const dispatch = useDispatch();
-const navigate = useNavigate();
+import { deleteUserFailed, deleteUserSuccess, deleteUserStart  } from "../../redux/userSlice";
+
 let axiosJWT = axios.create();
 
-const DeleteUser = (id) => {
-    deleteUser(ListAllUser?.accessToken,dispatch,id,axiosJWT);
-  };
+//   ListAllUser.accessToken,axiosJWT
+class ListAllUser extends React.Component {
 
-  
+    state = {
+        ListAllUser:[]
+    };
 
-    useEffect(() => {  
-        if(ListAllUser){
-        getAllUsers(ListAllUser, dispatch); //.accessToken
+async componentDidMount() {
+    let res = await axios.get('http://localhost:5000/api/user/getAllUsers');
+    this.setState({
+        ListAllUser:res && res.data ? res.data :[]
+    });
+    console.log('>>> check res',res.data);
+
+
+    
+    DeleteUserHandler = async(id,dispatch) => {
+        dispatch(deleteUserStart()); 
+        try {
+            const res = await axios.delete(`http://localhost:5000/api/user/${id}`)
+            dispatch(deleteUserSuccess(res.data));   
+        } catch (err) {
+            dispatch(deleteUserFailed(err.response.data));
         }
-     },[])
-     
+}
+}
+render() { 
+
+        let {ListAllUser} = this.state;
+        
     return (
         <>
             <header className='sidebar'>
                 <Header />
             </header>
+
             <main>
                 <section>
                     <div className="container">
@@ -49,36 +60,41 @@ const DeleteUser = (id) => {
                             </div>
                             <div className="col-9">
                                 <h1>LIST ALL USER</h1>
-                                
-                                <Table hover responsive size="">
+
+                                 <Table hover responsive size="">
                                     <thead>
                                         <tr>                                        
                                             <th>No</th>
                                             <th>Name</th>
                                             <th>Avatar</th>   
+                                            <th>Email</th>   
                                             <th>Username</th>
-                                            <th>Password</th>
                                             <th>Action</th>
                                         </tr>
-                                    </thead>
-
+                                    </thead>       
                                     <tbody>
-                                    {userList?.map((user) =>{
-                                return(
-                                        <tr>
-                                            <th scope="row">1</th>
+                                    {ListAllUser && ListAllUser.length >0 &&
+                                    ListAllUser.map((user,index)=>{
+                                        return(
+                                        <tr key={user.id}>
+                                            <th scope="row">{index+1}</th>
                                             <td>{user.name}</td>
-                                            <td>{user.username}</td>
-                                            <td>{user.imageAvatar}</td>                                                                                
-                                            <td>{user.password}</td>
-                                            <td>  
-                                                <Button color="danger" onClick={()=>DeleteUser(user._id)} >Delete</Button>
+                                            <td>
+                                                <img src={user.imageAvatar} alt="" />
                                             </td>
-                                        </tr>   
+                                            <td>{user.email}</td>
+                                            <td>{user.username}</td>
+                                            <td> 
+                                                 <Button onClick={()=> this.viewDetailHandler(user.id)} >Detail</Button>
+                                                 <Button onClick={()=>this.DeleteUserHandler(user.id)}>Delete</Button>
+                                            </td>
+                                        </tr>
                                         )
-                                    })}                                                              
+                                    })                                    
+                                    }   
                                     </tbody>
-                                </Table>
+                                                                                                                      
+                                </Table> 
                                 
                             </div> 
 
@@ -89,5 +105,26 @@ const DeleteUser = (id) => {
         </>
     );
 }
+}
 
 export default ListAllUser;
+
+
+
+// viewDetailHandler = (user)=>{
+
+//     this.props.history.push(`/user/${user.id}}`);
+//     }
+
+// async DeleteUserHandler(id){
+//     await axios.delete(`/user/${id}`);
+//     // deleteUser(id);
+//   };
+
+  
+
+    // useEffect(() => {  
+    //     if(ListAllUser){
+    //     getAllUsers(ListAllUser, dispatch); //.accessToken
+    //     }
+    //  },[])

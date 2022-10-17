@@ -39,7 +39,6 @@ const diaryController ={
             res.status(200).json(diary);
         } catch (error) {
             return res.status(500).json(error);
-
         }
     },
     getOneDiary: async (req, res)=> {

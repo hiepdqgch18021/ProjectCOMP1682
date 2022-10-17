@@ -1,17 +1,12 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { Fragment } from 'react'
-import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
-import classNames from 'classnames';
 // import { createAxios } from "../../../../.vscode/xDraff/createInstance";
 // import { logout } from "../../redux/apiRequest";
 // import { logoutSuccess } from "../../redux/authSlice";
 import PropTypes from 'prop-types';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Messenger from "../Messenger/Messenger";
-import FormUpStory from "../Form/FormUpStory";
 import "./header.css";
 import {  DropdownToggle,DropdownMenu,NavbarBrand,Nav,FormGroup,Label,ListGroup,
           ModalBody,ModalFooter,DropdownItem,Button,Input,Navbar,Modal,ListGroupItem,
@@ -21,7 +16,6 @@ const Header = ({ direction, ...args}) => {
   const user = useSelector((state) => state.auth.login.currentUser);  
 
 // -----------------------------------------------------
-  // const [isOpen, setIsOpen] = useState(true);
   const [modal, setModal] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const toggleFormUpStory = () => setModal(!modal);
@@ -30,7 +24,7 @@ const Header = ({ direction, ...args}) => {
   return (    
     <div className="header-container">
     <Navbar className="navbar-container">
-      <NavbarBrand href="/ListAllUser">Story</NavbarBrand>
+      <NavbarBrand href="/ListAllUser">list all user</NavbarBrand>
       <NavbarBrand href="/register">Register</NavbarBrand>
       <NavbarBrand href="/StoryDetail">StoryDetail</NavbarBrand>
         <Nav >

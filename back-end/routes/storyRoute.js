@@ -7,13 +7,13 @@ router.post('/uploadStory',upload.single('image'),storyController.addStory);
 
 //update story
 
-router.put("/:id",storyController.updateStory);
+router.put("/updateStory/:id",storyController.updateStory);
 
 //get all story 
-router.get("/",storyController.getAllStory);
+router.get("/getAllStory",storyController.getAllStory);
 
 //get a story
-router.get("/:storyId",storyController.getOneStory);
+router.get("/getOneStory/:storyId",storyController.getOneStory);
 
 //delete a story
 router.delete("/:storyId",storyController.deleteStory);

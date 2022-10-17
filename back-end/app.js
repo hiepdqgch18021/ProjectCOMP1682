@@ -40,12 +40,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 
 // ~~~~~~~~ API ~~~~~~~~~~~~~~~~
+// ----User-------------------------------------------
 const authRoute = require("./routes/authRoute")
 app.use("/api/auth", authRoute);
 
 const userRoute = require("./routes/usersRoute")
 app.use("/api/user",userRoute)
 
+// -Story------------------------------------------------
 const storyRoute =require("./routes/storyRoute");
 app.use("/api/story",storyRoute);
 

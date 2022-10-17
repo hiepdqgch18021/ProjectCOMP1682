@@ -1,4 +1,4 @@
-import {useEffect} from 'react'
+import {useEffect,useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import React from 'react';
@@ -12,15 +12,18 @@ import { loginSuccess } from '../../redux/authSlice';
 import jwtDecode from "jwt-decode";
 import Header from "../Header/Header";
 import "./home.css"
+
 const HomePage = () => {
 
+
 const user = useSelector((state)=>state.auth.login?.currentUser);
-const userList = useSelector((state)=> state.users.users?.allUsers)
+// const userList = useSelector((state)=> state.users.users?.allUsers)
 const msg = useSelector((state)=>state.user?.msg);
 const dispatch = useDispatch();
 const navigate = useNavigate();
 let axiosJWT = axios.create();
 // createAxios(user,dispatch,loginSuccess);
+const [addStory,setAddStory] = useState([])
 
 const refreshToken = async()=>{
   try {
@@ -52,10 +55,16 @@ axiosJWT.interceptors.request.use(async(config) =>{
 }
 )
 
+async function getStory(){
+try {
+  
+  const res = await axios.post('')
+} catch (error) {
+  
+}
+}
 useEffect(()=>{
-  if(!user){
-    navigate("/");
-  }
+getStory();
 },[]);
 
   return (
