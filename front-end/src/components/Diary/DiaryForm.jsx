@@ -1,15 +1,41 @@
 import Header from "../Header/Header";
 import React, { useState } from "react";
 import {FormGroup,Label,Input,Form,FormText,Button } from 'reactstrap';
+import axios from "axios";
 import "./diary.css"
 
 
+
 const DiaryForm = () => {
+
+    const url = process.env.REACT_APP_URL_AXIOS;
+console.log(url);
+    const[title,setTile] = useState('');
+    const[content,setContent] = useState('');
+    const[diaryFile,setDiaryFile] = useState({});
+    const submitDiary = async(e)=>{
+        console.log(diaryFile);
+        e.preventDefault();
+        try {
+            const res = await axios.post(url + '/diary/uploadDiary',{                
+                diaryTitle:title,
+                diaryContent:content,
+                diaryImage:diaryFile
+            },
+            { headers:{"Content-Type":"multipart/form-data"}}
+            ); 
+            console.log(res);                
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
     return ( 
         <>
         <header className='sidebar'>
               <Header/>
         </header>
+
         <main className="main-diary-form-container">
             <section>
                 <div className="container">
@@ -17,7 +43,7 @@ const DiaryForm = () => {
                     <div className="col-3 d-none d-lg-block d-md-block "></div>
 
                     <div className="col-lg-6 col-md-6 col-sm-8 diary-form-container">
-                        <Form>
+                        <Form onSubmit={(e)=>submitDiary(e)}>
                             <FormGroup className="mb-3-header">
                                 <Label for="exampleEmail" className="form-label-header">
                                     Your Diary Today
@@ -36,30 +62,7 @@ const DiaryForm = () => {
                                 name="date"
                                 placeholder="A title for today"
                                 type="text"
-                                />
-                            </FormGroup>
-
-                            <FormGroup className="mb-3-middle">
-                                <Label for="exampleDate" className="form-label-middle">
-                                    Date
-                                </Label>
-                                <Input
-                                id="exampleDate"
-                                name="date"
-                                placeholder="date placeholder"
-                                type="date"
-                                />
-                            </FormGroup>
-                            
-                            <FormGroup className="mb-3-middle">
-                                <Label for="exampleTime" className="form-label-middle">
-                                    Time
-                                </Label>
-                                <Input
-                                id="exampleTime"
-                                name="time"
-                                placeholder="time placeholder"
-                                type="time"
+                                onChange={(e)=>setTile(e.target.value)}
                                 />
                             </FormGroup>
 
@@ -71,6 +74,7 @@ const DiaryForm = () => {
                                 id="exampleText"
                                 name="text"
                                 type="textarea"
+                                onChange={(e)=>setContent(e.target.value)}
                                 />
                             </FormGroup>
                             
@@ -82,12 +86,13 @@ const DiaryForm = () => {
                                 id="exampleFile"
                                 name="file"
                                 type="file"
+                                onChange={(e)=>setDiaryFile(e.target.files[0])}
                                 />
                             </FormGroup>
-                            <Button  color="primary">
+                            <Button  color="primary" >
                                 Submit
                             </Button>
-                                </Form>
+                        </Form>
                     </div> 
 
                     <div className="col-3 d-lg-block d-md-block"></div>                   

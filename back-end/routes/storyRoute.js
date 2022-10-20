@@ -3,10 +3,9 @@ const router = require("express").Router();
 const upload = require("../utils/multer")
 
 //add story
-router.post('/uploadStory',upload.single('image'),storyController.addStory);
+router.post('/uploadStory',upload.single('storyImage'),storyController.addStory);
 
 //update story
-
 router.put("/updateStory/:id",storyController.updateStory);
 
 //get all story 

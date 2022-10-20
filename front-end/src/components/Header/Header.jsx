@@ -6,11 +6,13 @@ import { Link, useNavigate } from "react-router-dom";
 // import { logoutSuccess } from "../../redux/authSlice";
 import PropTypes from 'prop-types';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import axios from "axios";
+
 import Messenger from "../Messenger/Messenger";
 import "./header.css";
 import {  DropdownToggle,DropdownMenu,NavbarBrand,Nav,FormGroup,Label,ListGroup,
           ModalBody,ModalFooter,DropdownItem,Button,Input,Navbar,Modal,ListGroupItem,
-          ModalHeader,NavLink,NavItem,UncontrolledDropdown,Dropdown } from 'reactstrap';
+          ModalHeader,NavLink,NavItem,UncontrolledDropdown } from 'reactstrap';
 
 const Header = ({ direction, ...args}) => {
   const user = useSelector((state) => state.auth.login.currentUser);  
@@ -20,6 +22,29 @@ const Header = ({ direction, ...args}) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const toggleFormUpStory = () => setModal(!modal);
 // -----------------------------------------------------
+
+const url = process.env.REACT_APP_URL_AXIOS;
+
+  const[title,setTitle] = useState('');
+  const[content,setContent] = useState('');
+  const[storyFile,setStoryFile] = useState({});
+
+  const submitStory = async(e)=>{
+    console.log(storyFile);
+    e.preventDefault();
+    try {
+        const res = await axios.post(url + '/story/uploadStory',{                
+          storyTitle:title,
+          storyContent:content,
+          storyPhotos:storyFile
+        },
+        { headers:{"Content-Type":"multipart/form-data"}}
+        ); 
+        console.log(res);                
+    } catch (err) {
+        console.log(err);
+    }
+}
 
   return (    
     <div className="header-container">
@@ -57,7 +82,10 @@ const Header = ({ direction, ...args}) => {
             </NavLink>   
           </NavItem>   
                 
-          <Modal isOpen={modal} fade={false} toggle={toggleFormUpStory}>
+          <Modal isOpen={modal} fade={false} 
+                toggle={toggleFormUpStory}
+                onSubmit={(e)=>submitStory(e)}
+                >
             <ModalHeader toggle={toggleFormUpStory}>
 
               <div className="avt-form-up-story">
@@ -72,7 +100,9 @@ const Header = ({ direction, ...args}) => {
                 <Label for="exampleText"> Yang</Label>
               </div>
               <div className="title-up-story">             
-                <select className="form-select" aria-label="Default select example">
+                <select className="form-select" 
+                        aria-label="Default select example"  
+                        onChange={(e)=>setTitle(e.target.value)} >
                   <option selected="">Your Topic</option>
                   <option value={1}>One</option>
                   <option value={2}>Two</option>
@@ -87,11 +117,18 @@ const Header = ({ direction, ...args}) => {
                 
                 <div className="form-up-story-right">
                   <div className="input-story-text">
-                    <Input id="exampleText" name="text" type="textarea" placeholder='Your Story' />
+                    <Input id="exampleText" 
+                          name="text" type="textarea" 
+                          placeholder='Your Story' 
+                          onChange={(e)=>setContent(e.target.value)}
+                    />
                   </div>
 
                   <div className="choose-file">
-                    <Input id="exampleFile" className="choose-file" name="file" type="file" />
+                    <Input id="exampleFile" className="choose-file" 
+                            name="file" type="file" 
+                            onChange={(e)=>setStoryFile(e.target.files[0])}
+                            />
                   </div>                    
                 </div>
               </FormGroup>
@@ -99,7 +136,7 @@ const Header = ({ direction, ...args}) => {
             </ModalBody>
 
             <ModalFooter>
-              <Button color="primary" onClick={toggleFormUpStory}>
+              <Button color="primary">
                 submit
               </Button>{' '}
               <Button color="secondary" onClick={toggleFormUpStory}>

@@ -1,46 +1,42 @@
 import { useEffect, useState } from 'react'
 import { createDispatchHook, useDispatch, useSelector } from 'react-redux';
 import React from 'react';
-
 import { Table,Button } from 'reactstrap';
-
 import Header from "../Header/Header";
 import { getAllUsers,deleteUser } from '../../redux/apiRequest';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Component } from 'react';
 import {useParams } from 'react-router-dom';
-const dispatch = useDispatch();
+
 import { deleteUserFailed, deleteUserSuccess, deleteUserStart  } from "../../redux/userSlice";
 
 let axiosJWT = axios.create();
 
 //   ListAllUser.accessToken,axiosJWT
 class ListAllUser extends React.Component {
-
     state = {
         ListAllUser:[]
     };
 
-async componentDidMount() {
-    let res = await axios.get('http://localhost:5000/api/user/getAllUsers');
-    this.setState({
-        ListAllUser:res && res.data ? res.data :[]
-    });
-    console.log('>>> check res',res.data);
+// async componentDidMount() {
+//     let res = await axios.get('http://localhost:5000/api/user/getAllUsers');
+//     this.setState({
+//         ListAllUser:res && res.data ? res.data :[]
+//     });
+//     console.log('>>> check res',res.data);
+//     // DeleteUserHandler = async(id,dispatch) => {
+//     //     dispatch(deleteUserStart()); 
+//     //     try {
+//     //         const res = await axios.delete(`http://localhost:5000/api/user/${id}`)
+//     //         dispatch(deleteUserSuccess(res.data));   
+//     //     } catch (err) {
+//     //         dispatch(deleteUserFailed(err.response.data));
+//     //     }
+// }
+// }
 
 
-    
-    DeleteUserHandler = async(id,dispatch) => {
-        dispatch(deleteUserStart()); 
-        try {
-            const res = await axios.delete(`http://localhost:5000/api/user/${id}`)
-            dispatch(deleteUserSuccess(res.data));   
-        } catch (err) {
-            dispatch(deleteUserFailed(err.response.data));
-        }
-}
-}
 render() { 
 
         let {ListAllUser} = this.state;
@@ -85,8 +81,8 @@ render() {
                                             <td>{user.email}</td>
                                             <td>{user.username}</td>
                                             <td> 
-                                                 <Button onClick={()=> this.viewDetailHandler(user.id)} >Detail</Button>
-                                                 <Button onClick={()=>this.DeleteUserHandler(user.id)}>Delete</Button>
+                                                 {/* <Button onClick={()=> this.viewDetailHandler(user.id)} >Detail</Button>
+                                                 <Button onClick={()=>this.DeleteUserHandler(user.id)}>Delete</Button> */}
                                             </td>
                                         </tr>
                                         )

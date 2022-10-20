@@ -1,7 +1,6 @@
 import axios from "axios";
 import React from "react";
-// import { token } from "morgan";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { loginFailed, loginStart, loginSuccess, logoutFailed, logoutStart, logoutSuccess, registerFailed, registerStart, registerSuccess} from "./authSlice";
 import { getUsersStart,getUsersSuccess,getUserFailed, deleteUserFailed, deleteUserSuccess, deleteUserStart  } from "./userSlice";
 
@@ -37,10 +36,10 @@ export const InputUserInfo = async (user,dispatch,navigate) => {
 export const deleteUser = async(accessToken,dispatch,id,axiosJWT) => {
     dispatch(deleteUserStart());
     try {
-        const res = await axiosJWT.delete(`http://localhost:5000/api/user/${id}`)
-        // ,{
-        //     headers: {token:`Bearer ${accessToken}`},
-        // });
+        const res = await axiosJWT.delete(`http://localhost:5000/api/user/${id}`
+        ,{
+            headers: {token:`Bearer ${accessToken}`},
+        });
         dispatch(deleteUserSuccess(res.data));   
     } catch (err) {
         dispatch(deleteUserFailed(err.response.data));

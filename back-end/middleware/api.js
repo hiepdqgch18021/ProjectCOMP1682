@@ -5,6 +5,10 @@
 
 // Story
 // http://localhost:5000/api/story/uploadStory 
+// http://localhost:5000/api/story/updateStory/:id
+// http://localhost:5000/api/story/getAllStory
+// http://localhost:5000/api/story/getOneStory/:storyId
+// http://localhost:5000/api/story/:storyId
 
 
 // user 
@@ -12,8 +16,10 @@
 // http://localhost:5000/api/user/getAllUsers
 // http://localhost:5000/api/user/deleteUser/:id
 // http://localhost:5000/api/user/getOneUsers/:id
+
 // http://localhost:5000/api/user/addUserInfo/
 // http://localhost:5000/api/user/updateUserInfo/:id
+// http://localhost:5000/api/user/deleteUserInfo/:id
 
 
 // diary 

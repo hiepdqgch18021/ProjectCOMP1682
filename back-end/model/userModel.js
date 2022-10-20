@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-// const { PassThrough } = require("nodemailer/lib/xoauth2");
 
 const userSchema = new mongoose.Schema({
     username:{
@@ -32,16 +31,12 @@ const userSchema = new mongoose.Schema({
         type: String,
     },
     DoB:{
-        type: Date,
+        type: String,
     },
-    // imageCover:[{
-    //     filename:{type: String},
-    //     mimetype:{type: String}
-    // }],
-    imageAvatar:[{
-        filename:{type: String},
-        mimetype:{type: String}
-    }],
+
+    imageAvatar:{
+        type: String,
+    },
 },{timestamps:true}
 );
 let User = mongoose.model('User',userSchema); 

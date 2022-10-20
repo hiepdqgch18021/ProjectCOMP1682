@@ -23,7 +23,7 @@ const storySchema = new mongoose.Schema({
 });
 
 let Story = mongoose.model('Story',storySchema); 
-module.exports =Story;
+module.exports = Story;
 
 
 

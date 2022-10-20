@@ -1,26 +1,32 @@
 
 const cloudinary = require("../utils/cloundinary")
-
 const Story = require("../model/storyModel");
 
 const storyController = {
 
     //add story
     addStory: async(req,res)=>{
-        try {            
-            const storyImage = await cloudinary.uploader.upload(req.file.path,{folder:"imageStory"});
-            console.log(storyImage);
-
+        try {        
+            if(req.file){
+            const storyImage = await cloudinary.uploader.upload(req.file.path,{folder:"imageStory"});         
             //create instance of story
-            let newStory = new Story({
+            const newStory = new Story
+            ({
                 storyTitle: req.body.storyTitle,
                 storyContent:req.body.storyContent,
                 storyPhotos:storyImage.secure_url,
                 cloudinaryID: storyImage.public_id
             });
             //save user
-                await newStory.save();
-                res.status(200).json(newStory);
+            await newStory.save();
+            return res.status(200).json(newStory);
+        }
+        const newStory = await Story({
+            storyTitle: req.body.storyTitle,
+            storyContent:req.body.storyContent,
+        })
+        await newStory.save();
+        return res.status(200).json(newStory);
         } catch (error) {
             return res.status(500).json(error);
         }

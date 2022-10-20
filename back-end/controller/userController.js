@@ -12,7 +12,7 @@ const userController ={
         } catch (error) {
             return res.status(500).json(error);
         }
-    },
+    }, 
 
     //get one user
     getOneUser:async(req,res)=>{
@@ -38,14 +38,15 @@ addUserInfo:async(req,res)=>{
 try {
     const userAvatar = await cloudinary.uploader.upload(req.file.path,{folder:"userAvatar"});
     console.log(userAvatar);
-    let userInfo = new User({
+    const userInfo = new User
+    ({
         nameUser:req.body.name,
-        dob:req.body.DoB,
-        userAvatar:userAvatar.secure_url,
+        DoB:req.body.DoB,
+        imageAvatar:userAvatar.secure_url,
         cloudinaryID: userAvatar.public_id
     })
     //save info
-    await userInfo.save() ;
+    await userInfo.save();
     res.status(200).json(userInfo);
     } catch (error) {
         return res.status(500).json(error);

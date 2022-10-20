@@ -5,6 +5,9 @@ import { XMarkIcon } from '@heroicons/react/24/outline'
 const StoryDetail = () => {
   const [open, setOpen] = useState(true)
 
+
+
+  
   return (  
     <Transition.Root show={open} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={setOpen}>
@@ -17,7 +20,7 @@ const StoryDetail = () => {
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+        <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
         </Transition.Child>
 
         <div className="fixed inset-0 overflow-hidden">

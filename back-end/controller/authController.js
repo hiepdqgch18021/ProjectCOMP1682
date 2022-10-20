@@ -1,24 +1,27 @@
 const User = require("../model/userModel");
+const cloudinary = require("../utils/cloundinary")
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 let refreshTokens = [];
+
 const authController={
     //registers
     registerUser: async(req,res)=>{
         try {
             const salt = await bcrypt.genSalt(10);
             const hashed = await bcrypt.hash(req.body.password,salt);           
+
             // create new user
             const newUser = await new User({
                 username: req.body.username,
                 email: req.body.email,
-                password: hashed,
+                password: hashed,               
             });
             //save to database
             const user = await newUser.save();
             res.status(200).json(user);
             } catch (error) {
-                res.status(500).json("The username or email has existed already");
+                res.status(500).json("Register failed ! check your information", error);
             }
     },
 //Generated ACCESS_TOKEN
@@ -26,10 +29,10 @@ const authController={
     return jwt.sign(
         {
             id: user.id,
-            admin: user.admin,
+            admin: user.admin, //check admin role
         },
             process.env.JWT_ACCESS_TOKEN,
-            {expiresIn:"20s"} 
+            {expiresIn:"15d"} //due date of jwt
         );
     },
 //Generated REFRESH_TOKEN
@@ -40,10 +43,10 @@ const authController={
             admin: user.admin,
         },
             process.env.JWT_REFRESH_TOKEN,
-            {expiresIn:"20d"} 
+            {expiresIn:"30d"} 
         );
     },
-
+    
     //login
     loginUser: async(req, res, next) => {
         try {
@@ -65,7 +68,7 @@ const authController={
 //Store refreshToken : HTTP_ONLY => REFRESH_TOKEN 
             const refreshToken = authController.generateRefreshToken(user);
             refreshTokens.push(refreshToken);
-            res.cookie("refreshToken1",refreshToken,{
+            res.cookie("refreshTokenLogin",refreshToken,{
                 httpOnly: true,
                 secure:false,
                 path:"/",
@@ -95,7 +98,7 @@ const authController={
     const newAccessToken = authController.generateAccessToken(user);
     const newRefreshToken = authController.generateRefreshToken(user);
     refreshTokens.push(newRefreshToken);
-    res.cookie("refreshToken1",newRefreshToken,{
+    res.cookie("refreshToken",newRefreshToken,{
         httpOnly: true,
         secure:false,
         path:"/",
@@ -116,7 +119,12 @@ const authController={
 
 module.exports = authController;
 
-
+//store token
+//1 local storage -> easy to be attack by xss
+//2 HTTP-ONLY cookie -> easy to be attack by CSRF
+//3 MY WAY
+// redux store -> to store ACCESS_TOKEN
+// HTTP-ONLY cookie -> to store REFRESH _TOKEN
 
 
 

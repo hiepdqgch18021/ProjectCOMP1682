@@ -9,6 +9,7 @@ const DiaryDetail = () => {
         <header className='sidebar'>
               <Header/>
         </header>
+        
         <main>
             <section>
                 <div className="container">

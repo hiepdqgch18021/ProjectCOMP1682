@@ -1,9 +1,9 @@
 const jwt =require("jsonwebtoken");
 
 const middlewareController = {
-    //verifyToken
+    //verifyToken || to verify that the token is belong to this user or not
     verifyToken: (req, res, next) => {
-        const token = req.headers.token;
+        const token = req.headers.token; //take token form user
         if (token) {
             const accessToken = token.split(" ")[1];
             jwt.verify(accessToken, process.env.JWT_ACCESS_TOKEN,(err,user) => {
@@ -15,9 +15,7 @@ const middlewareController = {
         });
     }
     else{
-      return  res.status(401).json(
-        'You are not authenticated yet'
-        )
+      return  res.status(401).json('You are not authenticated yet')
     }
 },
 verifyTokenAndAdminAuth:(req, res,next)=>{

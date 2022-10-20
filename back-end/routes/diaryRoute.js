@@ -4,7 +4,7 @@ const router = require("express").Router();
 const upload = require("../utils/multer")
 
 //add diary
-router.post('/uploadDiary',upload.single('DiaryImage'),diaryController.addDiary);
+router.post('/uploadDiary',upload.single('diaryImage'),diaryController.addDiary);
 
 //update diary
 router.put("/updateDiary/:id",diaryController.updateDiary);
