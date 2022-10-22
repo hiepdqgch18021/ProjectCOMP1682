@@ -7,6 +7,7 @@ const diaryController ={
     //add diary
     addDiary: async(req,res)=>{
         try {
+
             if(req.file){
             const diaryImage = await cloudinary.uploader.upload(req.file.path,{folder:"imageDiary"});
             const newDiary = new Diary
@@ -14,7 +15,8 @@ const diaryController ={
                 diaryTitle:req.body.diaryTitle,
                 diaryContent: req.body.diaryContent,
                 diaryPhotos: diaryImage.secure_url,
-                cloudinaryID: diaryImage.public_id
+                cloudinaryID: diaryImage.public_id,
+                userID: req.user.id,
              });
                 await newDiary.save();
                 return res.status(200).json(newDiary);   
@@ -22,6 +24,8 @@ const diaryController ={
             const newDiary = await Diary({
                 diaryTitle:req.body.diaryTitle,
                 diaryContent: req.body.diaryContent,
+                userID: req.user.id
+
             })
             await newDiary.save();
             return res.status(200).json(newDiary);  
@@ -43,8 +47,8 @@ const diaryController ={
     },
 
     getAllDiary: async (req, res)=> {
-        try {
-            const diary = await Diary.find();
+        try {            
+            const diary = await Diary.find({userID:req.user.id});
             res.status(200).json(diary);
         } catch (error) {
             return res.status(500).json(error);
@@ -53,7 +57,7 @@ const diaryController ={
 
     getOneDiary: async (req, res)=> {
         try {
-            const diary = await Diary.findById(req.params.diaryId);
+            const diary = await Diary.findById(req.params.id);
             res.status(200).json(diary);
         } catch (error) {
             return res.status(500).json(error);

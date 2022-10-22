@@ -1,5 +1,4 @@
 const User = require("../model/userModel");
-const cloudinary = require("../utils/cloundinary")
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 let refreshTokens = [];
@@ -10,11 +9,10 @@ const authController={
         try {
             const salt = await bcrypt.genSalt(10);
             const hashed = await bcrypt.hash(req.body.password,salt);           
-
             // create new user
             const newUser = await new User({
-                username: req.body.username,
                 email: req.body.email,
+                username: req.body.username,
                 password: hashed,               
             });
             //save to database
@@ -45,8 +43,7 @@ const authController={
             process.env.JWT_REFRESH_TOKEN,
             {expiresIn:"30d"} 
         );
-    },
-    
+    },   
     //login
     loginUser: async(req, res, next) => {
         try {
@@ -68,11 +65,11 @@ const authController={
 //Store refreshToken : HTTP_ONLY => REFRESH_TOKEN 
             const refreshToken = authController.generateRefreshToken(user);
             refreshTokens.push(refreshToken);
-            res.cookie("refreshTokenLogin",refreshToken,{
+            res.cookie("refreshToken",refreshToken,{
                 httpOnly: true,
                 secure:false,
                 path:"/",
-                sameSite:"strict",
+                // sameSite:"strict",
             });
             const {password, ...others} = user._doc;
                 res.status(200).json({...others,accessToken});

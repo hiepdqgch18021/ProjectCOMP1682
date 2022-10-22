@@ -7,7 +7,7 @@ router.get("/",(req,res) => {
 })
 
 //get all user
-router.get("/getAllUsers",middlewareController.verifyToken,userController.getAllUsers); //,middlewareController.verifyToken
+router.get("/getAllUsers",userController.getAllUsers); //,middlewareController.verifyToken
 
 //get one user
 router.get("/getOneUsers/:id",middlewareController.verifyToken,userController.getAllUsers); 
@@ -18,7 +18,8 @@ router.delete("/deleteUser/:id",middlewareController.verifyTokenAndAdminAuth,use
 
 //----User information--------------------------------------------------------------------------------------------
 router.post("/addUserInfo",upload.single('imageAvatar'),userController.addUserInfo);
-
+router.get("/getAllUsersInfo",userController.getAllUsersInfo)
+router.get("/getOneUserInfo/:id",userController.getOneUserInfo)
 router.put('/updateUserInfo/:id',userController.updateUserInfo);
 
 router.delete('/deleteUserInfo/:id',userController.deleteUserInfo);

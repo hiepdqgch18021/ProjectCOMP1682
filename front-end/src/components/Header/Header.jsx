@@ -7,8 +7,8 @@ import { Link, useNavigate } from "react-router-dom";
 import PropTypes from 'prop-types';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from "axios";
-
 import Messenger from "../Messenger/Messenger";
+
 import "./header.css";
 import {  DropdownToggle,DropdownMenu,NavbarBrand,Nav,FormGroup,Label,ListGroup,
           ModalBody,ModalFooter,DropdownItem,Button,Input,Navbar,Modal,ListGroupItem,
@@ -183,9 +183,11 @@ const url = process.env.REACT_APP_URL_AXIOS;
 {/* profile */}
 
        
-          <UncontrolledDropdown nav inNavbar >
-        
+          <UncontrolledDropdown nav inNavbar >      
             <DropdownToggle nav caret >
+              <span>
+                {user.username}
+              </span>              
               <img
                 src="https://github.com/mdo.png"
                 alt="mdo"

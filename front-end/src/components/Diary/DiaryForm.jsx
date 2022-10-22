@@ -4,8 +4,6 @@ import {FormGroup,Label,Input,Form,FormText,Button } from 'reactstrap';
 import axios from "axios";
 import "./diary.css"
 
-
-
 const DiaryForm = () => {
 
     const url = process.env.REACT_APP_URL_AXIOS;
@@ -13,7 +11,10 @@ console.log(url);
     const[title,setTile] = useState('');
     const[content,setContent] = useState('');
     const[diaryFile,setDiaryFile] = useState({});
+    
     const submitDiary = async(e)=>{
+        const token = localStorage.getItem('jwtLogin')
+
         console.log(diaryFile);
         e.preventDefault();
         try {
@@ -22,7 +23,13 @@ console.log(url);
                 diaryContent:content,
                 diaryImage:diaryFile
             },
-            { headers:{"Content-Type":"multipart/form-data"}}
+            {
+                headers:{
+                    "Content-Type":"multipart/form-data",
+                    token:`Bearer ${token}`,
+                    accept: 'application/json'
+                }
+            }
             ); 
             console.log(res);                
         } catch (err) {

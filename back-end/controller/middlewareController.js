@@ -18,6 +18,7 @@ const middlewareController = {
       return  res.status(401).json('You are not authenticated yet')
     }
 },
+
 verifyTokenAndAdminAuth:(req, res,next)=>{
     middlewareController.verifyToken(req,res,()=>{
         if(req.user.id == req.params.id || req.user.admin){
@@ -27,6 +28,10 @@ verifyTokenAndAdminAuth:(req, res,next)=>{
         }
     });
 }
+
+
+
+
 }
 
 module.exports = middlewareController;

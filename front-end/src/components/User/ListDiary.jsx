@@ -4,21 +4,29 @@ import { useState } from 'react';
 import { NavLink } from "reactstrap";
 
 const ListDiary = () => {
-    
-    const url = process.env.REACT_APP_URL_AXIOS;
-const [diaryData,setDiaryData] = useState([])
 
-useEffect (()=>{
-    (async()=>{
-        try {
-            const res = await axios.get(url + '/diary/getAllDiary'); 
-            console.log(res);   
-            setDiaryData(res);             
-        } catch (err) {
-            console.log(err);
-        }
-    })()
-},[]);
+    const url = process.env.REACT_APP_URL_AXIOS;
+    const [diaryData, setDiaryData] = useState([])
+    const token = localStorage.getItem('jwtLogin')
+
+    useEffect(() => {
+        (async () => {
+            try {
+                const res = await axios.get(url + '/diary/getAllDiary',
+                    {
+                        headers: {
+                            token: `Bearer ${token}`,
+                            accept: 'application/json'
+                        }
+                    }
+                );
+                console.log(res);
+                setDiaryData(res.data);
+            } catch (err) {
+                console.log(err);
+            }
+        })()
+    }, []);
 
     return (
         <div className="list-topic">
@@ -37,20 +45,21 @@ useEffect (()=>{
                     </form>
                 </div>
             </nav>
-
-            <div className="topic-element">
-                <div className='btn-topic-element'>
-                    <NavLink href="/DiaryDetail">
-                        <div className="topic-name">
-                            <span>#4 Detective novels</span>
-                        </div>
-                        <div className="topic-amount">
-                            <span> 15/2/2022 </span>
-                        </div>
-                    </NavLink>
+            {diaryData.map((d) => (
+                <div className="topic-element">
+                    <div className='btn-topic-element'>
+                        <NavLink href={`/DiaryDetail/${d._id}`}>
+                            <div className="topic-name">
+                                <span>{d.diaryTitle}</span>
+                            </div>
+                            <div className="topic-amount">
+                                <span> {d.createdAt}</span>
+                            </div>
+                        </NavLink>
+                    </div>
                 </div>
-            </div>
-
+            ))
+            }
             <div className="btn-add-diary">
                 <NavLink href="/DiaryForm">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">

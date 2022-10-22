@@ -2,10 +2,7 @@ const mongoose = require('mongoose');
 
 const diarySchema = new mongoose.Schema({
 
-    diaryDateTime: {
-        type: Date,
-        default: Date.now
-    },
+
     diaryTitle:{ 
         type: String, 
         required: true 
@@ -14,9 +11,9 @@ const diarySchema = new mongoose.Schema({
         type: String, 
         required: true 
     },
-    diaryPhotos:[{
+    diaryPhotos:{
         type: String, 
-    }],
+    },
     userID:{
         type: mongoose.Schema.Types.ObjectId,
         ref:'User'

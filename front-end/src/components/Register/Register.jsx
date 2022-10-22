@@ -61,7 +61,6 @@ registerUser(newUser,dispatch,navigate);
                 onChange={(e)=>setPassword(e.target.value)}
                 />
             </FormGroup>
-        
             <Button className='btn_submit'>
                 Submit
             </Button>

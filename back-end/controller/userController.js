@@ -1,7 +1,7 @@
 const { addListener } = require('../model/userModel');
 const cloudinary = require("../utils/cloundinary")
-const User = require('../model/userModel')
-
+const User = require('../model/userModel');
+const UserInfo = require('../model/userInfoModel');
 const userController ={
 
     //get all users
@@ -34,13 +34,31 @@ const userController ={
     },
 
 //add user information------------------------------------------------------------------------------------------
+
+getAllUsersInfo:async(req,res)=>{
+    try {
+        const usersInfo= await UserInfo.find();
+        res.status(200).json(usersInfo);
+    } catch (error) {
+        return res.status(500).json(error);
+    }
+},
+
+getOneUserInfo:async(req,res)=>{
+    try {
+        const userInfo= await UserInfo.findById(req.params.id);
+        res.status(200).json(userInfo);
+    } catch (error) {
+        return res.status(500).json(error);
+    }
+},
+
 addUserInfo:async(req,res)=>{
-try {
+try {  
     const userAvatar = await cloudinary.uploader.upload(req.file.path,{folder:"userAvatar"});
-    console.log(userAvatar);
-    const userInfo = new User
+    const userInfo = new UserInfo
     ({
-        nameUser:req.body.name,
+        name:req.body.name,
         DoB:req.body.DoB,
         imageAvatar:userAvatar.secure_url,
         cloudinaryID: userAvatar.public_id
@@ -55,7 +73,7 @@ try {
 
 updateUserInfo:async(req, res)=>{
     try {
-        const info = await User.findById(req.params.id);
+        const info = await UserInfo.findById(req.params.id);
         await info.updateOne({$set:req.body});
         res.status(200).json("update user's information success");
     } catch (error) {
@@ -67,7 +85,7 @@ updateUserInfo:async(req, res)=>{
 
 deleteUserInfo: async(req, res)=>{
     try {
-         await User.findByIdAndDelete(req.params.id);
+         await UserInfo.findByIdAndDelete(req.params.id);
          res.status(200).json("delete information success");
     } catch (error) {
         return res.status(500).json(error);

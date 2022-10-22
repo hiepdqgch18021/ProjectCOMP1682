@@ -4,7 +4,7 @@ const authSlice = createSlice({
     name: "auth",
     initialState: {
         login:{
-            currentUser: null, //store all information when user login
+            currentUser: null, //store all information when user login success
             isFetching: false, //loading function
             error:false, 
         },
@@ -13,7 +13,7 @@ const authSlice = createSlice({
             error:false, //error function
             success:false, //success function           
         },
-        
+           
     },
     reducers: {
         loginStart:(state)=>{

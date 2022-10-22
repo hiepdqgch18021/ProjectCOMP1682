@@ -11,9 +11,9 @@ import { Dropdown} from 'reactstrap';
 
         return(
         <>
-            <header className='sidebar'>
+            {/* <header className='sidebar'>
                 <Header/>
-            </header>
+            </header> */}
 
             <h1>MASSAGE page</h1>
            
