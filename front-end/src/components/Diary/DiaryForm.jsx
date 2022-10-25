@@ -3,15 +3,17 @@ import React, { useState } from "react";
 import {FormGroup,Label,Input,Form,FormText,Button } from 'reactstrap';
 import axios from "axios";
 import "./diary.css"
+import { useNavigate } from "react-router-dom";
 
 const DiaryForm = () => {
 
     const url = process.env.REACT_APP_URL_AXIOS;
-console.log(url);
-    const[title,setTile] = useState('');
+    const navigate = useNavigate()
+
+    const[title,setTitle] = useState('');
     const[content,setContent] = useState('');
     const[diaryFile,setDiaryFile] = useState({});
-    
+
     const submitDiary = async(e)=>{
         const token = localStorage.getItem('jwtLogin')
 
@@ -31,7 +33,8 @@ console.log(url);
                 }
             }
             ); 
-            console.log(res);                
+            console.log(res);
+
         } catch (err) {
             console.log(err);
         }
@@ -44,12 +47,7 @@ console.log(url);
         </header>
 
         <main className="main-diary-form-container">
-            <section>
-                <div className="container">
-                    <div className="row">
-                    <div className="col-3 d-none d-lg-block d-md-block "></div>
-
-                    <div className="col-lg-6 col-md-6 col-sm-8 diary-form-container">
+            
                         <Form onSubmit={(e)=>submitDiary(e)}>
                             <FormGroup className="mb-3-header">
                                 <Label for="exampleEmail" className="form-label-header">
@@ -69,7 +67,7 @@ console.log(url);
                                 name="date"
                                 placeholder="A title for today"
                                 type="text"
-                                onChange={(e)=>setTile(e.target.value)}
+                                onChange={(e)=>setTitle(e.target.value)}
                                 />
                             </FormGroup>
 
@@ -100,12 +98,7 @@ console.log(url);
                                 Submit
                             </Button>
                         </Form>
-                    </div> 
-
-                    <div className="col-3 d-lg-block d-md-block"></div>                   
-                    </div>
-                </div>
-            </section>
+                    
         </main>
         <footer>
             <FormText>

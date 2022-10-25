@@ -15,7 +15,8 @@ const storyController = {
                 storyTitle: req.body.storyTitle,
                 storyContent:req.body.storyContent,
                 storyPhotos:storyImage.secure_url,
-                cloudinaryID: storyImage.public_id
+                cloudinaryID: storyImage.public_id,
+                userID: req.user.id,
             });
             //save user
             await newStory.save();
@@ -24,6 +25,7 @@ const storyController = {
         const newStory = await Story({
             storyTitle: req.body.storyTitle,
             storyContent:req.body.storyContent,
+            userID: req.user.id
         })
         await newStory.save();
         return res.status(200).json(newStory);
@@ -57,7 +59,7 @@ const storyController = {
     // get a story
     getOneStory: async(req,res)=>{ 
         try {
-            const story = await Story.findById(req.params.storyId);
+            const story = await Story.findById(req.params.id);
             res.status(200).json(story);
         } catch (error) {
             return res.status(500).json(error);
@@ -67,7 +69,7 @@ const storyController = {
     //delete story
     deleteStory: async(req,res)=>{
         try {
-            await Story.findByIdAndDelete(req.params.storyId); 
+            await Story.findByIdAndDelete(req.params.id); 
             res.status(200).json("delete success");
         } catch (error) {
             return res.status(500).json(error);

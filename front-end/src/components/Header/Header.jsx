@@ -1,49 +1,32 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
-// import { createAxios } from "../../../../.vscode/xDraff/createInstance";
-// import { logout } from "../../redux/apiRequest";
-// import { logoutSuccess } from "../../redux/authSlice";
-import PropTypes from 'prop-types';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import axios from "axios";
-import Messenger from "../Messenger/Messenger";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { createAxios } from '../../createInstance';
+ import { logout } from "../../redux/apiRequest";
+import {loginSuccess} from "../../redux/authSlice";
+// import Messenger from "../Messenger/Messenger";
 
 import "./header.css";
-import {  DropdownToggle,DropdownMenu,NavbarBrand,Nav,FormGroup,Label,ListGroup,
-          ModalBody,ModalFooter,DropdownItem,Button,Input,Navbar,Modal,ListGroupItem,
-          ModalHeader,NavLink,NavItem,UncontrolledDropdown } from 'reactstrap';
+import {  DropdownToggle,DropdownMenu,NavbarBrand,Nav,ListGroup,
+          DropdownItem,Navbar,ListGroupItem,NavLink,NavItem,UncontrolledDropdown } from 'reactstrap';
+import Story from "../Story/Story";
 
 const Header = ({ direction, ...args}) => {
-  const user = useSelector((state) => state.auth.login.currentUser);  
+ 
+ const user = useSelector((state) => state.auth.login.currentUser);  
 
 // -----------------------------------------------------
-  const [modal, setModal] = useState(false);
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  const toggleFormUpStory = () => setModal(!modal);
-// -----------------------------------------------------
+const accessToken = user?.accessToken;
+const id = user?._id;
+const dispatch = useDispatch();
+const navigate = useNavigate();
 
-const url = process.env.REACT_APP_URL_AXIOS;
+let axiosJWT = createAxios(user,dispatch,loginSuccess)
 
-  const[title,setTitle] = useState('');
-  const[content,setContent] = useState('');
-  const[storyFile,setStoryFile] = useState({});
 
-  const submitStory = async(e)=>{
-    console.log(storyFile);
-    e.preventDefault();
-    try {
-        const res = await axios.post(url + '/story/uploadStory',{                
-          storyTitle:title,
-          storyContent:content,
-          storyPhotos:storyFile
-        },
-        { headers:{"Content-Type":"multipart/form-data"}}
-        ); 
-        console.log(res);                
-    } catch (err) {
-        console.log(err);
-    }
+
+const handleLogout=()=>{
+logout(dispatch,navigate,id,accessToken,axiosJWT)
 }
 
   return (    
@@ -71,80 +54,14 @@ const url = process.env.REACT_APP_URL_AXIOS;
             </svg>
             </NavLink>
           </NavItem>
-
-          <NavItem className="link-items" color="danger" onClick={toggleFormUpStory}>
-            {/* add story */}       
-            <NavLink>  
-            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
-              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-              <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-            </svg> 
+          <NavItem>
+            <NavLink href="/StoryForm">  
+              <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+              </svg> 
             </NavLink>   
-          </NavItem>   
-                
-          <Modal isOpen={modal} fade={false} 
-                toggle={toggleFormUpStory}
-                onSubmit={(e)=>submitStory(e)}
-                >
-            <ModalHeader toggle={toggleFormUpStory}>
-
-              <div className="avt-form-up-story">
-                  <img
-                  className=""
-                  src="https://ict-imgs.vgcloud.vn/2020/09/01/19/huong-dan-tao-facebook-avatar.jpg"
-                  alt="Workflow"
-                  />
-              </div>
-              
-              <div className="title-form-up-story">
-                <Label for="exampleText"> Yang</Label>
-              </div>
-              <div className="title-up-story">             
-                <select className="form-select" 
-                        aria-label="Default select example"  
-                        onChange={(e)=>setTitle(e.target.value)} >
-                  <option selected="">Your Topic</option>
-                  <option value={1}>One</option>
-                  <option value={2}>Two</option>
-                  <option value={3}>Three</option>
-                </select>
-              </div>
-            </ModalHeader>
-
-            <ModalBody>
-            <div className="form-up-story"> 
-              <FormGroup className='form-group'>
-                
-                <div className="form-up-story-right">
-                  <div className="input-story-text">
-                    <Input id="exampleText" 
-                          name="text" type="textarea" 
-                          placeholder='Your Story' 
-                          onChange={(e)=>setContent(e.target.value)}
-                    />
-                  </div>
-
-                  <div className="choose-file">
-                    <Input id="exampleFile" className="choose-file" 
-                            name="file" type="file" 
-                            onChange={(e)=>setStoryFile(e.target.files[0])}
-                            />
-                  </div>                    
-                </div>
-              </FormGroup>
-            </div> 
-            </ModalBody>
-
-            <ModalFooter>
-              <Button color="primary">
-                submit
-              </Button>{' '}
-              <Button color="secondary" onClick={toggleFormUpStory}>
-                Cancel
-              </Button>
-            </ModalFooter>
-          </Modal>
-          
+          </NavItem>
           <NavItem className="nav-item-notifications">
             {/* notifications */}
 {/* -------------------------------------------------- */}
@@ -165,14 +82,7 @@ const url = process.env.REACT_APP_URL_AXIOS;
                 </ListGroupItem>
                 <ListGroupItem action href="#" tag="a">
                   Porta ac consectetur ac
-                </ListGroupItem>
-                <ListGroupItem action href="#" tag="a">
-                  Porta ac consectetur ac
-                </ListGroupItem>
-                <ListGroupItem action href="#" tag="a">
-                  Porta ac consectetur ac
-                </ListGroupItem>
-
+                </ListGroupItem>          
               </ListGroup>
               </DropdownItem>
             </DropdownMenu>
@@ -180,9 +90,7 @@ const url = process.env.REACT_APP_URL_AXIOS;
 {/* -------------------------------------------------- */}
           </NavItem>
 
-{/* profile */}
-
-       
+{/* profile */}       
           <UncontrolledDropdown nav inNavbar >      
             <DropdownToggle nav caret >
               <span>
@@ -190,6 +98,7 @@ const url = process.env.REACT_APP_URL_AXIOS;
               </span>              
               <img
                 src="https://github.com/mdo.png"
+                // src="https://github.com/mdo.png"
                 alt="mdo"
                 width={32}
                 height={32}
@@ -205,7 +114,7 @@ const url = process.env.REACT_APP_URL_AXIOS;
                 <NavLink href="/EditProfile">Edit</NavLink>
               </DropdownItem>
               <DropdownItem divider />
-              <DropdownItem>Logout</DropdownItem>
+              <DropdownItem onClick={handleLogout} >Logout</DropdownItem>
             </DropdownMenu>
 
           </UncontrolledDropdown>

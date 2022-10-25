@@ -6,16 +6,15 @@ import { useParams } from "react-router-dom";
 const DiaryDetail = () => {
     const url = process.env.REACT_APP_URL_AXIOS;
     const [diaryData, setDiaryData] = useState()
-
     const token = localStorage.getItem('jwtLogin')
-const {id} =useParams();
+    const {id} =useParams();
+
     useEffect(() => {
         (async () => {
             try {
                 const res = await axios.get(url + '/diary/getOneDiary/' + id,
                     {
-                        headers: {
-                            
+                        headers: {                         
                             token: `Bearer ${token}`,
                             accept: 'application/json'
                         }
@@ -29,7 +28,7 @@ const {id} =useParams();
         })()
     }, []);
     return (
-<>
+    <>
         {diaryData?  <>
             <header className='sidebar'>
                   <Header/>

@@ -1,5 +1,4 @@
 const diaryController = require('../controller/diaryController');
-const storyController = require('../controller/storyController');
 const router = require("express").Router();
 const upload = require("../utils/multer")
 const middlewareController = require("../controller/middlewareController");

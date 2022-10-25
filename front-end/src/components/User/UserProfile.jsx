@@ -5,7 +5,7 @@ import { Button, NavLink,List,ListInlineItem,Toast,ToastHeader,UncontrolledDropd
          DropdownToggle,DropdownMenu,DropdownItem,ToastBody } from "reactstrap";
 import "./UserProfile.css"
 import "./EditProfile"
-import ListDiary from "./ListDiary";
+import ListDiary from "../Diary/ListDiary";
 
 
 const UserProfile = () => {

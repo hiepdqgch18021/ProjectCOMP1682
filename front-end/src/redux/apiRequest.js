@@ -2,7 +2,6 @@ import axios from "axios";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { loginFailed, loginStart, loginSuccess, logoutFailed, logoutStart, logoutSuccess, registerFailed, registerStart, registerSuccess} from "./authSlice";
-import { getStoriesStart, getStoriesSuccess } from "./storySlice";
 import { getUsersStart,getUsersSuccess,getUserFailed, deleteUserFailed, deleteUserSuccess, deleteUserStart  } from "./userSlice";
 
 
@@ -17,8 +16,7 @@ export const authToken = async(accessToken,dispatch,navigate )=>{
         });   
         dispatch(loginSuccess(res.data));
         if(res.data.admin)
-        return navigate('/AdminScreen');
-        
+        return navigate('/AdminScreen');        
     } catch (err) {
         console.log(err)
     }
@@ -51,14 +49,6 @@ export const registerUser = async (user,dispatch,navigate) => {
     }
 };
 
-export const InputUserInfo = async (UserInfo,dispatch,navigate) => {
-try {
-    
-} catch (error) {
-    
-}
-};
-
 export const deleteUser = async(accessToken,dispatch,id,axiosJWT) => {
     dispatch(deleteUserStart());
     try {
@@ -72,28 +62,17 @@ export const deleteUser = async(accessToken,dispatch,id,axiosJWT) => {
     }
 };
 
-// export const logout = async(dispatch,id,navigate,accessToken,axiosJWT)=>{
-//     dispatch(logoutStart());
-//     try {
-//         await axiosJWT.post("http://localhost:5000/api/auth/logout",id,{
-//             header: {token:`Bearer ${accessToken}`},            
-//         });
-//         dispatch(logoutSuccess())
-//         navigate("/login");
-//         localStorage.clear();
-//     } catch (err) {
-//         dispatch(logoutFailed())
-//     }
-// }
-
-export const getAllStories = async(dispatch)=>{
-    dispatch(getStoriesStart())
+export const logout = async(dispatch,id,navigate,accessToken,axiosJWT)=>{
+    dispatch(logoutStart());
     try {
-        const res = await axios.get("http://localhost:5000/api/story/getAllStory")
-        dispatch(getStoriesSuccess(res.data))
-        console.log(res.data)
-    } catch (error) {
-        dispatch(getStoriesStart())
+        await axiosJWT.post("http://localhost:5000/api/auth/logout",id,{
+            header: {token:`Bearer ${accessToken}`},            
+        });
+        dispatch(logoutSuccess())
+        navigate("/login");
+        localStorage.clear();
+    } catch (err) {
+        dispatch(logoutFailed())
     }
 }
 

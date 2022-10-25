@@ -15,6 +15,7 @@ import EditProfile from './components/User/EditProfile';
 import DiaryDetail from './components/Diary/DiaryDetail';
 import DiaryEdit from './components/Diary/DiaryEdit';
 import DiaryForm from './components/Diary/DiaryForm';
+import StoryForm from './components/Story/Story.jsx';
 import InputInformationUser from './components/Register/InputInformation';
 import { useEffect } from 'react'
 import ListAllUser from './components/AdminScreen/ListAllUser';
@@ -66,11 +67,10 @@ function App() {
         <Route path="/DiaryDetail/:id" element={<DiaryDetail />} />
         <Route path="/DiaryEdit/:id" element={<DiaryEdit />} />
         <Route path="/DiaryForm" element={<DiaryForm />} />
+        <Route path="/StoryForm" element={<StoryForm />} />
 
         <Route path="/ListAllUser" element={<ListAllUser />} />
-
         <Route path="/UserDetail/:id" element={<UserDetail />} />
-
         <Route path="/InputInformationUser" element={<InputInformationUser />} />
         <Route path="/AdminScreen" element={<AdminScreen />} />
       </Routes>
