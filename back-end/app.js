@@ -44,6 +44,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const authRoute = require("./routes/authRoute")
 app.use("/api/auth", authRoute);
 
+const adminRoute = require("./routes/adminRoute")
+app.use("/api/admin", adminRoute);
+
 const userRoute = require("./routes/usersRoute")
 app.use("/api/user",userRoute)
 

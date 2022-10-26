@@ -64,7 +64,7 @@ const diaryController = {
 
     deleteDiary: async (req, res) => {
         try {
-            await Diary.findByIdAndDelete(req.params.diaryId);
+            await Diary.findByIdAndDelete(req.params.id);
             res.status(200).json("delete success");
         } catch (error) {
             return res.status(500).json(error);

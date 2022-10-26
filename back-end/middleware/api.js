@@ -21,6 +21,10 @@
 // http://localhost:5000/api/user/updateUserInfo/:id
 // http://localhost:5000/api/user/deleteUserInfo/:id
 
+//admin
+//http://localhost:5000/api/admin/getAllTopics
+// http://localhost:5000/api/admin/deleteTopic/
+// http://localhost:5000/api/admin/addTopic
 
 // diary 
 // http://localhost:5000/api/diary/uploadDiary

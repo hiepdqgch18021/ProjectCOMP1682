@@ -15,12 +15,13 @@ import EditProfile from './components/User/EditProfile';
 import DiaryDetail from './components/Diary/DiaryDetail';
 import DiaryEdit from './components/Diary/DiaryEdit';
 import DiaryForm from './components/Diary/DiaryForm';
-import StoryForm from './components/Story/Story.jsx';
+import StoryForm from './components/Story/StoryForm.jsx';
 import InputInformationUser from './components/Register/InputInformation';
 import { useEffect } from 'react'
 import ListAllUser from './components/AdminScreen/ListAllUser';
 import UserDetail from './components/User/UserDetail';
 import AdminScreen from './components/AdminScreen/AdminScreen.jsx';
+import AddTopic from './components/AdminScreen/AddTopic';
 // import { useState } from "react";
 import './App.css';
 import { authToken } from "../src/redux/apiRequest"
@@ -43,7 +44,9 @@ function App() {
     if (!token) return navigate("/login")
     authToken(token, dispatch,navigate)
     
-    if(location.pathname.slice(0,6)==="/login") return navigate("/")
+    if(location.pathname.slice(0,6)==="/login") 
+    return navigate("/") 
+    
     
   }, [location.pathname])
 
@@ -51,7 +54,7 @@ function App() {
     <>{user ? 
     <div className="App"
       style={{
-        backgroundImage: `url("https://c1.wallpaperflare.com/preview/652/531/737/wood-aerial-background-beverage.jpg")`
+        // backgroundImage: `url("https://c1.wallpaperflare.com/preview/652/531/737/wood-aerial-background-beverage.jpg")`
       }}
     >
       <Routes>
@@ -73,6 +76,7 @@ function App() {
         <Route path="/UserDetail/:id" element={<UserDetail />} />
         <Route path="/InputInformationUser" element={<InputInformationUser />} />
         <Route path="/AdminScreen" element={<AdminScreen />} />
+        <Route path="/AddTopic" element={<AddTopic />} />
       </Routes>
     </div> : 
     <div className="App">
