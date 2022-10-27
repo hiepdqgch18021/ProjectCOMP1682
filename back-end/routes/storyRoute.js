@@ -16,7 +16,7 @@ router.get("/getAllStory",storyController.getAllStory);
 router.get("/getOneStory/:id",storyController.getOneStory);
 
 //delete a story
-router.delete("/:id",storyController.deleteStory);
+router.delete("/deleteStory/:id",storyController.deleteStory);
 
 module.exports = router;
 

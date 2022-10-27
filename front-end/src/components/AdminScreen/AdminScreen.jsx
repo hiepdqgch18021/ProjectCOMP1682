@@ -32,6 +32,16 @@ const AdminScreen = () => {
     }
   }
 
+
+  const deleteTopic = async(_id) => {
+    try {
+      await axios.delete(url + `/admin/deleteTopic/${_id}`) 
+      console.log("delete topic success");
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   const [topicData, setTopicData] = useState([])
   useEffect(() => {
     (async () => {
@@ -87,7 +97,6 @@ const AdminScreen = () => {
       {/* ----------------------------------------------------------------------------------            */}
       <section>
 
-
         <div className="hidden lg:relative lg:col-span-2 lg:block">
           <img
             alt="Art"
@@ -136,35 +145,14 @@ const AdminScreen = () => {
                       <table className="min-w-full divide-y divide-gray-200 text-sm">
                         <thead className="bg-gray-100">
                           <tr>
-                            <th className="sticky inset-y-0 left-0 bg-gray-100 px-4 py-2 text-left">
-                              <label className="sr-only" htmlFor="SelectAll">
-                                Select All
-                              </label>
-                              <input
-                                className="h-5 w-5 rounded border-gray-200"
-                                type="checkbox"
-                                id="SelectAll"
-                              />
-                            </th>
+                            
                             <th className="whitespace-nowrap px-4 py-2 text-left font-medium text-gray-900">
                               <div className="flex items-center gap-2">
-                                ID
-                                <svg
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  className="h-4 w-4 text-gray-700"
-                                  viewBox="0 0 20 20"
-                                  fill="currentColor"
-                                >
-                                  <path
-                                    fillRule="evenodd"
-                                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                    clipRule="evenodd"
-                                  />
-                                </svg>
+                                ID                              
                               </div>
                             </th>
-                            <th className="whitespace-nowrap px-4 py-2 text-left font-medium text-gray-900">
-                              <div className="flex items-center gap-2">
+                            <th className="whitespace-nowrap px-6 py-2 text-center font-medium text-gray-900">
+                              <div className="flex align-middle items-center ">
                                 Topic
                               </div>
                             </th>
@@ -177,17 +165,7 @@ const AdminScreen = () => {
 
                         <tbody className="divide-y divide-gray-200">
                           {topicData.map((t,index) => (
-                            <tr>
-                              <td className="sticky inset-y-0 left-0 bg-white px-4 py-2">
-                                <label className="sr-only" htmlFor="Row1">
-                                  Row 1
-                                </label>
-                                <input
-                                  className="h-5 w-5 rounded border-gray-200"
-                                  type="checkbox"
-                                  id="Row1"
-                                />
-                              </td>
+                            <tr key={t._id}>
                               <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
                                 {index+1}
                               </td>
@@ -196,7 +174,10 @@ const AdminScreen = () => {
                               </td>
 
                               <td className="whitespace-nowrap px-4 py-2">
-                                <button className="rounded bg-red-100 px-3 py-1.5 text-xs font-medium text-red-700">
+                                <button 
+                                className="rounded bg-red-100 px-3 py-1.5 text-xs font-medium text-red-700"
+                                onClick={()=>deleteTopic(t._id)}
+                                >
                                   Delete
                                 </button>
                               </td>

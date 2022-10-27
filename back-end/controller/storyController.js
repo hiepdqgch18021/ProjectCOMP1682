@@ -12,6 +12,7 @@ const storyController = {
             //create instance of story
             const newStory = new Story
             ({
+                storyType:req.body.storyType,
                 storyTitle: req.body.storyTitle,
                 storyContent:req.body.storyContent,
                 storyPhotos:storyImage.secure_url,
@@ -23,6 +24,7 @@ const storyController = {
             return res.status(200).json(newStory);
         }
         const newStory = await Story({
+            storyType:req.body.storyType, 
             storyTitle: req.body.storyTitle,
             storyContent:req.body.storyContent,
             userID: req.user.id

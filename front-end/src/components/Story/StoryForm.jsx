@@ -1,25 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import Header from "../Header/Header";
-import { useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 const StoryForm = () => {
     const user = useSelector((state) => state.auth.login.currentUser);
 
     const url = process.env.REACT_APP_URL_AXIOS;
+    const [type, setType] = useState('');
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     const [storyFile, setStoryFile] = useState({});
     const navigate = useNavigate()
     const submitStory = async (e) => {
         const token = localStorage.getItem('jwtLogin')
-
         console.log(storyFile);
         e.preventDefault();
         try {
             const res = await axios.post(url + '/story/uploadStory', {
+                storyType: type,
                 storyTitle: title,
                 storyContent: content,
                 storyImage: storyFile
@@ -38,6 +39,21 @@ const StoryForm = () => {
             console.log(err);
         }
     }
+
+
+    const [topicData, setTopicData] = useState([])
+    useEffect(() => {
+        (async () => {
+            try {
+                const res = await axios.get(url + '/admin/getAllTypes');
+                console.log(res);
+                setTopicData(res.data);
+            } catch (err) {
+                console.log(err);
+            }
+        })()
+    }, []);
+
     return (
         <>
             <header className='sidebar'>
@@ -47,7 +63,7 @@ const StoryForm = () => {
                 <section>
                     <div className="md:grid md:grid-cols-3 md:gap-6">
                         <div className="mt-5 ml-20 md:col-span-2 md:mt-0">
-                            <form onSubmit={(e)=>submitStory(e)}>
+                            <form onSubmit={(e) => submitStory(e)}>
                                 <div className="shadow sm:overflow-hidden sm:rounded-md">
                                     <div className="space-y-6 bg-white px-4 py-5 sm:p-6">
 
@@ -68,20 +84,37 @@ const StoryForm = () => {
 
                                         <div className="col-span-6 sm:col-span-3">
                                             <label htmlFor="country" className="flex text-sm font-medium text-gray-700">
-                                                Title
+                                                Type
                                             </label>
                                             <select
                                                 id="country"
                                                 name="country"
                                                 autoComplete="country-name"
                                                 className="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                                                onChange={(e) => setTitle(e.target.value)}
+                                                onChange={(e) => setType(e.target.value)}
                                             >
-                                                <option>United States</option>
-                                                <option>Canada</option>
-                                                <option>Mexico</option>
+                                                {topicData.map((t) => (
+                                                    <option>{t.type}</option>
+                                                ))}
                                             </select>
+
                                         </div>
+
+
+                                       
+                                            <label for="UserEmail" className="flex text-sm font-medium text-gray-700">
+                                                Title
+                                            </label>
+
+                                            <textarea
+                                                id="about"
+                                                name="about"
+                                                rows={3}
+                                                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                                                placeholder="Content of the story"
+                                                onChange={(e) => setTitle(e.target.value)}
+                                            />
+                                        
 
 
                                         <label htmlFor="about" className="flex text-sm font-medium text-gray-700">

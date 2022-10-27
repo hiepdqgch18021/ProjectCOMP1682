@@ -2,11 +2,11 @@ const topicController = require('../controller/adminController');
 const router = require("express").Router();
 const middlewareController = require("../controller/middlewareController");
 
-router.post('/addTopic',topicController.addTopic) //middlewareController.verifyToken,
+router.post('/addType',topicController.addType) //middlewareController.verifyToken,
 
-router.delete('/deleteTopic/:id',topicController.deleteTopic) //,middlewareController.ver
+router.delete('/deleteType/:id',topicController.deleteType) //,middlewareController.ver
 
-router.get('/getAllTopics',topicController.getAllTopics) //,middlewareController
+router.get('/getAllTypes',topicController.getAllTypes) //,middlewareController
 
 module.exports = router;
 

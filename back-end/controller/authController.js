@@ -15,8 +15,10 @@ const authController={
                 username: req.body.username,
                 password: hashed,               
             });
+            // console.log(newUser)
             //save to database
             const user = await newUser.save();
+            
             res.status(200).json(user);
             } catch (error) {
                 res.status(500).json("Register failed ! check your information", error);
