@@ -30,6 +30,11 @@ const ListDiary = () => {
 
     return (
         <div className="list-topic">
+            <div className="topic-title">
+                            <h3>
+                                <span>Your Diary</span>
+                            </h3>
+                        </div>
             <nav className="navbar bg-light">
                 <div className="container-fluid">
                     <form className="d-flex form-search-topic" role="search">
@@ -60,6 +65,7 @@ const ListDiary = () => {
                 </div>
             ))
             }
+            
             <div className="btn-add-diary">
                 <NavLink href="/DiaryForm">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">

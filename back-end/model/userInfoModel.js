@@ -1,20 +1,15 @@
-const mongoose = require("mongoose");
+// const mongoose = require("mongoose");
 
-const userInfoSchema = new mongoose.Schema({
-    name: {
-        type: String,
-    },
-    DoB:{
-        type: String,
-    },
+// const userInfoSchema = new mongoose.Schema({
 
-    imageAvatar:{
-        type: String,
-    },
-},{timestamps:true}
-);
-let UserInfo = mongoose.model('UserInfo',userInfoSchema); 
-module.exports = UserInfo;
+//     userID:{
+//         type: mongoose.Schema.Types.ObjectId,
+//         ref:'User'
+//     }
+// },{timestamps:true}
+// );
+// let UserInfo = mongoose.model('UserInfo',userInfoSchema); 
+// module.exports = UserInfo;
  
  
 

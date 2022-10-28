@@ -27,6 +27,19 @@ const userSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
+    name: {
+        type: String,
+        default:""
+    },
+    DoB:{
+        type: String,
+        default: ""
+    },
+
+    imageAvatar:{
+        type: String,
+        default:""
+    },  
     
 },{timestamps:true}
 );

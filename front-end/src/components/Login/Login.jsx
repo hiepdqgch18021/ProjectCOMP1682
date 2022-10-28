@@ -1,9 +1,7 @@
-import {Link} from "react-router-dom";
 import React, { useState } from "react";
 import { loginUser } from "../../redux/apiRequest";
-import {useNavigate} from "react-router-dom";
+import {useNavigate,Link} from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { Button,FormGroup, Label,Input} from 'reactstrap';
 
 import "./login.css";
 import { addListener } from "@reduxjs/toolkit";
@@ -42,12 +40,12 @@ return(
         tenetur fuga ducimus numquam ea!
       </p>
       <div className="mt-8 flex flex-wrap gap-4 text-center">
-        <a
-          href="/register"
+        <Link
+          to="/register"
           className="block w-full rounded bg-rose-600 px-12 py-3 text-sm font-medium text-white shadow hover:bg-rose-700 focus:outline-none focus:ring active:bg-rose-500 sm:w-auto"
         >
           Register
-        </a>
+        </Link>
         {/* <a
           href="#"
           className="block w-full rounded bg-white px-12 py-3 text-sm font-medium text-rose-600 shadow hover:text-rose-700 focus:outline-none focus:ring active:text-rose-500 sm:w-auto"

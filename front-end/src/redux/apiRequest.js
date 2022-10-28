@@ -70,7 +70,7 @@ export const logout = async(dispatch,id,navigate,accessToken,axiosJWT)=>{
         });
         dispatch(logoutSuccess())
         navigate("/login");
-        localStorage.clear();
+        // localStorage.clear();
     } catch (err) {
         dispatch(logoutFailed())
     }

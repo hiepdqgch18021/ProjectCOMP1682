@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Label, navLink } from 'reactstrap';
+import { Alert, Label, navLink } from 'reactstrap';
 import ListAllUser from './ListAllUser';
 import NavAdmin from './NavAdmin';
 import axios from "axios";
@@ -9,13 +9,13 @@ import axios from "axios";
 const AdminScreen = () => {
 
   const url = process.env.REACT_APP_URL_AXIOS;
-  const [topic, setTopic] = useState('');
+  const [type, setType] = useState('');
 
-  const addTopic = async (e) => {
+  const addType = async (e) => {
     // const token = localStorage.getItem('jwtLogin')
     try {
-      const res = await axios.post(url + '/admin/addTopic', {
-        topic: topic
+      const res = await axios.post(url + '/admin/addType', {
+        type: type
       },
         // {
         //   headers: {
@@ -26,27 +26,32 @@ const AdminScreen = () => {
         // }
       );
       console.log(res);
-
+      alert("Add Story's type success")
     } catch (err) {
       console.log(err);
+      alert("Add Story's type fail")
+
     }
   }
 
 
-  const deleteTopic = async(_id) => {
+  const deleteType = async(_id) => {
     try {
-      await axios.delete(url + `/admin/deleteTopic/${_id}`) 
-      console.log("delete topic success");
+      await axios.delete(url + `/admin/deleteType/${_id}`) 
+      console.log("delete Type success");
+      alert("delete story's type success");
+
     } catch (error) {
       console.log(error);
+      alert("delete story's type fail");
     }
   }
 
-  const [topicData, setTopicData] = useState([])
+  const [TypeData, setTypeData] = useState([])
   useEffect(() => {
     (async () => {
       try {
-        const res = await axios.get(url + '/admin/getAllTopics'
+        const res = await axios.get(url + '/admin/getAllTypes'
           // {
           //     headers: {
           //         token: `Bearer ${token}`,
@@ -55,9 +60,10 @@ const AdminScreen = () => {
           // }
         );
         console.log(res);
-        setTopicData(res.data);
+        setTypeData(res.data);
       } catch (err) {
         console.log(err);
+
       }
     })()
   }, []);
@@ -107,22 +113,22 @@ const AdminScreen = () => {
 
         <div className="px-4 py-16 sm:px-6 lg:col-span-3 lg:px-8">
           <div className="grid grid-cols-1  sm:grid-cols-2">
-            <form onSubmit={(e) => addTopic(e)}>
-              <h5>Add Topic for story</h5>
+            <form onSubmit={(e) => addType(e)}>
+              <h5>Add Type of story</h5>
 
               <label
-                htmlFor="addTopic"
+                htmlFor="addType"
                 className="relative block overflow-hidden rounded-md border border-gray-200 px-3 pt-3 shadow-sm focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600"
               >
                 <input
                   type="text"
-                  id="topic"
-                  placeholder="Topic For Story"
+                  id="Type"
+                  placeholder="Type For Story"
                   className="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
-                  onChange={(e) => setTopic(e.target.value)}
+                  onChange={(e) => setType(e.target.value)}
                 />
                 <span className="absolute left-3 top-2 -translate-y-1/2 text-xs text-gray-700 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs">
-                  Topic
+                  Type of story
                 </span>
               </label>
               <button
@@ -134,7 +140,7 @@ const AdminScreen = () => {
 
             <div className=" gap-4 sm:grid-cols-2">
               <div>
-                <p className="font-medium">List All Topic</p>
+                <p className="font-medium">List All Type</p>
                 <nav
                   aria-label="Footer Nav"
                   className="mt-4 flex flex-col space-y-2"
@@ -153,7 +159,7 @@ const AdminScreen = () => {
                             </th>
                             <th className="whitespace-nowrap px-6 py-2 text-center font-medium text-gray-900">
                               <div className="flex align-middle items-center ">
-                                Topic
+                                Type
                               </div>
                             </th>
 
@@ -164,19 +170,19 @@ const AdminScreen = () => {
                         </thead>
 
                         <tbody className="divide-y divide-gray-200">
-                          {topicData.map((t,index) => (
+                          {TypeData.map((t,index) => (
                             <tr key={t._id}>
                               <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
                                 {index+1}
                               </td>
                               <td className="whitespace-nowrap px-4 py-2 text-gray-700">
-                                {t.topic}
+                                {t.type}
                               </td>
 
                               <td className="whitespace-nowrap px-4 py-2">
                                 <button 
                                 className="rounded bg-red-100 px-3 py-1.5 text-xs font-medium text-red-700"
-                                onClick={()=>deleteTopic(t._id)}
+                                onClick={()=>deleteType(t._id)}
                                 >
                                   Delete
                                 </button>
@@ -208,20 +214,20 @@ const AdminScreen = () => {
 export default AdminScreen;
 
 
-{/* <form action="" onSubmit={(e)=>addTopic(e)}>
+{/* <form action="" onSubmit={(e)=>addType(e)}>
           <label
-            htmlFor="addTopic"
+            htmlFor="addType"
             className="relative block overflow-hidden rounded-md border border-gray-200 px-3 pt-3 shadow-sm focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600"
           >
             <input
               type="text"
-              id="topic"
-              placeholder="Topic For Story"
+              id="Type"
+              placeholder="Type For Story"
               className="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
-              onChange={(e)=>setTopic(e.target.value)}
+              onChange={(e)=>setType(e.target.value)}
             />
             <span className="absolute left-3 top-2 -translate-y-1/2 text-xs text-gray-700 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs">
-              Topic
+              Type
             </span>
           </label>
           <button

@@ -10,7 +10,7 @@ router.get("/",(req,res) => {
 router.get("/getAllUsers",userController.getAllUsers); //,middlewareController.verifyToken
 
 //get one user
-router.get("/getOneUsers/:id",middlewareController.verifyToken,userController.getAllUsers); 
+router.get("/getOneUsers/:id",userController.getAllUsers); //,middlewareController.verifyToken
 
 //delete one user 
 router.delete("/deleteUser/:id",middlewareController.verifyTokenAndAdminAuth,userController.deleteUser); //,middlewareController.verifyTokenAndAdminAuth

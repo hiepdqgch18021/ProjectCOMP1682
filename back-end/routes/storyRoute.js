@@ -12,6 +12,9 @@ router.put("/updateStory/:id",storyController.updateStory);
 //get all story 
 router.get("/getAllStory",storyController.getAllStory);
 
+//get all individual story
+router.get("/getAllIndividualStory/:id",middlewareController.verifyToken,storyController.getAllIndividualStory);
+
 //get a story
 router.get("/getOneStory/:id",storyController.getOneStory);
 

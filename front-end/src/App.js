@@ -9,7 +9,7 @@ import HomePage from "./components/Home/HomePage";
 import Register from "./components/Register/Register";
 import Header from "./components/Header/Header";
 import Messenger from "./components/Messenger/Messenger";
-import StoryDetail from "./components/Form/StoryDetail";
+import StoryDetail from "./components/Story/StoryDetail.jsx";
 import UserProfile from "./components/User/UserProfile"
 import EditProfile from './components/User/EditProfile';
 import DiaryDetail from './components/Diary/DiaryDetail';
@@ -41,14 +41,17 @@ function App() {
   useEffect(() => {
     const token = localStorage.getItem('jwtLogin')
     console.log(location.pathname)
-    if (!token) return navigate("/login")
+    if (!token)  {
+      navigate("/login")
+      return
+    }
     authToken(token, dispatch,navigate)
     
     if(location.pathname.slice(0,6)==="/login") 
     return navigate("/") 
     
     
-  }, [location.pathname])
+  }, [])
 
   return (
     <>{user ? 
@@ -64,9 +67,9 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/Messenger" element={<Messenger />} />
         <Route path="/StoryDetail" element={<StoryDetail />} />
-        <Route path="/UserProfile" element={<UserProfile />} />
+        <Route path="/UserProfile/:id" element={<UserProfile />} />
 
-        <Route path="/EditProfile" element={<EditProfile />} />
+        <Route path="/EditProfile/:id" element={<EditProfile />} />
         <Route path="/DiaryDetail/:id" element={<DiaryDetail />} />
         <Route path="/DiaryEdit/:id" element={<DiaryEdit />} />
         <Route path="/DiaryForm" element={<DiaryForm />} />

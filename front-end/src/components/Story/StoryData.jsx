@@ -1,13 +1,10 @@
 import React from 'react';
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useParams } from "react-router-dom";
 import axios from 'axios';
-import {
-  Toast, UncontrolledDropdown, ToastHeader, ToastBody, DropdownItem,
-  DropdownToggle, DropdownMenu, NavLink
-} from 'reactstrap';
+
 const StoryHome = () => {
   const user = useSelector((state) => state.auth.login?.currentUser);
   const url = process.env.REACT_APP_URL_AXIOS;
@@ -76,8 +73,9 @@ const StoryHome = () => {
           <div className="flex flex-1 flex-col justify-between">
 
             <div className='mt-3 flex'>
-              <a href="/UserProfile"
+              <Link to={`/UserProfile/${s.userID._id}` }
                 className="group flex shrink-0 ml-4 items-center rounded-lg transition"
+                
               >
                 <span className="sr-only">User Profile</span>
 
@@ -87,15 +85,17 @@ const StoryHome = () => {
                   className="h-10 w-10 rounded-full object-cover"
                 />
                 <p className="ml-2 hidden text-left text-xs sm:block">
-                  <strong className="block font-medium">{user.username}</strong>
-                  <span className="text-gray-500">{user.email}</span>
+                  <div className="block font-medium">{s.userID.username}</div>
+                  <div className="text-gray-500">{s.userID.email}</div>
                 </p>
-              </a>
+              </Link>
+
               <button className='ml-20 mb-3' onClick={() => deleteStory(s._id)}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
                   <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z" />
                 </svg>
               </button>
+
             </div>
 
             <div className="border-l border-gray-900/10 p-4 sm:border-l-transparent sm:p-6">
