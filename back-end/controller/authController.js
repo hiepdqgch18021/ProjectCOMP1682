@@ -1,4 +1,6 @@
 const User = require("../model/userModel");
+const cloudinary = require("../utils/cloundinary");
+
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 let refreshTokens = [];
@@ -6,21 +8,35 @@ let refreshTokens = [];
 const authController={
     //registers
     registerUser: async(req,res)=>{
+        
         try {
+            let public_id = "";
+            let secure_url = "https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png";
+            if(req.file){
+                const userImage = await cloudinary.uploader.upload(req.file.path, { folder: "UserAvatar" });
+                public_id = userImage.public_id;
+                secure_url = userImage.secure_url;
+            }
             const salt = await bcrypt.genSalt(10);
             const hashed = await bcrypt.hash(req.body.password,salt);           
-            // create new user
+            // create new user           
             const newUser = await new User({
                 email: req.body.email,
                 username: req.body.username,
-                password: hashed,               
+                password: hashed,    
+                name: req.body.name,
+                DoB: req.body.DoB,
+                aboutMe: req.body.aboutMe,
+                imageAvatar: secure_url,
+                cloudinaryID: public_id,
             });
-            // console.log(newUser)
+            console.log(newUser)
             //save to database
             const user = await newUser.save();
-            
+            console.log(user)
             res.status(200).json(user);
             } catch (error) {
+                console.log(error)
                 res.status(500).json("Register failed ! check your information", error);
             }
     },

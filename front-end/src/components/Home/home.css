@@ -1,23 +1,10 @@
-.main-home-page{
-    align-items:stretch;
-    background-color:#fafafa;
-    color:#262626;
-    /* display:flex; */
-    /* flex-direction:column; */
-    font-size:16px;
-    line-height:18px;
- 
-}
-
-.list-topic-container{
-
+.homePage{
+    display: flex;
+    width: 100%;
 }
 
 
-
-
-
-.home-page-container .list-topic{
+.list-topic{
     align-items:stretch;
     background-color:#f7f9f9;
     border-color:#f7f9f9;
@@ -29,6 +16,10 @@
     font-size:15px;
     margin:0px 0px 16px;
     width:300px;
+    height:300px;
+    overflow-y:scroll;
+
+
 }
 .list-topic .navbar{
     border-radius:25px;
@@ -46,7 +37,7 @@ height:25px;
 
 .list-topic .topic-element{
     display:block;
-    width:100%;
+    /* width:100%; */
     border-radius:25px;
 
 }

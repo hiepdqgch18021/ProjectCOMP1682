@@ -2,11 +2,8 @@ import { Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 
-const StoryDetail = () => {
+const StoryDetail = (e) => {
   const [open, setOpen] = useState(true)
-
-
-
   
   return (  
     <Transition.Root show={open} as={Fragment}>

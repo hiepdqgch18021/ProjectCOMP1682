@@ -15,11 +15,14 @@ router.get("/getAllStory",storyController.getAllStory);
 //get all individual story
 router.get("/getAllIndividualStory/:id",middlewareController.verifyToken,storyController.getAllIndividualStory);
 
+//getOneTypeStory
+router.get("/getOneTypeStory/:type",middlewareController.verifyToken,storyController.getOneTypeStory);
+
 //get a story
 router.get("/getOneStory/:id",storyController.getOneStory);
 
 //delete a story
-router.delete("/deleteStory/:id",storyController.deleteStory);
+router.delete("/deleteStory/:id",storyController.deleteStory);//middlewareController.verifyToken,
 
 module.exports = router;
 

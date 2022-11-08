@@ -39,7 +39,19 @@ const userSchema = new mongoose.Schema({
     imageAvatar:{
         type: String,
         default:""
-    },  
+    }, 
+    followers: {
+        type: Array,
+        default: [],
+      },
+      followings: {
+        type: Array,
+        default: [],
+      },
+    aboutMe:{
+        type: String,
+        default:"some thing about me"
+    } 
     
 },{timestamps:true}
 );

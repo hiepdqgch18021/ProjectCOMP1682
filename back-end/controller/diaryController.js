@@ -6,7 +6,6 @@ const diaryController = {
     //add diary
     addDiary: async (req, res) => {
         try {
-
             if (req.file) {
                 const diaryImage = await cloudinary.uploader.upload(req.file.path, { folder: "imageDiary" });
                 const newDiary = new Diary

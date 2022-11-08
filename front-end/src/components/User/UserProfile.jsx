@@ -17,10 +17,10 @@ const UserProfile = () => {
 
     const [storyData, setStoryData] = useState({});
     const [loading, setLoad] = useState();
+
     useEffect(() => {
         (async () => {
                 setLoad(true)
-
                 try {
                     const res = await axios.get(url + `/story/getAllIndividualStory/${id}`,
                         {
@@ -38,7 +38,7 @@ const UserProfile = () => {
                 setLoad(false)
             })()
 
-    }, []);
+    }, [id]);
 
     return (
         <>
@@ -52,9 +52,11 @@ const UserProfile = () => {
                         <div className="row">
                             <div className="col-2 d-none d-lg-block d-md-block"></div>
                             {/* -----------profile-container---- */}
-                            <UserInfo users={storyData.user} />
+                            <UserInfo 
+                                users={storyData.user}
+                                checkUser={user._id === id}
+                            />
 
-                            {/* <div className="col-2 d-none d-lg-block d-md-block "></div> */}
                         </div>
                     </div>
                 </section>
@@ -68,16 +70,13 @@ const UserProfile = () => {
                             loading={loading}
                             username={storyData.user?.username}
                             email={storyData.user?.email}
+                            checkUser={user._id === id}
                             imageAvatar={storyData.user?.imageAvatar}
                         />
 
-
-
                     </div>
                     <div className="col-2 ml-5 d-none d-lg-block d-md-block diary-container">
-
                         {user._id === id && <ListDiary />}
-
                     </div>
                 </section>
             </main>

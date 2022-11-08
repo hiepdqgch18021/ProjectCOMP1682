@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import "./home.css"
 import axios from "axios";
+import { Link } from 'react-router-dom';
 
 const ListStoryType = () => {
 
@@ -28,15 +29,12 @@ const ListStoryType = () => {
     return (
         <>
 
-            <div className="topic-title">
-                <h3>
-                    <span>List Of Topic</span>
-                </h3>
-            </div>
-
             <div className="list-topic">
                 <nav className="navbar bg-light">
                     <div className="container-fluid">
+                        <h5>
+                            <span>List Type Of Story</span>
+                        </h5>
                         <form className="d-flex form-search-topic" role="search">
                             <input
                                 className="form-control me-2"
@@ -52,6 +50,7 @@ const ListStoryType = () => {
                 </nav>
                 {TypeData.map((t, index) => (
                     <div className="topic-element" key={t._id}>
+
                         <div className='btn-topic-element'>
 
                             <div className="topic-name">

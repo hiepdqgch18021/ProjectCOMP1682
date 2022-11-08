@@ -12,27 +12,16 @@ const StoryHome = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
-
-  const deleteStory = async (_id) => {
-    try {
-      await axios.delete(url + `/story/deleteStory/${_id}`)
-      alert("delete topic success")
-      console.log("delete topic success")
-      navigate("/")
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
   const [storyData, setStoryData] = useState([])
+ 
   useEffect(() => {
     (async () => {
       try {
         const res = await axios.get(url + '/story/getAllStory',
           {
             headers: {
-              token: `Bearer ${token}`,
-              accept: 'application/json'
+              token: `Bearer ${token}`, //Authorization
+              accept: 'application/json' //Content-Type
             }
           }
         );
@@ -47,8 +36,8 @@ const StoryHome = () => {
 
   return (
     <>
-      {storyData.map((s) => (
-
+  
+      {storyData.map((s) => (      
         <article className="flex mt-4 mb-3 bg-white transition hover:shadow-xl"
           key={s._id}
         >
@@ -73,6 +62,7 @@ const StoryHome = () => {
           <div className="flex flex-1 flex-col justify-between">
 
             <div className='mt-3 flex'>
+              
               <Link to={`/UserProfile/${s.userID._id}` }
                 className="group flex shrink-0 ml-4 items-center rounded-lg transition"
                 
@@ -81,7 +71,7 @@ const StoryHome = () => {
 
                 <img
                   alt="Man"
-                  src="https://images.unsplash.com/photo-1600486913747-55e5470d6f40?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+                  src={s.userID.imageAvatar}
                   className="h-10 w-10 rounded-full object-cover"
                 />
                 <p className="ml-2 hidden text-left text-xs sm:block">
@@ -89,13 +79,6 @@ const StoryHome = () => {
                   <div className="text-gray-500">{s.userID.email}</div>
                 </p>
               </Link>
-
-              <button className='ml-20 mb-3' onClick={() => deleteStory(s._id)}>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
-                  <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z" />
-                </svg>
-              </button>
-
             </div>
 
             <div className="border-l border-gray-900/10 p-4 sm:border-l-transparent sm:p-6">
@@ -107,8 +90,9 @@ const StoryHome = () => {
                   Title of story: {s.storyTitle}
                 </h7>
               </div>
-              <p className="mt-2 font-semibold  flex text-base font-normal  leading-relaxed  line-clamp-3">
-                {s.storyContent}
+              <p className="mt-2 text-base font-normal  leading-relaxed ">
+                {s.storyContent.slice(1,200)}
+                {" "} <span onClick={()=>{}}>see more</span>
               </p>
             </div>
 

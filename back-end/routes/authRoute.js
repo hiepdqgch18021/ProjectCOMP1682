@@ -1,10 +1,12 @@
 const router = require("express").Router();
 const authController = require("../controller/authController");
+const upload = require("../utils/multer")
+
 const middlewareController = require("../controller/middlewareController");
 const User = require("../model/userModel")
 
 //register routes
-router.post("/register",authController.registerUser);
+router.post("/register",upload.single('imageAvatar'),authController.registerUser);
 
 //login user
 router.post("/login",authController.loginUser);

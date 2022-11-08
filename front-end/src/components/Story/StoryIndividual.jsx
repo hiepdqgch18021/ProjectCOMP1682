@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 import axios from 'axios';
 
 
-const StoryIndividual = ({ stories,username,email,imageAvatar,loading }) => {
+const StoryIndividual = ({ stories, username, email,imageAvatar ,checkUser, loading }) => {
   const url = process.env.REACT_APP_URL_AXIOS;
 
   const navigate = useNavigate();
@@ -23,7 +23,7 @@ const StoryIndividual = ({ stories,username,email,imageAvatar,loading }) => {
   }
   return (
     <>
-      {(loading === false ) &&
+      {(loading === false) &&
         <>
           {stories.map((s) => (
 
@@ -43,7 +43,7 @@ const StoryIndividual = ({ stories,username,email,imageAvatar,loading }) => {
               </div>
               <div className="hidden sm:block sm:basis-56">
                 <img
-                  alt="Guitar"
+                  alt=""
                   src={s.storyPhotos}
                   className="aspect-square h-full w-full object-cover"
                 />
@@ -51,7 +51,7 @@ const StoryIndividual = ({ stories,username,email,imageAvatar,loading }) => {
               <div className="flex flex-1 flex-col justify-between">
 
                 <div className='mt-3 flex'>
-                  <Link 
+                  <Link
                     to={`/UserProfile/${s.userID}`}
                     className="group flex shrink-0 ml-4 items-center rounded-lg transition"
                   >
@@ -59,7 +59,7 @@ const StoryIndividual = ({ stories,username,email,imageAvatar,loading }) => {
 
                     <img
                       alt="Man"
-                      src="https://images.unsplash.com/photo-1600486913747-55e5470d6f40?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+                      src={imageAvatar}
                       className="h-10 w-10 rounded-full object-cover"
                     />
                     <p className="ml-2 hidden text-left text-xs sm:block">
@@ -67,11 +67,19 @@ const StoryIndividual = ({ stories,username,email,imageAvatar,loading }) => {
                       <span className="text-gray-500">{email}</span>
                     </p>
                   </Link>
-                  <button className='ml-20 mb-3' onClick={() => deleteStory(s._id)}>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
-                      <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z" />
-                    </svg>
-                  </button>
+
+                  {checkUser &&
+                    <button
+                      className='ml-20 mb-3'
+                      onClick={() => deleteStory(s._id)}
+                    >
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                        <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z" />
+                      </svg>
+                    </button>
+                  }
+
+
                 </div>
 
                 <div className="border-l border-gray-900/10 p-4 sm:border-l-transparent sm:p-6">

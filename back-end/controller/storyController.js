@@ -51,13 +51,14 @@ const storyController = {
     // get all story
     getAllStory:async(req,res)=>{
         try {
-            const story = await Story.find().populate("userID","username email");
+            const story = await Story.find().populate("userID","username email imageAvatar");
             res.status(200).json(story);
         } catch (error) {
             return res.status(500).json(error);
  
         }
     }, 
+
 
 
     getAllIndividualStory:async(req,res)=>{
@@ -72,6 +73,21 @@ const storyController = {
  
         }
     }, 
+
+    getOneTypeStory:async(req,res)=>{
+        try {
+            const {type} = req.params;
+            console.log(type)
+            const story = await Story.find({ userID: type },{__v:0});
+            const user = await User.findById(id,{password:0,__v:0,admin:0,createdAt:0,updatedAt:0});
+            res.status(200).json({story: story, user: user});
+        } catch (error) {
+            return res.status(500).json(error);
+ 
+        }
+    }, 
+
+
 
     // get a story
     getOneStory: async(req,res)=>{ 

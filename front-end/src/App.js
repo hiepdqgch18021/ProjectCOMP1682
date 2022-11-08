@@ -16,12 +16,12 @@ import DiaryDetail from './components/Diary/DiaryDetail';
 import DiaryEdit from './components/Diary/DiaryEdit';
 import DiaryForm from './components/Diary/DiaryForm';
 import StoryForm from './components/Story/StoryForm.jsx';
-import InputInformationUser from './components/Register/InputInformation';
 import { useEffect } from 'react'
 import ListAllUser from './components/AdminScreen/ListAllUser';
 import UserDetail from './components/User/UserDetail';
 import AdminScreen from './components/AdminScreen/AdminScreen.jsx';
 import AddTopic from './components/AdminScreen/AddTopic';
+import StoryTypeDetail from './components/Home/StoryTypeDetail.jsx'
 // import { useState } from "react";
 import './App.css';
 import { authToken } from "../src/redux/apiRequest"
@@ -49,17 +49,14 @@ function App() {
     
     if(location.pathname.slice(0,6)==="/login") 
     return navigate("/") 
-    
+    console.log(location.pathname)
+
     
   }, [])
 
   return (
     <>{user ? 
-    <div className="App"
-      style={{
-        // backgroundImage: `url("https://c1.wallpaperflare.com/preview/652/531/737/wood-aerial-background-beverage.jpg")`
-      }}
-    >
+    <div className="App">
       <Routes>
 
         <Route path="/login" element={<Login />} />
@@ -67,6 +64,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/Messenger" element={<Messenger />} />
         <Route path="/StoryDetail" element={<StoryDetail />} />
+        {/* <Route path="/StoryTypeDetail/:type" element={<StoryTypeDetail />} /> */}
         <Route path="/UserProfile/:id" element={<UserProfile />} />
 
         <Route path="/EditProfile/:id" element={<EditProfile />} />
@@ -77,7 +75,6 @@ function App() {
 
         <Route path="/ListAllUser" element={<ListAllUser />} />
         <Route path="/UserDetail/:id" element={<UserDetail />} />
-        <Route path="/InputInformationUser" element={<InputInformationUser />} />
         <Route path="/AdminScreen" element={<AdminScreen />} />
         <Route path="/AddTopic" element={<AddTopic />} />
       </Routes>
@@ -86,7 +83,6 @@ function App() {
     <Routes>
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
-      <Route path="/InputInformationUser" element={<InputInformationUser />} />
     </Routes>
     </div>
     }
