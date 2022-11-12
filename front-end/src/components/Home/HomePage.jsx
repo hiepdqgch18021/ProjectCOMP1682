@@ -3,14 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import React from 'react';
 import { createAxios } from '../../createInstance';
-
 import { loginSuccess } from '../../redux/authSlice';
 import jwtDecode from "jwt-decode";
 import Header from "../Header/Header";
 import StoryHome from '../Story/StoryData';
+import Mid from './Mid'
 import "./home.css"
-import { getAllStories } from '../../redux/apiRequest';
 import ListStoryType from './ListStoryType';
+import OnlineUser from './onlineUser'
 const HomePage = () => {
   const user = useSelector((state) => state.auth.login?.currentUser);
 
@@ -34,7 +34,8 @@ const HomePage = () => {
 
       <div className="homePage">
         <ListStoryType />
-        <StoryHome />
+        <Mid />
+        <OnlineUser />
       </div>
 
     </>

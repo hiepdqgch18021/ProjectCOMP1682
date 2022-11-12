@@ -9,6 +9,9 @@ router.get("/",(req,res) => {
 //get all user
 router.get("/getAllUsers",userController.getAllUsers); //,middlewareController.verifyToken
 
+
+router.get("/searchUser",userController.searchUser); //,middlewareController.verifyToken
+
 //get one user
 router.get("/getOneUsers/:id",userController.getOneUser); //,middlewareController.verifyToken
 

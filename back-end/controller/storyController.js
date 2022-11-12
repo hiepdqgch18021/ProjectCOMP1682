@@ -78,9 +78,8 @@ const storyController = {
         try {
             const {type} = req.params;
             console.log(type)
-            const story = await Story.find({ userID: type },{__v:0});
-            const user = await User.findById(id,{password:0,__v:0,admin:0,createdAt:0,updatedAt:0});
-            res.status(200).json({story: story, user: user});
+            const story = await Story.find({ storyType: type },{__v:0});
+            res.status(200).json(story);
         } catch (error) {
             return res.status(500).json(error);
  

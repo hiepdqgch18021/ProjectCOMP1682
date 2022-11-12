@@ -42,10 +42,9 @@ const UserProfile = () => {
 
     return (
         <>
-            <header className='sidebar'>
+           
                 <Header />
-            </header>
-
+      
             <main className='main-user-profile'>
                 <section className="profile-diary-container">
                     <div className="container">

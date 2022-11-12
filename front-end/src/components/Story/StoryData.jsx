@@ -54,14 +54,14 @@ const StoryHome = () => {
           </div>
           <div className="hidden sm:block sm:basis-56">
             <img
-              alt="Guitar"
+              alt=""
               src={s.storyPhotos}
               className="aspect-square h-full w-full object-cover"
             />
           </div>
           <div className="flex flex-1 flex-col justify-between">
 
-            <div className='mt-3 flex'>
+            <div className='mt-1 flex'>
               
               <Link to={`/UserProfile/${s.userID._id}` }
                 className="group flex shrink-0 ml-4 items-center rounded-lg transition"
@@ -81,18 +81,17 @@ const StoryHome = () => {
               </Link>
             </div>
 
-            <div className="border-l border-gray-900/10 p-4 sm:border-l-transparent sm:p-6">
-              <div>
-                <h6 className="font-semibold uppercase flex text-sm  text-gray-700">
+            <div className="border-l border-gray-900/10 p-4 sm:border-l-transparent sm:p-6 ">
+              <div className='mt-0'>
+                <h6 className="font-semibold flex text-sm  text-gray-700">
                   Type of story : {s.storyType}
                 </h6>
-                <h7 className="font-semibold uppercase flex text-sm  text-gray-700">
+                <h7 className="font-semibold flex text-sm  text-gray-700">
                   Title of story: {s.storyTitle}
                 </h7>
               </div>
-              <p className="mt-2 text-base font-normal  leading-relaxed ">
-                {s.storyContent.slice(1,200)}
-                {" "} <span onClick={()=>{}}>see more</span>
+              <p className="mt-4 text-sm font-normal h-40 leading-relaxed overflow-y-scroll">
+                {s.storyContent}
               </p>
             </div>
 

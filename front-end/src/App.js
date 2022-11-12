@@ -15,7 +15,7 @@ import EditProfile from './components/User/EditProfile';
 import DiaryDetail from './components/Diary/DiaryDetail';
 import DiaryEdit from './components/Diary/DiaryEdit';
 import DiaryForm from './components/Diary/DiaryForm';
-import StoryForm from './components/Story/StoryForm.jsx';
+// import StoryForm from './components/Story/StoryForm.jsx';
 import { useEffect } from 'react'
 import ListAllUser from './components/AdminScreen/ListAllUser';
 import UserDetail from './components/User/UserDetail';
@@ -64,14 +64,16 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/Messenger" element={<Messenger />} />
         <Route path="/StoryDetail" element={<StoryDetail />} />
-        {/* <Route path="/StoryTypeDetail/:type" element={<StoryTypeDetail />} /> */}
+
+        <Route path="/StoryTypeDetail/:type" element={<StoryTypeDetail />} />
+        
         <Route path="/UserProfile/:id" element={<UserProfile />} />
 
         <Route path="/EditProfile/:id" element={<EditProfile />} />
         <Route path="/DiaryDetail/:id" element={<DiaryDetail />} />
         <Route path="/DiaryEdit/:id" element={<DiaryEdit />} />
         <Route path="/DiaryForm" element={<DiaryForm />} />
-        <Route path="/StoryForm" element={<StoryForm />} />
+        {/* <Route path="/StoryForm" element={<StoryForm />} /> */}
 
         <Route path="/ListAllUser" element={<ListAllUser />} />
         <Route path="/UserDetail/:id" element={<UserDetail />} />

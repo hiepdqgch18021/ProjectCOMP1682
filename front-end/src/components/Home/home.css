@@ -1,9 +1,10 @@
 .homePage{
     display: flex;
     width: 100%;
+    margin-top:30px;
+    padding-left:10px
 }
-
-
+/* 
 .list-topic{
     align-items:stretch;
     background-color:#f7f9f9;
@@ -18,8 +19,6 @@
     width:300px;
     height:300px;
     overflow-y:scroll;
-
-
 }
 .list-topic .navbar{
     border-radius:25px;
@@ -33,19 +32,15 @@ margin-left:2px;
 width:25px;
 height:25px;
 }
-
-
 .list-topic .topic-element{
-    display:block;
-    /* width:100%; */
-    border-radius:25px;
-
+    display:block
+   
+    border-radius:25px
 }
 .topic-element .btn-topic-element{
 padding-top:10px;
 padding-bottom:10px;
 transition:0.45s;
-
 }
 .topic-element .btn-topic-element:hover{
     border:1px solid #f7f9f9 ;
@@ -56,19 +51,94 @@ transition:0.45s;
     -moz-box-shadow: -7px 7px 14px -3px rgba(0,0,0,0.5);
     box-shadow: -7px 7px 14px -3px rgba(0,0,0,0.5);
 
+} */
+
+
+.sidebar {
+    width : 400px;
+    /* flex: 3; */
+    height: calc(100vh - 50px);
+    /* position: sticky; */
+    top: 50px;
+  }
+  .sidebarList {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    overflow-y: scroll;
+  }
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+  ::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: rgb(179, 179, 179);
+  }
+  
+  .sidebarWrapper {
+    padding: 20px;
+    width:400px;
+  }
+  
+
+  
+  .sidebarListItem {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  
+  .sidebarIcon {
+    margin-right: 15px;
+  }
+
+
+/* --------------------------------------------------onlineUser */
+.chatOnline{
+width : 100%;
+padding-left:25px;
 }
 
-.btn-topic-element .topic-name{
-    
+.chatOnlineFriend{
+    dispalay:flex;
+    align-items:center;
+    font-weight:500;
+    cursor: pointer;
 }
 
-.btn-topic-element .topic-amount{}
+.chatOnlineImgContainer{
+position:relative;
+}
 
+.chatOnlineImg{
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    object-fit: cover;
+}
 
+.chatOnlineBadge{
+    with:10px;
+    height:10px;
+    border-radius:50%;
+    background-color:limegreen;
+    color:limegreen;
+    position:absolute;
+    top: 2px;
+    left:30px;
+}
+.chatOnlineName{
 
+}
 
+/* --------------------------------------------------Mid */
 
-
+.midContent{
+  padding: 20px;
+}
 
 
 
