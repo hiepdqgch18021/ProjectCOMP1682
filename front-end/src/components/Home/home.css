@@ -55,7 +55,7 @@ transition:0.45s;
 
 
 .sidebar {
-    width : 400px;
+    width : 350px;
     /* flex: 3; */
     height: calc(100vh - 50px);
     /* position: sticky; */
@@ -66,6 +66,7 @@ transition:0.45s;
     margin: 0;
     list-style: none;
     overflow-y: scroll;
+    height:400px;
   }
   ::-webkit-scrollbar {
     width: 5px;
@@ -79,7 +80,7 @@ transition:0.45s;
   
   .sidebarWrapper {
     padding: 20px;
-    width:400px;
+    width:350px;
   }
   
 
@@ -98,7 +99,7 @@ transition:0.45s;
 
 /* --------------------------------------------------onlineUser */
 .chatOnline{
-width : 100%;
+width : 350px;
 padding-left:25px;
 }
 

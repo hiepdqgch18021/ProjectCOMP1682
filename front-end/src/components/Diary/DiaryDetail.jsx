@@ -30,11 +30,9 @@ const DiaryDetail = () => {
     return (
     <>
         {diaryData?  <>
-            <header className='sidebar'>
+         
                   <Header/>
-            </header>
-            
-            <main>
+
                 <section>
                     <div className="container">
                         <div className="row">
@@ -79,7 +77,7 @@ const DiaryDetail = () => {
                         </div>
                     </div>
                 </section>
-            </main>
+
             <footer>
                 <FormText>
                     "Yesterday is history. Tomorrow is a mystery, but today is a gift. That’s why it’s called the present"

@@ -40,7 +40,6 @@ function App() {
   const dispatch = useDispatch()
   useEffect(() => {
     const token = localStorage.getItem('jwtLogin')
-    console.log(location.pathname)
     if (!token)  {
       navigate("/login")
       return
@@ -50,8 +49,6 @@ function App() {
     if(location.pathname.slice(0,6)==="/login") 
     return navigate("/") 
     console.log(location.pathname)
-
-    
   }, [])
 
   return (

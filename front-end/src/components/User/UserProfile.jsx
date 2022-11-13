@@ -43,7 +43,7 @@ const UserProfile = () => {
     return (
         <>
            
-                <Header />
+            <Header />
       
             <main className='main-user-profile'>
                 <section className="profile-diary-container">
@@ -74,6 +74,7 @@ const UserProfile = () => {
                         />
 
                     </div>
+                    
                     <div className="col-2 ml-5 d-none d-lg-block d-md-block diary-container">
                         {user._id === id && <ListDiary />}
                     </div>

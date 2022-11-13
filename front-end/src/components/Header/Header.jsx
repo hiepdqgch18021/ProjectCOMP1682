@@ -86,20 +86,19 @@ const Header = ({ direction, ...args }) => {
           </div>
           {searchUser.length > 0 && <>
             {searchUser.map((s) => (
-              <a href="" class="flex items-center px-6 py-3">
-              <div className="imgSearch">
-                {/* {s.imageAvatar} */}
-              </div>
-              <div className="userInfoSearch">
-                <div className="nameSearch">
-                  {s.name}  
-                </div>
-                <div className="usernameSearch">
-                  {s.username}  
-                </div>
-              </div>
-          
-            </a>
+              <Link to={`/UserProfile/${s._id}` }
+              className="group flex shrink-0 ml-4 items-center rounded-lg transition"             
+            >
+              <img
+                alt="Man"
+                src={s.imageAvatar}
+                className="h-10 w-10 rounded-full object-cover"
+              />
+              <p className="ml-2 hidden text-left text-xs sm:block">
+                <div className="block font-medium">{s.username}</div>
+                <div className="text-gray-500">{s.name}</div>
+              </p>
+            </Link>
             ))}
           </>}
           

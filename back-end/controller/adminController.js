@@ -4,7 +4,8 @@ const typeController = {
     addType:async(req, res) => {
         try {
             const newType = new Admin({
-                type:req.body.type
+                type:req.body.type,
+                userID: req.user.id,
             })
             await newType.save();
             return res.status(200).json(newType);

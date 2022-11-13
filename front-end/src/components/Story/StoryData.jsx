@@ -35,8 +35,7 @@ const StoryHome = () => {
 
 
   return (
-    <>
-  
+    <> 
       {storyData.map((s) => (      
         <article className="flex mt-4 mb-3 bg-white transition hover:shadow-xl"
           key={s._id}
@@ -62,7 +61,7 @@ const StoryHome = () => {
           <div className="flex flex-1 flex-col justify-between">
 
             <div className='mt-1 flex'>
-              
+                            
               <Link to={`/UserProfile/${s.userID._id}` }
                 className="group flex shrink-0 ml-4 items-center rounded-lg transition"
                 
@@ -70,13 +69,14 @@ const StoryHome = () => {
                 <span className="sr-only">User Profile</span>
 
                 <img
-                  alt="Man"
+                  alt="avatar"
                   src={s.userID.imageAvatar}
                   className="h-10 w-10 rounded-full object-cover"
                 />
                 <p className="ml-2 hidden text-left text-xs sm:block">
-                  <div className="block font-medium">{s.userID.username}</div>
-                  <div className="text-gray-500">{s.userID.email}</div>
+                  <div className="block font-medium">{s.userID.name}</div>
+                  {/* <div className="block font-medium">{s.userID.username}</div>
+                  <div className="text-gray-500">{s.userID.email}</div> */}
                 </p>
               </Link>
             </div>

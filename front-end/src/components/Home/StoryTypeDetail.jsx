@@ -34,7 +34,7 @@ const StoryTypeDetail = () => {
 
     <>
       <Header />
-
+      
         {oneTypeStoryData.map((stdt) => (      
         <article className="flex mt-4 mb-3 bg-white transition hover:shadow-xl"
           key={stdt._id}
@@ -73,8 +73,9 @@ const StoryTypeDetail = () => {
                   className="h-10 w-10 rounded-full object-cover"
                 />
                 <p className="ml-2 hidden text-left text-xs sm:block">
-                  <div className="block font-medium">{stdt.userID.username}</div>
-                  <div className="text-gray-500">{stdt.userID.email}</div>
+                  <div className="block font-medium">{stdt.userID.name}</div>
+                  {/* <div className="block font-medium">{stdt.userID.username}</div>
+                  <div className="text-gray-500">{stdt.userID.email}</div> */}
                 </p>
               </Link>
             </div>

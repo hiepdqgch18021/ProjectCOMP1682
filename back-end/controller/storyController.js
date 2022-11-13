@@ -13,9 +13,9 @@ const storyController = {
             //create instance of story
             const newStory = new Story
             ({
+                storyContent:req.body.storyContent,
                 storyType:req.body.storyType,
                 storyTitle: req.body.storyTitle,
-                storyContent:req.body.storyContent,
                 storyPhotos:storyImage.secure_url,
                 cloudinaryID: storyImage.public_id,
                 userID: req.user.id,
@@ -51,7 +51,7 @@ const storyController = {
     // get all story
     getAllStory:async(req,res)=>{
         try {
-            const story = await Story.find().populate("userID","username email imageAvatar");
+            const story = await Story.find().populate("userID","username email imageAvatar name");
             res.status(200).json(story);
         } catch (error) {
             return res.status(500).json(error);
@@ -78,7 +78,7 @@ const storyController = {
         try {
             const {type} = req.params;
             console.log(type)
-            const story = await Story.find({ storyType: type },{__v:0});
+            const story = await Story.find({ storyType: type },{__v:0}).populate("userID","imageAvatar name");
             res.status(200).json(story);
         } catch (error) {
             return res.status(500).json(error);

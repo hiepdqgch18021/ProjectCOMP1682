@@ -1,28 +1,27 @@
 import  React,{ useEffect, useState } from 'react'
 import axios from 'axios';
-import {useParams } from 'react-router-dom';
+import {Link,useNavigate } from 'react-router-dom';
 import  NavAdmin from './NavAdmin';
 
 
 const ListAllUser = () => {
+    
     const [listAllUsers, setListAllUser] = useState([])
     const token = localStorage.getItem('jwtLogin')
     const url = process.env.REACT_APP_URL_AXIOS;
-    
-const deleteUser = async(_id)=>{
-
-}
+    const navigate = useNavigate();
 
 useEffect(() => {
+    
     (async () => {
         try {
-            const res = await axios.get(url + '/user/getAllUsers'
-                // {
-                //     headers: {                         
-                //         token: `Bearer ${token}`,
-                //         accept: 'application/json'
-                //     }
-                // }
+            const res = await axios.get(url + '/user/getAllUsers',
+                {
+                    headers: {                         
+                        token: `Bearer ${token}`,
+                        accept: 'application/json'
+                    }
+                }
             );
             console.log(res);
             setListAllUser(res.data);
@@ -30,7 +29,24 @@ useEffect(() => {
             console.log(err);
         }
     })()
-},[])
+},[]);
+
+const deleteAccount = async(_id)=>{
+
+    try {
+        await axios.delete(url + `/user/deleteUser/${_id}`,{
+            headers: {
+                token: `Bearer ${token}`,
+                accept: 'application/json'
+            }
+        })
+        alert("delete user success")
+        console.log("delete user success")
+        navigate("/ListAllUser")
+      } catch (error) {
+        console.log(error);
+      }
+    }
 
   return (
     <>   
@@ -69,7 +85,7 @@ useEffect(() => {
                    { l.name}
                     </td>
                     <td className="whitespace-nowrap px-4 py-2 text-gray-700">
-                        <img src={l.imageAvatar} alt="" />
+                        <img src={l.imageAvatar} alt="" className='w-12 h-12'/>
                     </td>
                     <td className="whitespace-nowrap px-4 py-2 text-gray-700">
                         {l.email}
@@ -79,10 +95,15 @@ useEffect(() => {
                     </td>
                     <td className=" px-4 py-2 text-gray-700">
                         <button 
-                        className="rounded bg-red-100 px-3 py-1.5 text-xs font-medium text-red-700">
+                            className="rounded bg-blue-100 px-3 py-1.5 text-xs font-medium ">
+                           <Link to={`/EditProfile/${l._id}`} className="no-underline">
                             Detail
+                            </Link>
                         </button>
-                        <button className="rounded bg-red-100 px-3 py-1.5 text-xs font-medium text-red-700">
+                        <button 
+                            className="rounded bg-red-100 px-3 py-1.5 text-xs font-medium text-red-700"
+                            onClick={() =>deleteAccount(l._id)}
+                            >
                             Delete
                         </button>
                     </td>

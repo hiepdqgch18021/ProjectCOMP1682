@@ -17,7 +17,6 @@ const DiaryForm = () => {
 
     const submitDiary = async(e)=>{
         const token = localStorage.getItem('jwtLogin')
-
         console.log(diaryFile);
         e.preventDefault();
         try {
@@ -35,7 +34,7 @@ const DiaryForm = () => {
             }
             ); 
             console.log(res);
-
+            navigate(`/UserProfile/${user._id}`)
         } catch (err) {
             console.log(err);
         }
@@ -43,11 +42,10 @@ const DiaryForm = () => {
 
     return ( 
         <>
-            <header className='sidebar'>
+         
                 <Header />
-            </header>
-            
-            <main>
+           
+
                 <section>
                     <div className="md:grid md:grid-cols-3 md:gap-6">
                         <div className="mt-5 ml-20 md:col-span-2 md:mt-0">
@@ -147,7 +145,7 @@ const DiaryForm = () => {
                     </div>
 
                 </section>
-            </main>
+
             <footer>
                 <span>
                     "Yesterday is history. Tomorrow is a mystery, but today is a gift. That’s why it’s called the present"

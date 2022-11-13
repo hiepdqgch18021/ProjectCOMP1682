@@ -48,6 +48,7 @@ const ListStoryType = () => {
                             </svg>
                         </div>
                     </div>
+                    
                     <ul className="sidebarList">
 
                         {TypeData.map((t, index) => {

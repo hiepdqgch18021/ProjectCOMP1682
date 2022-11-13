@@ -37,11 +37,11 @@ const UserInfo = ({checkUser}) => {
                     <div className="lg:w-4/6 mx-auto">
                         <div className="flex flex-col sm:flex-row mt-10">
                             <div className="sm:w-1/3  sm:pr-8 sm:py-8">
-                                <div className="w-30 h-30 rounded-full inline-flex items-center justify-center ">
+                                <div className="w-30 h-30 inline-flex items-center justify-center ">
                                     <img
                                         alt="Man"
                                         src={userInfoData.imageAvatar}
-                                        className="h-30 w-30 rounded-full object-cover"
+                                        className="h-30 w-30 rounded-full "
                                     />
 
                                 </div>
@@ -53,6 +53,7 @@ const UserInfo = ({checkUser}) => {
                                     {checkUser &&
                                     <button>
                                         <Link to={`/EditProfile/${userInfoData._id}`} >
+                                        {/* {`/EditProfile/${userInfoData._id}`} */}
                                             Edit Profile
                                         </Link>
                                     </button>

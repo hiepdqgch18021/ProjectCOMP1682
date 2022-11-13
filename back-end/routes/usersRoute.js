@@ -19,13 +19,6 @@ router.get("/getOneUsers/:id",userController.getOneUser); //,middlewareControlle
 router.delete("/deleteUser/:id",middlewareController.verifyTokenAndAdminAuth,userController.deleteUser); //,middlewareController.verifyTokenAndAdminAuth
 
 
-//----User information--------------------------------------------------------------------------------------------
-// router.post("/addUserInfo",upload.single('imageAvatar'),userController.addUserInfo);
-// router.get("/getAllUsersInfo",userController.getAllUsersInfo)
-// router.get("/getOneUserInfo/:id",userController.getOneUserInfo)
-// router.put('/updateUserInfo/:id',userController.updateUserInfo);
-
-// router.delete('/deleteUserInfo/:id',userController.deleteUserInfo);
 module.exports = router ;
 
 

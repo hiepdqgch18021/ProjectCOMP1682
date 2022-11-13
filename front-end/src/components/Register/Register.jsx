@@ -24,7 +24,7 @@ const Register = () => {
             password: password,
             username: username,
             name: name,
-            dob: dob,
+            DoB: dob,
             aboutMe: aboutMe,
             imageAvatar: avatar,
         };

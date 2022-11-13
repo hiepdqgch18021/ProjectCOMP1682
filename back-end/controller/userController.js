@@ -14,8 +14,7 @@ const userController ={
     }, 
 
     searchUser:async(req,res)=>{
-        const search = req.query.search;
-        console.log('sdddddd');
+        const search = req.query.search;   
         const regex = new RegExp(search, 'i');
          try {
              const user= await User.find({name:regex},{password:0,__v:0,admin:0,createdAt:0,updatedAt:0,email:0,DoB:0,followers:0,followings:0,aboutMe:0});
