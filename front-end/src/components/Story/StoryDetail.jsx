@@ -1,9 +1,16 @@
-import { Fragment, useState } from 'react'
+import React,{ Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
-const StoryDetail = (e) => {
-  const [open, setOpen] = useState(true)
+
+
+const StoryDetail = (e,args) => {
+  const [open, setOpen] = useState(true);
+
+
+  const [modal, setModal] = useState(false);
+  const toggle = () => setModal(!modal);
   
   return (  
     <Transition.Root show={open} as={Fragment}>
@@ -17,6 +24,7 @@ const StoryDetail = (e) => {
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
+
         <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
         </Transition.Child>
 
@@ -60,6 +68,7 @@ const StoryDetail = (e) => {
                     <div className="relative mt-6 flex-1 px-4 sm:px-6">
                       {/* Replace with your content */}
                       <div className="absolute inset-0 px-4 sm:px-6">
+                        this is the content data
                         <div className="h-full border-2 border-dashed border-gray-200" aria-hidden="true" />
                       </div>
                       {/* /End replace */}

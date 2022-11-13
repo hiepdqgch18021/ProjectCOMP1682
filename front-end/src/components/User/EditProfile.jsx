@@ -89,7 +89,7 @@ const deleteAccount = async(_id)=>{
                                 <input
                                     className="text-black font-bold"
                                     type="text"
-                                    value={`${userInfoData.username}`} />
+                                    defaultValue={`${userInfoData.username}`} />
                             </div>
                             <div
                                 className="block rounded-xl border border-gray-800 p-8 shadow-xl transition hover:border-pink-500/10 hover:shadow-pink-500/10">
@@ -98,7 +98,7 @@ const deleteAccount = async(_id)=>{
                                 <input
                                     className="text-black font-bold"
                                     type="text"
-                                    value={`${userInfoData.email}`} />
+                                    defaultValue={`${userInfoData.email}`} />
                             </div>
                             <div
                                 className="block rounded-xl border border-gray-800 p-8 shadow-xl transition hover:border-pink-500/10 hover:shadow-pink-500/10">
@@ -107,7 +107,7 @@ const deleteAccount = async(_id)=>{
                                 <input
                                     className="text-black font-bold"
                                     type="text"
-                                    value={`${userInfoData.name}`} />
+                                    defaultValue={`${userInfoData.name}`} />
                             </div>
                             <div
                                 className="block rounded-xl border border-gray-800 p-8 shadow-xl transition hover:border-pink-500/10 hover:shadow-pink-500/10">
@@ -116,7 +116,7 @@ const deleteAccount = async(_id)=>{
                                 <input
                                     className="text-black font-bold"
                                     type="dateTime"
-                                    value={`${userInfoData.DoB}`} />
+                                    defaultValue={`${userInfoData.DoB}`} />
                             </div>
                             <div
                                 className="block rounded-xl border border-gray-800 p-8 shadow-xl transition hover:border-pink-500/10 hover:shadow-pink-500/10">
@@ -125,7 +125,7 @@ const deleteAccount = async(_id)=>{
                                 <input
                                     className="text-black font-bold"
                                     type="text"
-                                    value={`${userInfoData.aboutMe}`} />
+                                    defaultValue={`${userInfoData.aboutMe}`} />
                             </div>
                         </div>
 
