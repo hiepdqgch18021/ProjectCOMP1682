@@ -1,4 +1,4 @@
-const storyController = require("../controller/storyController");
+const {storyController,commentController} = require("../controller/storyController");
 const router = require("express").Router();
 const upload = require("../utils/multer")
 const middlewareController = require("../controller/middlewareController");
@@ -23,6 +23,18 @@ router.get("/getOneStory/:id",storyController.getOneStory);
 
 //delete a story
 router.delete("/deleteStory/:id",storyController.deleteStory);//middlewareController.verifyToken,
+
+//add comment
+
+router.post("/addComment",middlewareController.verifyToken,commentController.addComment);//,middlewareController.verifyToken
+
+//get all comments
+
+router.get("/getAllComments",middlewareController.verifyToken,commentController.getAllComments);
+
+
+//delete comments 
+router.delete("/deleteComment/:id",middlewareController.verifyToken,commentController.deleteComment);
 
 module.exports = router;
 

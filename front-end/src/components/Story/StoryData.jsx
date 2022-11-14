@@ -11,8 +11,7 @@ const StoryHome = () => {
   const user = useSelector((state) => state.auth.login?.currentUser);
   const url = process.env.REACT_APP_URL_AXIOS;
   const token = localStorage.getItem("jwtLogin")
-  const { id } = useParams();
-  const navigate = useNavigate();
+
 
   const [storyData, setStoryData] = useState([])
 
@@ -90,7 +89,7 @@ const StoryHome = () => {
                     dateTime=""
                     className="flex items-center justify-between gap-4 text-xs text-gray-400"
                   >
-                    <p>update 10 min ago</p>
+                    <p>update at : {s.updatedAt}</p>
                   </time>
                 </div>
 

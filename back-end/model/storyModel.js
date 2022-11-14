@@ -19,6 +19,10 @@ const storySchema = new mongoose.Schema({
     cloudinaryID:{
         type: String,
     },
+    comments:[{
+        type: mongoose.Schema.Types.ObjectId,
+        ref:'Comment' 
+    }],
 
     userID:{
         type: mongoose.Schema.Types.ObjectId,
@@ -27,8 +31,23 @@ const storySchema = new mongoose.Schema({
 },{timestamps:true}
 );
 
+const commentSchema = new mongoose.Schema({
+    comment:{
+       type: String,
+    },
+   
+    userID:{
+       type: mongoose.Schema.Types.ObjectId,
+       ref:'User'
+   }
+   },{timestamps:true}
+   )
+   
+   
+let Comment = mongoose.model('Comment',commentSchema); 
 let Story = mongoose.model('Story',storySchema); 
-module.exports = Story;
+
+module.exports = {Story, Comment};
 
 
 

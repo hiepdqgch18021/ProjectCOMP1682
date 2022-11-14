@@ -1,10 +1,9 @@
 
 const cloudinary = require("../utils/cloundinary")
-const Story = require("../model/storyModel");
-const User = require("../model/userModel")
+const {Story,Comment} = require("../model/storyModel");
+const User = require("../model/userModel");
 
 const storyController = {
-
     //add story
     addStory: async(req,res)=>{
         try {        
@@ -59,8 +58,6 @@ const storyController = {
         }
     }, 
 
-
-
     getAllIndividualStory:async(req,res)=>{
         try {
             const {id} = req.params;
@@ -82,12 +79,8 @@ const storyController = {
             res.status(200).json(story);
         } catch (error) {
             return res.status(500).json(error);
- 
         }
     }, 
-
-
-
     // get a story
     getOneStory: async(req,res)=>{ 
         try {
@@ -102,13 +95,55 @@ const storyController = {
     deleteStory: async(req,res)=>{
         try {
             await Story.findByIdAndDelete(req.params.id); 
-            res.status(200).json("delete success");
+            res.status(200).json("delete story success");
         } catch (error) {
             return res.status(500).json(error);
         }
-    }
+    },
+
+
 };
-module.exports = storyController;
+const commentController={
+    
+    addComment: async(req, res)=>{
+        try {
+            const newComment = new Comment
+            ({
+                comment:req.body.comment,           
+                userID: req.user.id,
+            });
+            //save
+            await newComment.save();
+            return res.status(200).json(newComment);
+        } catch (error) {
+            return res.status(500).json(error);
+        }
+    },
+    
+    getAllComments: async(req, res)=>{
+    try {
+        const comment = await Comment.find().populate("userID"," imageAvatar name");
+        res.status(200).json(comment);
+    } catch (error) {
+        return res.status(500).json(error);
+    }
+    },
+    
+    deleteComment: async(req, res)=>{
+    try {
+        await Comment.findByIdAndDelete(req.params.id); 
+        res.status(200).json("delete comment success");
+
+    } catch (error) {
+        return res.status(500).json("delete comment fail",error);
+    }
+    }
+    
+    }
+
+
+module.exports = {storyController,commentController};
+
 
 // addStory: async(req,res)=>{
     //     try {

@@ -4,9 +4,8 @@ import axios from "axios";
 import "./story.css"
 import { useNavigate } from "react-router-dom";
 
-const StoryForm = ({ username }) => {
+const StoryForm = () => {
     const user = useSelector((state) => state.auth.login.currentUser);
-    const desc = useRef();
     const url = process.env.REACT_APP_URL_AXIOS;
     const [type, setType] = useState('');
     const [title, setTitle] = useState('');
@@ -72,7 +71,6 @@ const StoryForm = ({ username }) => {
                 <textarea
                     placeholder={"What's in your tale " + user.name + "?"}
                     className="shareInput"
-                    // ref={desc}
                     onChange={(e) => setContent(e.target.value)}
                 />
             </div>
