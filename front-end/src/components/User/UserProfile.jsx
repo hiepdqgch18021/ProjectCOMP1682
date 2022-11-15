@@ -67,10 +67,9 @@ const UserProfile = () => {
                         <StoryIndividual
                             stories={storyData.story}
                             loading={loading}
-                            username={storyData.user?.username}
-                            email={storyData.user?.email}
                             checkUser={user._id === id}
                             imageAvatar={storyData.user?.imageAvatar}
+                            name={storyData.user?.name}
                         />
 
                     </div>

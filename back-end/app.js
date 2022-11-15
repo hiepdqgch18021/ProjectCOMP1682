@@ -57,6 +57,14 @@ app.use("/api/story",storyRoute);
 const diaryRoute = require("./routes/diaryRoute");
 app.use("/api/diary",diaryRoute);
 
+// -messenger------------------------------------------------
+const conversationRoute = require("./routes/conversationRoute");
+app.use("/api/conversation",conversationRoute);
+
+const messageRoute = require("./routes/messageRoute");
+app.use("/api/message",messageRoute);
+
+
 
 app.get('/',(req, res) => {
     res.send("welcome Home!");

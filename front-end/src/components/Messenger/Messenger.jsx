@@ -1,28 +1,97 @@
-import React, { Component, useState } from "react";
-import { Editor } from "react-draft-wysiwyg";
-import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-import {convertFromRaw, EditorState} from "draft-js";
+import "./messenger.css"
 import Header from "../Header/Header";
+import Conversations from "./Conversations";
+import Message from "./Message";
+import ChatOnline from "./ChatOnline";
 
-import { Dropdown} from 'reactstrap';
-
-    
- const Messenger  = () => {
-
-        return(
+export default function Messenger() {
+    return (
         <>
-            {/* <header className='sidebar'>
-                <Header/>
-            </header> */}
+            <Header />
+            <div className="messenger">
+                <div className="chatMenu">
+                    <div className="chatMenuWrapper">
+                        <input type="text"
+                            placeholder="search your friend"
+                            className="chatMenuInput" />
+                        <Conversations />
+                        <Conversations />
+                        <Conversations />
+                        <Conversations />
+                        <Conversations />
+                        <Conversations />
+                    </div>
+                </div>
 
-            <h1>MASSAGE page</h1>
-           
-            
+                <div className="chatBox">
+                    <div className="chatBoxWrapper">
+                        <div className="chatBoxTop">
+                            chat box top
+                            <Message own={true} />
+                            <Message />
+                            <Message own={true} />
+                            <Message />
+                            <Message own={true} />
+                            <Message />
+                            <Message own={true} />
+                            <Message />
+                            <Message own={true} />
+                            <Message />
+                            <Message own={true} />
+                           
+                        </div>
+
+                        <div className="chatBoxBottom">
+                            <textarea className="chatMessageInput" placeholder="let enjoy your chat"></textarea>
+                            <button className="chatSubmitButton">send</button>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div className="chatOnline">
+                    <div className="chatOnlineWrapper">
+                        <ChatOnline/>
+                        <ChatOnline/>
+                        <ChatOnline/>
+                        <ChatOnline/>
+                        <ChatOnline/>
+                        <ChatOnline/>
+                        <ChatOnline/>
+                    </div>
+                </div>
+            </div>
         </>
-        )
-     
-    }
+    )
+}
 
 
- 
-export default Messenger;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

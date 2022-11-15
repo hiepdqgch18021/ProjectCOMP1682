@@ -1,8 +1,7 @@
 const mongoose = require('mongoose');
 
 const diarySchema = new mongoose.Schema({
-
-
+    
     diaryTitle:{ 
         type: String, 
         required: true 

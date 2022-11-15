@@ -39,6 +39,10 @@ const commentSchema = new mongoose.Schema({
     userID:{
        type: mongoose.Schema.Types.ObjectId,
        ref:'User'
+   },
+   storyID:{
+    type: mongoose.Schema.Types.ObjectId,
+    ref:'Story'
    }
    },{timestamps:true}
    )

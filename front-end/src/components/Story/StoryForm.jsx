@@ -12,6 +12,7 @@ const StoryForm = () => {
     const [content, setContent] = useState('');
     const [storyFile, setStoryFile] = useState({});
     const navigate = useNavigate()
+    
     const submitStory = async (e) => {
         const token = localStorage.getItem('jwtLogin')
         console.log(storyFile);

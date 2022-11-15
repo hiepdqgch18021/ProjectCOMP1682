@@ -1,0 +1,212 @@
+.messenger{
+    height: calc(100vh - 70px);
+    display:flex;
+    }
+    
+    .chatMenu{
+    flex:3.5;
+    }
+    .chatMenuInput{
+        width:90%;
+        padding:10px 0;
+        border:none;
+        border-bottom:1px solid blue;
+    
+    }
+    
+    .chatBox{
+    flex:5.5
+    }
+    
+    .chatBoxWrapper{
+        display:flex;
+        flex-direction: column;
+    }
+    .chatBoxTop{
+        height:100%;
+        overflow-y:scroll;
+        padding-right:10px;
+    }
+    .chatBoxBottom{
+    margin-top:5px;
+    display :flex;
+    align-items:center;
+    justify-content:space-between;
+    }
+    
+    .chatMessageInput{
+    width:80%;
+    height:30px;
+    padding:10px;
+    border-radius:10px;
+    }
+    .chatSubmitButton{
+    width:70px;
+    height:40px;
+    border:none;
+    border-radius:10px;
+    background-color:#1877f5;
+    color:white;
+    }
+    
+    
+    
+    .chatOnline{
+    flex:3
+    }
+    
+    .chatMenuWrapper, .chatBoxWrapper, .chatOnlineWrapper{
+    padding : 10px;
+    background-color: #white;
+    height:100%;
+    }
+/* -----chatonline----------------------------------------------------- */
+    
+.chatOnline{
+}
+
+.chatOnlineFriend{
+    dispalay:flex;
+    align-items:center;
+    font-weight:500;
+    cursor: pointer;
+}
+
+.chatOnlineImgContainer{
+position:relative;
+}
+
+.chatOnlineImg{
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    object-fit: cover;
+}
+
+.chatOnlineBadge{
+    with:10px;
+    height:10px;
+    border-radius:50%;
+    background-color:limegreen;
+    color:limegreen;
+    position:absolute;
+    top: 2px;
+    left:30px;
+}
+.chatOnlineName{
+
+}
+/* ---conversation------------------------------------------------------------------------------ */
+
+.conversation{
+    display:flex;
+    align-items:center;
+    padding:10px;
+    cursor: pointer;
+    margin-top:20px;
+    }
+    .conversation:hover{
+        background-color:#c7c7c7c9;
+    }
+    
+    .conversationImg{
+    width:40px;
+    height: 40px;
+    border-radius:50%;
+    object-fit:cover;
+    margin-right:20px;
+    }
+    
+    .conversationName{
+    font-weight:500;
+    }
+/* --message-------------------------------------------------------------------- */
+.message{
+    display:flex;
+    flex-direction:column;
+    margin-top:20px;
+    }
+    
+    .messageTop{
+        display:flex;
+    }
+    
+    .messageImg {
+        width : 32px;
+        height:32px; 
+        border-radius:50%;
+        object-fit:cover;
+        margin-right:10px;
+        background-color:red;
+    }
+    
+    .messageText{
+        font-size:15px;
+        border-radius: 20px;
+        background-color:#1877f2;
+        color: white;
+        padding:7px;
+        max-width: 300px;
+    }
+    
+    .messageBottom{
+        font-size:12px;
+    
+    }
+    
+    .message.own{
+        align-items:flex-end;
+    }
+    
+    .message.own .messageText{
+        background-color: lightgray;
+        color:black;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    

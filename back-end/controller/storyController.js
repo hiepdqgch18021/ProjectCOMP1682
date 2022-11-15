@@ -100,9 +100,8 @@ const storyController = {
             return res.status(500).json(error);
         }
     },
-
-
 };
+
 const commentController={
     
     addComment: async(req, res)=>{
@@ -112,6 +111,7 @@ const commentController={
                 comment:req.body.comment,           
                 userID: req.user.id,
             });
+            console.log(newComment)
             //save
             await newComment.save();
             return res.status(200).json(newComment);
