@@ -4,17 +4,24 @@ import { PaperClipIcon } from '@heroicons/react/20/solid'
 import { useNavigate, useParams } from "react-router-dom";
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-
-
+import { useRef } from "react";
 
 
 const EditProfile = () => {
 
     const url = process.env.REACT_APP_URL_AXIOS;
     const [userInfoData, setUserInfoData] = useState()
+    const changeNameRef = useRef() 
+    const changeDoBRef = useRef()
+    const aboutMeRef = useRef()
+
+
     const token = localStorage.getItem('jwtLogin')
     const { id } = useParams();
     const navigate = useNavigate();
+
+
+    
 
     useEffect(() => {
         (async () => {
@@ -35,20 +42,42 @@ const EditProfile = () => {
         })()
     }, [id]);
 
-const deleteAccount = async(_id)=>{
+const saveEdit = async()=>{
     try {
-        await axios.delete(url + `/user/deleteUser/${_id}`,{
-            headers: {
-                token: `Bearer ${token}`,
-                accept: 'application/json'
+        const res = await axios.put(url + '/user/updateOneUser/' + id,
+        {
+            name:changeNameRef.current.value,
+            DoB :changeDoBRef.current.value,
+            aboutMe:aboutMeRef.current.value
+        },
+        
+            {
+                headers: {
+                    token: `Bearer ${token}`,
+                    accept: 'application/json'
+                }
             }
-        })
-        alert("delete user success")
-        console.log("delete user success")
-        navigate("/")
-      } catch (error) {
-        console.log(error);
-      }
+        );
+        console.log(res.data);       
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+    const deleteAccount = async (_id) => {
+        try {
+            await axios.delete(url + `/user/deleteUser/${_id}`, {
+                headers: {
+                    token: `Bearer ${token}`,
+                    accept: 'application/json'
+                }
+            })
+            alert("delete user success")
+            console.log("delete user success")
+            navigate("/")
+        } catch (error) {
+            console.log(error);
+        }
     }
 
 
@@ -76,6 +105,7 @@ const deleteAccount = async(_id)=>{
                                     <img src={userInfoData.imageAvatar}
                                         className=" flex justify-center "
                                         alt="" />
+
                                     <input type="file" />
 
                                 </div>
@@ -86,19 +116,23 @@ const deleteAccount = async(_id)=>{
                                 className="block rounded-xl border border-gray-800 p-8 shadow-xl transition hover:border-pink-500/10 hover:shadow-pink-500/10">
 
                                 <h2 className="mt-4 text-xl font-bold text-white">Username</h2>
+
                                 <input
                                     className="text-black font-bold"
                                     type="text"
-                                    defaultValue={`${userInfoData.username}`} />
+                                    Value={`${userInfoData.username}`} />
+
                             </div>
                             <div
                                 className="block rounded-xl border border-gray-800 p-8 shadow-xl transition hover:border-pink-500/10 hover:shadow-pink-500/10">
 
                                 <h2 className="mt-4 text-xl font-bold text-white">Email</h2>
+
                                 <input
                                     className="text-black font-bold"
                                     type="text"
-                                    defaultValue={`${userInfoData.email}`} />
+                                    Value={`${userInfoData.email}`} />
+
                             </div>
                             <div
                                 className="block rounded-xl border border-gray-800 p-8 shadow-xl transition hover:border-pink-500/10 hover:shadow-pink-500/10">
@@ -107,7 +141,9 @@ const deleteAccount = async(_id)=>{
                                 <input
                                     className="text-black font-bold"
                                     type="text"
-                                    defaultValue={`${userInfoData.name}`} />
+                                    defaultValue={`${userInfoData.name}`}
+                                    ref={changeNameRef}
+                                    />
                             </div>
                             <div
                                 className="block rounded-xl border border-gray-800 p-8 shadow-xl transition hover:border-pink-500/10 hover:shadow-pink-500/10">
@@ -116,7 +152,9 @@ const deleteAccount = async(_id)=>{
                                 <input
                                     className="text-black font-bold"
                                     type="dateTime"
-                                    defaultValue={`${userInfoData.DoB}`} />
+                                    defaultValue={`${userInfoData.DoB}`} 
+                                    ref={changeDoBRef}
+                                    />
                             </div>
                             <div
                                 className="block rounded-xl border border-gray-800 p-8 shadow-xl transition hover:border-pink-500/10 hover:shadow-pink-500/10">
@@ -125,13 +163,16 @@ const deleteAccount = async(_id)=>{
                                 <input
                                     className="text-black font-bold"
                                     type="text"
-                                    defaultValue={`${userInfoData.aboutMe}`} />
+                                    defaultValue={`${userInfoData.aboutMe}`} 
+                                    ref={aboutMeRef}
+                                    />
                             </div>
                         </div>
 
                         <div className="mt-12 text-center flex p-4">
                             <button
                                 className="mt-8 inline-flex items-center rounded border border-pink-600 bg-pink-600 px-8 py-3 text-white hover:bg-transparent focus:outline-none focus:ring active:text-pink-500"
+                            onClick={saveEdit}
                             >
                                 <span className="text-sm font-medium"> Save And Change </span>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" className="bi bi-cloud-upload-fill ml-2 w-10 h-10" viewBox="0 0 16 16">
@@ -141,7 +182,7 @@ const deleteAccount = async(_id)=>{
 
                             <button
                                 className="mt-8 inline-flex items-center rounded border border-red-600 bg-red-600 px-8 py-3 text-white hover:bg-transparent focus:outline-none focus:ring active:text-pink-500"
-                               onClick={() =>deleteAccount(userInfoData._id)} 
+                                onClick={() => deleteAccount(userInfoData._id)}
                             >
                                 <span className="text-sm font-medium"> Delete Account</span>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-x ml-2 w-10 h-10" viewBox="0 0 16 16">

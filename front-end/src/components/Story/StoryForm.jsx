@@ -54,11 +54,11 @@ const StoryForm = () => {
             }
         })()
     }, []);
-
+ 
     return (
 
         // <div className="md:grid md:grid-cols-3 md:gap-6">
-        <div className="share" onSubmit={(e) => submitStory(e)}>
+        <div className="share " onSubmit={(e) => submitStory(e)}>
             <div className="shareTop">
                 <img
                     className="shareProfileImg"

@@ -30,7 +30,7 @@ const UserProfile = () => {
                             }
                         }
                     );
-                    console.log(res);
+                    // console.log(res);
                     setStoryData(res.data);
                 } catch (err) {
                     console.log(err);

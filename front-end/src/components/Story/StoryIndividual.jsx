@@ -37,12 +37,11 @@ const StoryIndividual = ({ stories, name, imageAvatar, checkUser, loading }) => 
       {(loading === false) &&
         <div className="block  mt-4 mb-3 bg-white transition hover:shadow-xl">
           {stories.map((s) => (
+
             <article className="flex"
               key={s._id}
             >
-              <div className="rotate-180 p-2 [writing-mode:_vertical-lr]">
-
-              </div>
+           
               <div className="hidden sm:block sm:basis-56">
                 <img
                   alt="story photo"
@@ -50,6 +49,7 @@ const StoryIndividual = ({ stories, name, imageAvatar, checkUser, loading }) => 
                   className="aspect-square h-full w-full object-cover"
                 />
               </div>
+              
               <div className="flex flex-1 flex-col ">
 
                 <div className='mt-1 flex'>
@@ -130,13 +130,15 @@ const StoryIndividual = ({ stories, name, imageAvatar, checkUser, loading }) => 
                     </div>
                   </details>
                 </div>
+              <Comment />
               </div>
             </article>
+            
           ))}
           
-          <Comment />
 
-        </div>}
+        </div>
+        }
 
     </>
   )

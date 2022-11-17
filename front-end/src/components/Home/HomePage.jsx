@@ -34,7 +34,7 @@ const HomePage = () => {
 
       <div className="homePage">
         <ListStoryType />
-        <Mid />
+        <Mid/>
         <OnlineUser />
       </div>
 

@@ -3,8 +3,30 @@ import Header from "../Header/Header";
 import Conversations from "./Conversations";
 import Message from "./Message";
 import ChatOnline from "./ChatOnline";
+import { useState } from "react";
+import { useEffect } from "react";
+import axios from "axios";
+import { useSelector } from "react-redux";
 
 export default function Messenger() {
+    const user = useSelector((state) => state.auth.login?.currentUser);
+    const url = process.env.REACT_APP_URL_AXIOS;
+
+    const [conversations, setConversations] = useState([])
+
+    useEffect(() => {
+        const getConversation = async () => {
+            try {
+                const res = await axios.get(url + `/conversation/get/${user._id}`)
+                setConversations(res.data)
+                // console.log(res.data)
+            } catch (error) {
+                console.log(error)
+            }
+        };
+        getConversation()
+    }, [user._id])
+
     return (
         <>
             <Header />
@@ -14,12 +36,12 @@ export default function Messenger() {
                         <input type="text"
                             placeholder="search your friend"
                             className="chatMenuInput" />
-                        <Conversations />
-                        <Conversations />
-                        <Conversations />
-                        <Conversations />
-                        <Conversations />
-                        <Conversations />
+
+                        <Conversations
+                            conversation={conversations.conversation.member}
+                            currentUser={user}
+                        /> 
+
                     </div>
                 </div>
 
@@ -38,7 +60,7 @@ export default function Messenger() {
                             <Message own={true} />
                             <Message />
                             <Message own={true} />
-                           
+
                         </div>
 
                         <div className="chatBoxBottom">
@@ -51,13 +73,13 @@ export default function Messenger() {
 
                 <div className="chatOnline">
                     <div className="chatOnlineWrapper">
-                        <ChatOnline/>
-                        <ChatOnline/>
-                        <ChatOnline/>
-                        <ChatOnline/>
-                        <ChatOnline/>
-                        <ChatOnline/>
-                        <ChatOnline/>
+                        <ChatOnline />
+                        <ChatOnline />
+                        <ChatOnline />
+                        <ChatOnline />
+                        <ChatOnline />
+                        <ChatOnline />
+                        <ChatOnline />
                     </div>
                 </div>
             </div>

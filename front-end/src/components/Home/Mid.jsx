@@ -10,7 +10,7 @@ function Mid(username) {
 
   return (   
     <>
-    <div className="homeMid">
+    <div className="homeMid mt-28">
         <div className="midContent">
         <StoryForm />
         {/* {(!username || username === user.username) && <StoryForm />} */}

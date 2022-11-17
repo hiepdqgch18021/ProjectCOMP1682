@@ -71,8 +71,7 @@ const StoryHome = () => {
                   />
                   <p className="ml-2 hidden text-left text-xs sm:block">
                     <div className="block font-medium">{s.userID.name}</div>
-                    {/* <div className="block font-medium">{s.userID.username}</div>
-                  <div className="text-gray-500">{s.userID.email}</div>  */}
+                    
                   </p>
                 </Link>
               </div>
@@ -114,14 +113,12 @@ const StoryHome = () => {
               </div>
             </div>
           </article>
-
-          <Comment/>
+          <Comment 
+          storyID = {s._id}
+          />
 
         </div>
       ))}
-
-
-
     </>
   );
 }

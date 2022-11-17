@@ -45,6 +45,19 @@ const userController ={
         return res.status(500).json(error);
     }
     },
+
+updateUserInfo: async(req,res)=>{
+    try{
+        const {name,DoB,aboutMe} = req.body;
+        console.log(name)
+        await User.findOneAndUpdate({_id:req.user.id},{name:name,DoB:DoB,aboutMe:aboutMe});
+        console.log(req.user.id)
+        res.status(200).json("update success")
+    }catch (error){
+        console.log(error);
+    }
+}
+
 }
 
 module.exports = userController

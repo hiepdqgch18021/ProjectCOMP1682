@@ -102,27 +102,32 @@ const storyController = {
     },
 };
 
-const commentController={
-    
+const commentController={   
     addComment: async(req, res)=>{
         try {
+            const {storyID} = req.query;
             const newComment = new Comment
             ({
                 comment:req.body.comment,           
                 userID: req.user.id,
+                storyID:storyID,
             });
             console.log(newComment)
             //save
             await newComment.save();
             return res.status(200).json(newComment);
         } catch (error) {
+            
+            console.log(error)
             return res.status(500).json(error);
+           
         }
     },
     
     getAllComments: async(req, res)=>{
     try {
-        const comment = await Comment.find().populate("userID"," imageAvatar name");
+        const {storyID} = req.query;
+        const comment = await Comment.find({ storyID: storyID },{__v:0}).populate("userID","imageAvatar name");       
         res.status(200).json(comment);
     } catch (error) {
         return res.status(500).json(error);

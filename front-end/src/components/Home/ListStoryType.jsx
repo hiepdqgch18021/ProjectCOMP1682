@@ -27,8 +27,7 @@ const ListStoryType = () => {
 
     return (
         <>
-
-            <div className="sidebar">
+            <div className="sidebar mt-24">
                 <div className="sidebarWrapper">
                     <span>List Type Of Story</span>
 
