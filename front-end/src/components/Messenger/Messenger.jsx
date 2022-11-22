@@ -9,7 +9,7 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import userSlice from "../../redux/userSlice";
 import { useRef } from "react";
-
+import {io} from "socket.io-client"
 export default function Messenger() {
 
     const url = process.env.REACT_APP_URL_AXIOS;
@@ -17,8 +17,19 @@ export default function Messenger() {
     const [currentChat, setCurrentChat] = useState(null)
     const [messages, setMessages] = useState([])
     const [newMessages, setNewMessages] = useState("")
+    const [socket, setSocket] = useState(null)
     const user = useSelector((state) => state.auth.login?.currentUser);
     const scrollRef = useRef()
+
+useEffect(() => {
+setSocket(io("ws://localhost:9000"))
+},[])
+
+useEffect(()=>{
+socket?.on("welcome", message=>{
+    console.log(message)
+})
+},[socket])
 
     useEffect(() => {
         const getConversation = async () => {
