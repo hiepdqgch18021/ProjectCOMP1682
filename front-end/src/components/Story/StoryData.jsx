@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { useParams } from "react-router-dom";
 import axios from 'axios';
-import StoryDetail from './StoryDetail';
+import StoryDetail from './StoryEdit';
 import Comment from './Comment';
 
 const StoryHome = () => {
@@ -26,7 +26,7 @@ const StoryHome = () => {
             }
           }
         );
-        console.log(res);
+        console.log(res.data);
         setStoryData(res.data);
       } catch (err) {
         console.log(err);
@@ -113,6 +113,7 @@ const StoryHome = () => {
               </div>
             </div>
           </article>
+          
           <Comment 
           storyID = {s._id}
           />

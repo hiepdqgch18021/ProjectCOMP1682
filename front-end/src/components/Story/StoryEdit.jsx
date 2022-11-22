@@ -5,7 +5,7 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 
 
-const StoryDetail = (e,args) => {
+const StoryEdit = (e,args) => {
   const [open, setOpen] = useState(true);
 
 
@@ -83,4 +83,4 @@ const StoryDetail = (e,args) => {
     </Transition.Root>
   )
 }
-export default StoryDetail;
+export default StoryEdit;

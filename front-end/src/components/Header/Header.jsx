@@ -14,6 +14,8 @@ import { useState } from "react";
 const Header = ({ direction, ...args }) => {
 
   const user = useSelector((state) => state.auth.login.currentUser);
+  const token = localStorage.getItem('jwtLogin')
+
   // -----------------------------------------------------
   const accessToken = user?.accessToken;
   const id = user?._id;
@@ -36,7 +38,15 @@ const Header = ({ direction, ...args }) => {
       if (searchValue.length >= 1) {
         (async () => {
           try {
-            const res = await axios.get(url + '/user/searchUser?search=' + searchValue);
+            const res = await axios.get(url + '/user/searchUser?search=' + searchValue,
+            {
+              headers: {
+                  "Content-Type": "multipart/form-data",
+                  token: `Bearer ${token}`,
+                  accept: 'application/json'
+              }
+          }          
+            );
             // console.log(res.data);
             setSearchUser(res.data);
           } catch (err) {
@@ -51,7 +61,7 @@ const Header = ({ direction, ...args }) => {
 
   return (
 <>
-<header aria-label="Page Header" className="bg-gray-100 fixed w-full header top-0">
+<header aria-label="Page Header" className="bg-gray-100 fixed w-full h-26 header top-0">
       <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 lg:px-8">
         <div className="flex items-center sm:justify-between sm:gap-4">
           <div className="relative hidden sm:block">

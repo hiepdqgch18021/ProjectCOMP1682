@@ -39,8 +39,12 @@ const storyController = {
     //change story content
     updateStory:async(req,res)=>{
         try {
-            const story = await Story.findById(req.params.id);
-            await story.updateOne({$set:req.body});
+            const storyContent = req.body;
+            
+            console.log(storyContent)
+
+            await Story.findOneAndUpdate({storyContent:storyContent});
+            
             res.status(200).json("update a story success");
         } catch (error) {
             res.status(500).json(error);

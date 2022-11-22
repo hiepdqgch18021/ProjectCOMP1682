@@ -30,7 +30,7 @@ const userController ={
     //get one user
     getOneUser:async(req,res)=>{
         try {
-            const user= await User.findById(req.params.id);
+            const user = await User.findById(req.params.id);
             res.status(200).json(user);
         } catch (error) {
             return res.status(500).json(error);
@@ -49,9 +49,8 @@ const userController ={
 updateUserInfo: async(req,res)=>{
     try{
         const {name,DoB,aboutMe} = req.body;
-        console.log(name)
+        
         await User.findOneAndUpdate({_id:req.user.id},{name:name,DoB:DoB,aboutMe:aboutMe});
-        console.log(req.user.id)
         res.status(200).json("update success")
     }catch (error){
         console.log(error);

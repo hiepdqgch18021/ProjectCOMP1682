@@ -45,7 +45,7 @@ const UserProfile = () => {
            
             <Header />
       
-            <main className='main-user-profile'>
+            <main className='main-user-profile mt-28'>
                 <section className="profile-diary-container">
                     <div className="container">
                         <div className="row">

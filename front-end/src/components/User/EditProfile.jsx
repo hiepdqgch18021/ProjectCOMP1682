@@ -15,13 +15,9 @@ const EditProfile = () => {
     const changeDoBRef = useRef()
     const aboutMeRef = useRef()
 
-
     const token = localStorage.getItem('jwtLogin')
     const { id } = useParams();
     const navigate = useNavigate();
-
-
-    
 
     useEffect(() => {
         (async () => {
@@ -59,6 +55,7 @@ const saveEdit = async()=>{
             }
         );
         console.log(res.data);       
+        alert("Edit profile success!");
     } catch (err) {
         console.log(err);
     }
@@ -104,10 +101,7 @@ const saveEdit = async()=>{
                                 <div className="changeAvatar">
                                     <img src={userInfoData.imageAvatar}
                                         className=" flex justify-center "
-                                        alt="" />
-
-                                    <input type="file" />
-
+                                        alt=""/>
                                 </div>
 
                             </div>

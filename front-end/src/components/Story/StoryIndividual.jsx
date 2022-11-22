@@ -1,16 +1,30 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useParams } from "react-router-dom";
 import axios from 'axios';
 import Comment from './Comment';
+import {
+  Button,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  Input,
+  Label,
+  Form,
+  FormGroup,
+} from 'reactstrap';
+
 
 
 const StoryIndividual = ({ stories, name, imageAvatar, checkUser, loading }) => {
   const user = useSelector((state) => state.auth.login?.currentUser);
 
   const url = process.env.REACT_APP_URL_AXIOS;
+  const token = localStorage.getItem('jwtLogin')
+
   const navigate = useNavigate();
 
   const deleteStory = async (_id) => {
@@ -24,9 +38,32 @@ const StoryIndividual = ({ stories, name, imageAvatar, checkUser, loading }) => 
     }
   }
 
-  const editStory = async (_id) => {
+
+  
+  const [modal, setModal] = useState(false);
+  const changeContentRef = useRef()
+  const toggle = () => setModal(!modal);
+  const [unmountOnClose, setUnmountOnClose] = useState(true);
+
+const GetEditContent = async()=>{
+
+}
+
+  const saveEdit = async (_id) => {
     try {
-      await axios.put(url + `/story/updateStory/${_id}`)
+      const res = await axios.put(url + `/story/updateStory/${_id}`,
+      {
+        storyContent:changeContentRef.current.value,
+    },    
+        {
+            headers: {
+                token: `Bearer ${token}`,
+                accept: 'application/json'
+            }
+        }
+      )
+      console.log(res.data);  
+      alert("edit content of story success")     
     } catch (error) {
       console.log(error);
     }
@@ -41,7 +78,7 @@ const StoryIndividual = ({ stories, name, imageAvatar, checkUser, loading }) => 
             <article className="flex"
               key={s._id}
             >
-           
+
               <div className="hidden sm:block sm:basis-56">
                 <img
                   alt="story photo"
@@ -49,11 +86,10 @@ const StoryIndividual = ({ stories, name, imageAvatar, checkUser, loading }) => 
                   className="aspect-square h-full w-full object-cover"
                 />
               </div>
-              
+
               <div className="flex flex-1 flex-col ">
 
                 <div className='mt-1 flex'>
-
                   <Link to={`/UserProfile/${s.userID._id}`}
                     className="group flex shrink-0 ml-4 items-center rounded-lg transition"
 
@@ -67,7 +103,7 @@ const StoryIndividual = ({ stories, name, imageAvatar, checkUser, loading }) => 
                     />
                     <p className="ml-2 hidden text-left text-xs sm:block">
                       <div className="block font-medium">{name}</div>
-                     
+
                     </p>
                   </Link>
                   {checkUser &&
@@ -81,17 +117,36 @@ const StoryIndividual = ({ stories, name, imageAvatar, checkUser, loading }) => 
                         </svg>
                       </button>
 
-
+                      <div onClick={() => { GetEditContent() }}> 
                       <button
                         className='ml-20 mb-3'
+                        onClick={toggle}
                       >
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                           <path d="M15.502 .94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
                           <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
                         </svg>
                       </button>
+                      </div>
                     </>
                   }
+
+                  <Modal isOpen={modal} toggle={toggle} unmountOnClose={unmountOnClose}>
+                    <ModalHeader toggle={toggle}>Edit story content</ModalHeader>
+                    <ModalBody>
+                      <Input
+                        type="textarea"
+                        rows={5}
+                        defaultValue={`${s.storyContent}`} 
+                        ref={changeContentRef}
+                      />
+                    </ModalBody>
+                    <ModalFooter>
+                      <Button color="primary" onClick={saveEdit}>
+                        Update
+                      </Button>
+                    </ModalFooter>
+                  </Modal>
 
                 </div>
 
@@ -130,15 +185,18 @@ const StoryIndividual = ({ stories, name, imageAvatar, checkUser, loading }) => 
                     </div>
                   </details>
                 </div>
-              <Comment />
+
+                <Comment
+                  storyID={s._id}
+                />
               </div>
             </article>
-            
+
           ))}
-          
+
 
         </div>
-        }
+      }
 
     </>
   )

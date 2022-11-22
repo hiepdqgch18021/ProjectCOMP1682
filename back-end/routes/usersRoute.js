@@ -10,13 +10,14 @@ router.get("/",(req,res) => {
 router.get("/getAllUsers",userController.getAllUsers); //,middlewareController.verifyToken
 
 
-router.get("/searchUser",userController.searchUser); //,middlewareController.verifyToken
+router.get("/searchUser",middlewareController.verifyToken,userController.searchUser); //,middlewareController.verifyToken
 
 //get one user
-router.get("/getOneUsers/:id",userController.getOneUser); //,middlewareController.verifyToken
+router.get("/getOneUsers/:id",middlewareController.verifyToken,userController.getOneUser); //,middlewareController.verifyToken
+
+
 
 //update one user info
-
 router.put("/updateOneUser/:id",middlewareController.verifyToken,userController.updateUserInfo)
 
 

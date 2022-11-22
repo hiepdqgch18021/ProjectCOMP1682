@@ -16,7 +16,6 @@ const ListStoryType = () => {
         (async () => {
             try {
                 const res = await axios.get(url + '/admin/getAllTypes');
-                console.log(res);
                 setTypeData(res.data);
             } catch (err) {
                 console.log(err);

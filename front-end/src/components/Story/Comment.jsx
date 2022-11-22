@@ -4,7 +4,7 @@ import axios from "axios";
 import "./story.css"
 import { Link, useNavigate } from "react-router-dom";
 
-const Comment = ({storyID}) => {
+const Comment = ({ storyID }) => {
 
   const user = useSelector((state) => state.auth.login.currentUser);
   const navigate = useNavigate()
@@ -38,22 +38,22 @@ const Comment = ({storyID}) => {
     }
   };
 
-const handleGetComment = async ()=>{
-  try {
-    const res = await axios.get(url + '/story/getAllComments?storyID=' + storyID,
-      {
-        headers: {
-          token: `Bearer ${token}`, //Authorization
-          accept: 'application/json' //Content-Type
+  const handleGetComment = async () => {
+    try {
+      const res = await axios.get(url + '/story/getAllComments?storyID=' + storyID,
+        {
+          headers: {
+            token: `Bearer ${token}`, //Authorization
+            accept: 'application/json' //Content-Type
+          }
         }
-      }
-    );
-    console.log(res);
-    setCommentData(res.data);
-  } catch (err) {
-    console.log(err);
+      );
+      console.log(res);
+      setCommentData(res.data);
+    } catch (err) {
+      console.log(err);
+    }
   }
-}
   const [commentData, setCommentData] = useState([])
   // useEffect(() => {
   //   (async () => {
@@ -80,7 +80,7 @@ const handleGetComment = async ()=>{
 
         <summary
           className="flex cursor-pointer items-center rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700"
-        onClick={()=>{handleGetComment()}}
+          onClick={() => { handleGetComment() }}
         >
           <span className="font-medium"> Comment </span>
           <span className="ml-auto shrink-0 transition duration-300 group-open:-rotate-180">
@@ -90,7 +90,7 @@ const handleGetComment = async ()=>{
           </span>
         </summary>
 
-        <nav aria-label="Users Nav" className="mt-2 ml-2 mr-2 mb-0 flex flex-col space-y-1 bg-gray-200 rounded-lg">
+        <nav aria-label="Users Nav" className="mt-2 ml-2 mr-2 mb-0 h-80 flex flex-col space-y-1 bg-white-200 rounded-lg overflow-y-scroll">
           <div className="commentContainer h-60">
             <div className="commentInput" >
 
@@ -118,34 +118,42 @@ const handleGetComment = async ()=>{
 
             </div>
 
+<div>
+
+</div>
             {commentData.map((cm) => (
-              <div className="commentContent" key={cm._id}>
+              <div className="commentContent flex bg-slate-300 rounded-lg mt-2" key={cm._id}>
+
                 <Link to={`/UserProfile/${cm.userID._id}`}
                   className="group flex shrink-0 ml-4 items-center rounded-lg transition"
-
                 >
-                  <span className="sr-only">User Profile</span>
-
                   <img
                     alt="avatar"
                     src={cm.userID.imageAvatar}
-                    className="h-10 w-10 rounded-full object-cover"
+                    className="h-10 w-10 rounded-full mt-2 object-cover"
                   />
-                  <p className="ml-2 hidden text-left text-xs sm:block">
-                    <div className="block font-medium">{cm.userID.name}</div>
-                  </p>
+
                 </Link>
 
-                <div className="border-l border-gray-900/10 p-4 sm:border-l-transparent sm:p-6 ">
-                  <div className='mt-0'>
-                    <h6 className="font-semibold flex text-sm  text-gray-700">
+                <div className=" ml-0 mt-4 block mb-0">
+                  <Link to={`/UserProfile/${cm.userID._id}`}
+                    className="group shrink-0  items-center rounded-lg"
+                  >
+                    <p className="ml-2 text-black text-left text-xs sm:block">
+                      <div className="font-semibold">{cm.userID.name}</div>
+                    </p>
+                  </Link>
+
+                  <div className='mt-0 ml-2'>
+                    <p className="  text-xs text-black-200">
                       {cm.comment}
-                    </h6>
+                    </p>
                   </div>
                 </div>
 
               </div>
             ))}
+
           </div>
         </nav>
 
