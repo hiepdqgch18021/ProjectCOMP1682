@@ -13,7 +13,6 @@ const diarySchema = new mongoose.Schema({
     diaryPhotos:{
         type: String, 
     },
-    
 
     userID:{
         type: mongoose.Schema.Types.ObjectId,

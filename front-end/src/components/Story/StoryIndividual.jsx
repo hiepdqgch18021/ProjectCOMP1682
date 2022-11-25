@@ -38,8 +38,6 @@ const StoryIndividual = ({ stories, name, imageAvatar, checkUser, loading }) => 
     }
   }
 
-
-  
   const [modal, setModal] = useState(false);
   const changeContentRef = useRef()
   const toggle = () => setModal(!modal);

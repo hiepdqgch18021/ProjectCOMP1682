@@ -96,22 +96,29 @@ transition:0.45s;
     margin-right: 15px;
   }
 
+/* --------------------------------------------------homeMid */
+
 
 /* --------------------------------------------------onlineUser */
 .chatOnline{
-width : 350px;
-padding-left:25px;
+border-radius:10px !important;
+margin-top:125px;
+padding-left:5px;
+border:1px solid #53e309a8
+
 }
 
 .chatOnlineFriend{
-    dispalay:flex;
+   
     align-items:center;
     font-weight:500;
     cursor: pointer;
 }
 
-.chatOnlineImgContainer{
-position:relative;
+.chatOnlineContainer{
+  position:relative;
+  display:flex;
+  margin:10px;
 }
 
 .chatOnlineImg{
@@ -130,14 +137,19 @@ position:relative;
     position:absolute;
     top: 2px;
     left:30px;
-    
-
 }
-.chatOnlineName{
 
+.chatOnlineName{
+  margin-left:10px;
+  margin-top:10px;
+  font-family: "Times New Roman", Times, serif;
 }
 
 /* --------------------------------------------------Mid */
+
+.homeMid{
+flex:8;
+}
 
 .midContent{
   padding: 10px;

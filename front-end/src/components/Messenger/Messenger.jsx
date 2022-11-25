@@ -9,7 +9,10 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import userSlice from "../../redux/userSlice";
 import { useRef } from "react";
-import {io} from "socket.io-client"
+import { io } from "socket.io-client"
+
+
+
 export default function Messenger() {
 
     const url = process.env.REACT_APP_URL_AXIOS;
@@ -17,19 +20,37 @@ export default function Messenger() {
     const [currentChat, setCurrentChat] = useState(null)
     const [messages, setMessages] = useState([])
     const [newMessages, setNewMessages] = useState("")
-    const [socket, setSocket] = useState(null)
+    const [arrivalMessages, setArrivalMessages] = useState(null)
+    const [onlineUsers, setOnlineUsers] = useState([])
+    const socketRef = useRef()
     const user = useSelector((state) => state.auth.login?.currentUser);
     const scrollRef = useRef()
 
-useEffect(() => {
-setSocket(io("ws://localhost:9000"))
-},[])
 
-useEffect(()=>{
-socket?.on("welcome", message=>{
-    console.log(message)
-})
-},[socket])
+    useEffect(() => {
+        socketRef.current = io("ws://localhost:1900");
+        socketRef.current.on("getMessages", data => {
+            setArrivalMessages({
+                sender: data.senderId,
+                text: data.text,
+                createdAt: Date.now(),
+            })
+        })
+    }, []);
+
+    useEffect(()=>{
+        arrivalMessages && 
+        currentChat?.members.includes(arrivalMessages.sender) && 
+        setMessages(( prev) => [...prev,arrivalMessages]);
+
+    },[arrivalMessages,currentChat])
+
+    useEffect(() => {
+        socketRef.current.emit("addUser", user._id);
+        socketRef.current.on("getUsers", users => {
+            setOnlineUsers(users)
+        })
+    }, [user])
 
     useEffect(() => {
         const getConversation = async () => {
@@ -64,6 +85,13 @@ socket?.on("welcome", message=>{
             text: newMessages,
             conversationId: currentChat._id
         }
+        const receiverId = currentChat.members.find(member => member !== user._id)
+
+        socketRef.current.emit("sendMessage", {
+            senderId: user._id,  //current user
+            receiverId,
+            text: newMessages,
+        })
         try {
             const res = await axios.post(url + "/message/send", message)
             setMessages([...messages, res.data]);
@@ -73,9 +101,9 @@ socket?.on("welcome", message=>{
         }
     }
 
-useEffect(()=>{
-    scrollRef.current?.scrollIntoView({behavior:"smooth"})
-})
+    useEffect(() => {
+        scrollRef.current?.scrollIntoView({ behavior: "smooth" })
+    })
 
     return (
         <>
@@ -134,13 +162,14 @@ useEffect(()=>{
                     </div>
                 </div>
 
-
                 <div className="chatOnline">
                     <div className="chatOnlineWrapper">
-                        <ChatOnline />
-                        <ChatOnline />
-                        <ChatOnline />
-                        <ChatOnline />
+
+                        <ChatOnline 
+                            onlineUsers={onlineUsers}
+                            currentId={user._id}
+                            setCurrentChat={setCurrentChat}
+                        />
 
                     </div>
                 </div>

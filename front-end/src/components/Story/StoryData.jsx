@@ -27,7 +27,10 @@ const StoryHome = () => {
           }
         );
         console.log(res.data);
-        setStoryData(res.data);
+        setStoryData(res.data.sort((s1,s2)=>{
+          return new Date(s2.createdAt) - new Date(s1.createdAt);
+        })
+        );
       } catch (err) {
         console.log(err);
       }

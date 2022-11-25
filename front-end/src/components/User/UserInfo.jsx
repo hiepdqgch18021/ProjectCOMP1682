@@ -57,6 +57,7 @@ const UserInfo = ({checkUser}) => {
                                             Edit Profile
                                         </Link>
                                     </button>
+                                    
                                     }
                                     
                                 </div>
