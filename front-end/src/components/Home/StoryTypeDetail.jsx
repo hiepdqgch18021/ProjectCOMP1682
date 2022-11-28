@@ -48,7 +48,7 @@ const StoryTypeDetail = () => {
             <div className="hidden sm:block sm:basis-56">
               <img
                 alt="story photo"
-                src={stdt.storyPhotos}
+                src={stdt.storyPhotos? stdt.storyPhotos :"https://cdn.writermag.com/2016/07/shutterstock_403756669.jpg"}
                 className="aspect-square h-full w-full object-cover"
               />
             </div>

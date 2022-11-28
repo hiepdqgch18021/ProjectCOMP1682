@@ -4,8 +4,6 @@ import { useNavigate, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
 import "./login.css";
-import { addListener } from "@reduxjs/toolkit";
-import { Alert } from "bootstrap";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -25,7 +23,7 @@ const Login = () => {
 
   return (
     <>
-      <section className="relative bg-[url(https://media.istockphoto.com/videos/stedicam-shot-camera-moves-forward-along-shelves-filled-with-paper-video-id1207745492?b=1&k=20&m=1207745492&s=640x640&h=iVQ7tvU7wlTFF6JLLMEn9QWTFaixMxU8GKD_C5YIhm0=)] bg-cover bg-center bg-no-repeat">
+      <section className="relative bg-[url(https://cdn.wallpapersafari.com/45/25/CHmXcK.jpg)] bg-cover bg-center bg-no-repeat">
         <div className="absolute inset-0 bg-white/75 sm:bg-transparent sm:bg-gradient-to-r sm:from-white/95 sm:to-white/25" />
         <div className="relative mx-auto max-w-screen-xl px-4 py-32 sm:px-1 lg:block lg:h-screen lg:items-center lg:px-8">
           <div className="max-w-xl text-center sm:text-left">

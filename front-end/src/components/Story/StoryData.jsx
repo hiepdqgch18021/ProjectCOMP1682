@@ -39,7 +39,7 @@ const StoryHome = () => {
   return (
     <>
       {storyData.map((s) => (
-        <div className="block  mt-4 mb-3 bg-white transition hover:shadow-xl" >
+        <div className="block mt-4 mb-3 bg-white transition hover:shadow-xl" >
           <article className="flex"
             key={s._id}
           >
@@ -49,7 +49,7 @@ const StoryHome = () => {
             <div className="hidden sm:block sm:basis-56">
               <img
                 alt="story photo"
-                src={s.storyPhotos ? s.storyPhotos : "https://w0.peakpx.com/wallpaper/867/933/HD-wallpaper-writing-pen-neon-icon-blue-background-neon-symbols-writing-pen-neon-icons-writing-pen-sign-education-signs-writing-pen-icon-education-icons.jpg"}
+                src={s.storyPhotos ? s.storyPhotos : "https://cdn.writermag.com/2016/07/shutterstock_403756669.jpg"}
                 className="aspect-square h-full w-full object-cover"
               />
             </div>

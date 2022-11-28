@@ -12,9 +12,9 @@ const StoryForm = () => {
     const [content, setContent] = useState('');
     const [storyFile, setStoryFile] = useState({});
     const navigate = useNavigate()
-    
+    const token = localStorage.getItem('jwtLogin')
+
     const submitStory = async (e) => {
-        const token = localStorage.getItem('jwtLogin')
         console.log(storyFile);
         e.preventDefault();
         try {
@@ -46,7 +46,14 @@ const StoryForm = () => {
     useEffect(() => {
         (async () => {
             try {
-                const res = await axios.get(url + '/admin/getAllTypes');
+                const res = await axios.get(url + '/admin/getAllTypes',
+                {
+                    headers: {
+                        token: `Bearer ${token}`,
+                        accept: 'application/json'
+                    }
+                }
+                );
                 console.log(res);
                 setTopicData(res.data);
             } catch (err) {

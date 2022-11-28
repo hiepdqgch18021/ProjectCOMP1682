@@ -96,9 +96,6 @@ const Comment = ({ storyID }) => {
 
             </div>
 
-<div>
-
-</div>
             {commentData.map((cm) => (
               <div className="commentContent flex bg-slate-300 rounded-lg mt-2" key={cm._id}>
 

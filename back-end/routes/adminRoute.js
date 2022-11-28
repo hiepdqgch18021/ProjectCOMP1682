@@ -6,7 +6,7 @@ router.post('/addType',middlewareController.verifyToken,middlewareController.ver
 
 router.delete('/deleteType/:id',middlewareController.verifyToken,middlewareController.verifyTokenAndAdminAuth,topicController.deleteType) //,middlewareController.ver
 
-router.get('/getAllTypes',middlewareController.verifyToken,middlewareController.verifyTokenAndAdminAuth, topicController.getAllTypes) //,middlewareController
+router.get('/getAllTypes',middlewareController.verifyToken, topicController.getAllTypes) //,middlewareController
 
 module.exports = router;
 

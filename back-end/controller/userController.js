@@ -113,8 +113,8 @@ const userController = {
             )
             let friendList = []
             friends.map(friend =>{
-                const {_id,name,imageAvatar} = friend;
-                friendList.push({_id,name,imageAvatar})
+                const {_id,name,imageAvatar,username} = friend;
+                friendList.push({_id,name,imageAvatar,username})
             });
             res.status(200).json(friendList)
         } catch (error) {

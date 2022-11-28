@@ -29,16 +29,16 @@ export default function OnlineUser() {
   }, [user._id])
 
   return (
-    <div className="chatOnline">
-      <div className="chatOnlineFriend">
+    <div className="chatOnlineHome">
+      <div className="chatOnlineFriendHome">
         {friends.map((f) => (
           <Link to={`/UserProfile/${f._id}`}>
-            <div className="chatOnlineContainer">
-              <img className='chatOnlineImg'
+            <div className="chatOnlineContainerHome">
+              <img className='chatOnlineImgHome'
                 src={f.imageAvatar ? f.imageAvatar : "https://wallpaper.dog/large/629461.jpg"}
                 alt="" />
-              <div className="chatOnlineBadge">'''</div>
-              <span className="chatOnlineName"> {f.name} </span>
+              <div className="chatOnlineBadgeHome">'''</div>
+              <span className="chatOnlineNameHome"> {f.name} </span>
             </div>
           </Link>
         ))}

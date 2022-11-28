@@ -63,9 +63,7 @@
         height:30px;
     }
 
-    .chatOnline{
-    flex:3
-    }
+
     
     .chatMenuWrapper, .chatBoxWrapper, .chatOnlineWrapper{
     padding : 10px;
@@ -83,16 +81,25 @@
     }
 /* -----chatonline----------------------------------------------------- */
     
+
 .chatOnline{
+    flex:3;
+margin:10px;
+padding:5px;
 }
 
+
 .chatOnlineFriend{
-    dispalay:flex;
+    display:flex;
     align-items:center;
+    text-align:center;
     font-weight:500;
     cursor: pointer;
 }
-
+.chatOnlineName{
+    margin-top:0px;
+    margin-left:10px;
+}
 .chatOnlineImgContainer{
 position:relative;
 }
@@ -114,9 +121,7 @@ position:relative;
     top: 2px;
     left:30px;
 }
-.chatOnlineName{
 
-}
 /* ---conversation------------------------------------------------------------------------------ */
 
 .conversation{

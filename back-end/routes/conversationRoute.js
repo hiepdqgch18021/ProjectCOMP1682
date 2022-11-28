@@ -35,8 +35,8 @@ res.status(200).json(conversation)
 router.get("/find/:userId1st/:userId2nd", async (req, res) =>{
 try {
     const conversation = await Conversation.findOne({
-        members:{$all:[req.params.userId1st,req.params.userId2nd]},         
-    })
+        members:{$all:[req.params.userId1st, req.params.userId2nd]},         
+    });
     res.status(200).json(conversation)
 } catch (error) {
     res.status(500).json(error);

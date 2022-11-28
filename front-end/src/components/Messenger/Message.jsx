@@ -6,7 +6,7 @@ export default function Message({own,messages}) {
         <>
             <div className={own ? "message own" : "message"}>
                 <div className="messageTop">
-                    <img className='messageImg' src="https://wallpaperaccess.com/full/1331386.jpg" alt="" />
+                    {/* <img className='messageImg' src="https://wallpaperaccess.com/full/1331386.jpg" alt="" /> */}
                     <p className='messageText'>
                         {messages.text}
                     </p>

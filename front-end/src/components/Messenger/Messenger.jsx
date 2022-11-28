@@ -53,7 +53,6 @@ export default function Messenger() {
             )
         })
     }, [user])
-    console.log( user.followings,user.followers )
 
     useEffect(() => {
         const getConversation = async () => {
@@ -92,7 +91,7 @@ export default function Messenger() {
 
         socketRef.current.emit("sendMessage", {
             senderId: user._id,  //current user
-            receiverId,
+            receiverId : receiverId,
             text: newMessages,
         })
         try {
@@ -171,7 +170,8 @@ export default function Messenger() {
                         <ChatOnline 
                             onlineUsers={onlineUsers}
                             setCurrentChat={setCurrentChat}
-                        />
+                            
+                            />
 
                     </div>
                 </div>

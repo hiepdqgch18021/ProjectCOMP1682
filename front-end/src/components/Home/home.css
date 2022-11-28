@@ -100,35 +100,34 @@ transition:0.45s;
 
 
 /* --------------------------------------------------onlineUser */
-.chatOnline{
+.chatOnlineHome{
 border-radius:10px !important;
 margin-top:125px;
 padding-left:5px;
-border:1px solid #53e309a8
-
+border:1px solid #53e309a8;
+flex:3;
 }
 
-.chatOnlineFriend{
-   
+.chatOnlineFriendHome{
     align-items:center;
     font-weight:500;
     cursor: pointer;
 }
 
-.chatOnlineContainer{
+.chatOnlineContainerHome{
   position:relative;
   display:flex;
   margin:10px;
 }
 
-.chatOnlineImg{
+.chatOnlineImgHome{
     width:40px;
     height:40px;
     border-radius:50%;
     object-fit: cover;
 }
 
-.chatOnlineBadge{
+.chatOnlineBadgeHome{
     with:10px;
     height:10px;
     border-radius:50%;
@@ -139,7 +138,7 @@ border:1px solid #53e309a8
     left:30px;
 }
 
-.chatOnlineName{
+.chatOnlineNameHome{
   margin-left:10px;
   margin-top:10px;
   font-family: "Times New Roman", Times, serif;
@@ -149,10 +148,12 @@ border:1px solid #53e309a8
 
 .homeMid{
 flex:8;
+margin-right:30px;
 }
 
 .midContent{
   padding: 10px;
+
 }
 
 

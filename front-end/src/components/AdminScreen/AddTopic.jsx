@@ -15,7 +15,6 @@ const AddTopic = () => {
       },
         {
           headers: {
-            "Content-Type": "multipart/form-data",
             token: `Bearer ${token}`,
             accept: 'application/json'
           }
@@ -36,7 +35,6 @@ const AddTopic = () => {
       await axios.delete(url + `/admin/deleteType/${_id}`,
         {
           headers: {
-            "Content-Type": "multipart/form-data",
             token: `Bearer ${token}`,
             accept: 'application/json'
           }
