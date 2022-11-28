@@ -43,8 +43,7 @@ const DiaryDetail = () => {
 
                                 <CardImg
                                 alt="Card image cap"
-                                src={diaryData.diaryPhotos}
-                                // src="https://picsum.photos/900/180"
+                                src={diaryData.diaryPhotos ? diaryData.diaryPhotos : "https://picsum.photos/900/180"}
                                 style={{height: 180}}
                                 top
                                 width="100%"

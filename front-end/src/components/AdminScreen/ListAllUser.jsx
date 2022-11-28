@@ -119,23 +119,3 @@ const deleteAccount = async(_id)=>{
 }
 
 export default ListAllUser
-
-
-
-// viewDetailHandler = (user)=>{
-
-//     this.props.history.push(`/user/${user.id}}`);
-//     }
-
-// async DeleteUserHandler(id){
-//     await axios.delete(`/user/${id}`);
-//     // deleteUser(id);
-//   };
-
-  
-
-    // useEffect(() => {  
-    //     if(ListAllUser){
-    //     getAllUsers(ListAllUser, dispatch); //.accessToken
-    //     }
-    //  },[])

@@ -1,21 +1,26 @@
 import React, { useState, useEffect } from 'react'
 import "./home.css"
 import axios from "axios";
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const url = process.env.REACT_APP_URL_AXIOS;
+const token = localStorage.getItem('jwtLogin');
 
 const ListStoryType = () => {
 
     const [TypeData, setTypeData] = useState([]);
-
-    const token = localStorage.getItem('jwtLogin');
     const navigate = useNavigate()
-
     useEffect(() => {
         (async () => {
             try {
-                const res = await axios.get(url + '/admin/getAllTypes');
+                const res = await axios.get(url + '/admin/getAllTypes',
+                    {
+                        headers: {
+                            token: `Bearer ${token}`,
+                            accept: 'application/json'
+                        }
+                    }
+                );
                 setTypeData(res.data);
             } catch (err) {
                 console.log(err);
@@ -46,14 +51,14 @@ const ListStoryType = () => {
                             </svg>
                         </div>
                     </div>
-                    
+
                     <ul className="sidebarList">
 
                         {TypeData.map((t, index) => {
-                            if (t.type.toLowerCase().startsWith(valueSearch.toLowerCase()) || valueSearch ==="" ) {
+                            if (t.type.toLowerCase().startsWith(valueSearch.toLowerCase()) || valueSearch === "") {
                                 return (
-                                    
-                                    <li className="sidebarListItem" onClick={()=>navigate(`/StoryTypeDetail/${t.type}`)}>
+
+                                    <li className="sidebarListItem" onClick={() => navigate(`/StoryTypeDetail/${t.type}`)}>
                                         <span className="sidebarIcon">{index + 1}{"  "}</span>
                                         <span className="sidebarListItemText">{t.type}</span>
                                     </li>
@@ -72,9 +77,14 @@ const ListStoryType = () => {
 export default ListStoryType;
 
 
-
 export const getStoryType = (type) => async dispatch => {
-    await axios.get(url + `/admin/getAllTypes/${type}`)
+    await axios.get(url + `/admin/getAllTypes/${type}`,
+        {
+            headers: {
+                token: `Bearer ${token}`,
+                accept: 'application/json'
+            }
+        })
         .then(res => {
             const storyTypes = res.data.map((storyType) => ({
                 type: storyType.type,
@@ -83,24 +93,6 @@ export const getStoryType = (type) => async dispatch => {
         })
         .catch((err) => console.log("get Story type by name error", err))
 }
-
-
-
-{/* // <div className="topic-element" key={t._id}>
-
-                    //     <div className='btn-topic-element'>
-
-                    //         <div className="topic-name">
-                    //             <span className='font-extrabold  from-green-300 via-blue-500 to-purple-600'>
-                    //                 {index + 1}{" : "}
-                    //             </span>
-                    //             <span>{t.type}</span>
-                    //         </div>
-                    //         <div className="topic-amount">
-                    //             <span> 138k story </span>
-                    //         </div>
-                    //     </div>
-                    // </div> */}
 
 
 

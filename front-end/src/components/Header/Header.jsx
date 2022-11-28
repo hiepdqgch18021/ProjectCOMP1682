@@ -5,10 +5,7 @@ import { createAxios } from '../../createInstance';
 import { logout } from "../../redux/apiRequest";
 import axios from "axios";
 import { logoutSuccess } from "../../redux/authSlice";
-// import Messenger from "../Messenger/Messenger";
 import "./header.css";
-
-import Story from "../Story/StoryForm";
 import { useState } from "react";
 
 const Header = ({ direction, ...args }) => {
@@ -30,7 +27,7 @@ const Header = ({ direction, ...args }) => {
   };
 
   const [searchUser, setSearchUser] = useState([])
-
+  
   const searchHandle = (e) => {
     let checkInputTouched;
     const searchValue = e.target.value;
@@ -47,7 +44,6 @@ const Header = ({ direction, ...args }) => {
               }
           }          
             );
-            // console.log(res.data);
             setSearchUser(res.data);
           } catch (err) {
             console.log(err);
@@ -61,10 +57,11 @@ const Header = ({ direction, ...args }) => {
 
   return (
 <>
-<header aria-label="Page Header" className="bg-gray-100 fixed w-full h-26 header top-0">
-      <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 lg:px-8">
+<header aria-label="Page Header" className="bg-gray-100 fixed w-full h-24 header top-0">
+      <div className="mx-auto max-w-screen-xl px-4 py-4 sm:px-6 lg:px-8">
         <div className="flex items-center sm:justify-between sm:gap-4">
-          <div className="relative hidden sm:block">
+        <img src="../logoStory.jpg" alt="" className=" w-14 h-14 rounded-full" />
+          <div className="relative hidden sm:block items-center">
             <label className="sr-only" htmlFor="search">
               {" "}
               Search{" "}
@@ -93,6 +90,7 @@ const Header = ({ direction, ...args }) => {
               </svg>
             </div>
           </div>
+          
           <div className="flex flex-1 items-center justify-between gap-8 sm:justify-end">
             <div className="flex gap-4">
               <button
@@ -116,26 +114,6 @@ const Header = ({ direction, ...args }) => {
                 </svg>
               </button>
 
-              {searchUser.length > 0 && <>
-            {searchUser.map((s) => (
-              <Link to={`/UserProfile/${s._id}`}
-                className="group block shrink-0 ml-0 pl-8 items-center top-80 w-80 bg-gray-100"
-              >
-                <div className="flex">
-                  <img
-                    alt="Man"
-                    src={s.imageAvatar}
-                    className="h-10 w-10 rounded-full object-cover"
-                  />
-                  <p className="ml-2 hidden text-left text-xs sm:block">
-                    <div className="block font-medium">{s.username}</div>
-                    <div className="text-gray-500">{s.name}</div>
-                  </p>
-                </div>
-              </Link>
-            ))}
-          </>}
-
               <Link
                 to="/"
                 className="block shrink-0 rounded-lg bg-white p-2.5 text-gray-600 shadow-sm hover:text-gray-700"
@@ -156,25 +134,6 @@ const Header = ({ direction, ...args }) => {
                   <path d="M16 8c0 3.866-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.584.296-1.925.864-4.181 1.234-.2.032-.352-.176-.273-.362.354-.836.674-1.95.77-2.966C.744 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7zM5 8a1 1 0 1 0-2 0 1 1 0 0 0 2 0zm4 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0zm3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
                 </svg>
               </Link>
-
-
-
-              <span className="sr-only">Notifications</span>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={2}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
-                />
-              </svg>
-
             </div>
 
 
@@ -236,7 +195,27 @@ const Header = ({ direction, ...args }) => {
 
     </header>
 
-      
+      <div className="listFriendSearch">
+              {searchUser.length > 0 && <>
+            {searchUser.map((s) => (
+              <Link to={`/UserProfile/${s._id}`}
+                className="group block shrink-0 ml-0 pl-8 items-center top-80 w-80 bg-gray-100"
+              >
+                <div className="flex">
+                  <img
+                    alt="Man"
+                    src={s.imageAvatar}
+                    className="h-10 w-10 rounded-full object-cover"
+                  />
+                  <p className="ml-2 hidden text-left text-xs sm:block">
+                    <div className="block font-medium">{s.username}</div>
+                    <div className="text-gray-500">{s.name}</div>
+                  </p>
+                </div>
+              </Link>
+            ))}
+          </>}
+  </div>
 
 
 </>

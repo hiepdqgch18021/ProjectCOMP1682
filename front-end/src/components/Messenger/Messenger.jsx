@@ -47,10 +47,13 @@ export default function Messenger() {
 
     useEffect(() => {
         socketRef.current.emit("addUser", user._id);
-        socketRef.current.on("getUsers", users => {
-            setOnlineUsers(users)
+        socketRef.current.on("getUsers", (users) => {
+            setOnlineUsers(
+                user.followings.filter((f) => users.some((u)=>u.userId === f))
+            )
         })
     }, [user])
+    console.log( user.followings,user.followers )
 
     useEffect(() => {
         const getConversation = async () => {
@@ -167,7 +170,6 @@ export default function Messenger() {
 
                         <ChatOnline 
                             onlineUsers={onlineUsers}
-                            currentId={user._id}
                             setCurrentChat={setCurrentChat}
                         />
 

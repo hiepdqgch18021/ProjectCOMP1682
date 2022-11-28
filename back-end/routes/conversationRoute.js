@@ -25,14 +25,23 @@ res.status(200).json(conversation)
     } catch (err) {
         res.status(500).json(err);
     }
+});
+
+
+
+
+//get conversation include 2 userId
+
+router.get("/find/:userId1st/:userId2nd", async (req, res) =>{
+try {
+    const conversation = await Conversation.findOne({
+        members:{$all:[req.params.userId1st,req.params.userId2nd]},         
+    })
+    res.status(200).json(conversation)
+} catch (error) {
+    res.status(500).json(error);
+}
 })
-
-
-
-
-//get conversation of a user
-
-
 
 
 

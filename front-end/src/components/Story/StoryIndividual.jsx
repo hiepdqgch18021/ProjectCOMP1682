@@ -1,8 +1,7 @@
 import React, { useRef } from 'react'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { useParams } from "react-router-dom";
 import axios from 'axios';
 import Comment from './Comment';
 import {
@@ -12,9 +11,6 @@ import {
   ModalBody,
   ModalFooter,
   Input,
-  Label,
-  Form,
-  FormGroup,
 } from 'reactstrap';
 
 

@@ -1,9 +1,7 @@
 import Header from "../Header/Header";
 import React, { useEffect, useState } from 'react';
-import { PaperClipIcon } from '@heroicons/react/20/solid'
 import { useNavigate, useParams } from "react-router-dom";
 import axios from 'axios';
-import { Link } from 'react-router-dom';
 import { useRef } from "react";
 
 

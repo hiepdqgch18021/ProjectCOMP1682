@@ -1,29 +1,55 @@
+import axios from 'axios';
 import React, { useState } from 'react'
 import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import "./messenger.css"
 
 
-export default function ChatOnline({onlineUsers,currentId,setCurrentChat}) {
-    
+export default function ChatOnline({ onlineUsers, setCurrentChat }) {
+
     const [friends, setFriends] = useState([]);
     const [onlineFriends, setOnlineFriends] = useState([]);
-    
-useEffect(()=>{
-    
-})
+    const user = useSelector((state) => state.auth.login?.currentUser);
+    const url = process.env.REACT_APP_URL_AXIOS;
+
+
+    useEffect(() => {
+        const getFriends = async () => {
+            const res = await axios.get(url + "/user/getFriend/" + user._id);
+            console.log(res.data);
+            setFriends(res.data)
+        }
+        getFriends()
+    }, [user._id]);
+
+    useEffect(()=>{
+        setOnlineFriends(friends.filter((f)=>onlineUsers.includes(f._id)))
+    },[friends,onlineUsers])
+    console.log(onlineUsers)
+
+const openConversation = async (friend)=>{
+try {
+    const res = await axios.get(url + `/conversation/find/${user._id}/${friend._id}`)
+setCurrentChat(res.data)
+} catch (error) {
+    console.log(error)
+}
 
     return (
         <div className="chatOnline">
-            <div className="chatOnlineFriend">
-                <div className="chatOnlineImgContainer">
-                    <img className='chatOnlineImg' 
-                            src="https://wallpaper.dog/large/629461.jpg" 
-                            alt="" />
-                    <div className="chatOnlineBadge">"" </div> 
-                </div>
-                <span className="chatOnlineName"> Yang </span>
-            </div>
+            {onlineFriends.map((o)=>(
 
+            <div className="chatOnlineFriend" onClick={()=>openConversation(o)}>
+                <div className="chatOnlineImgContainer">
+                    <img className='chatOnlineImg'
+                        src={o.imageAvatar ? o.imageAvatar : "https://media.istockphoto.com/id/1305665241/vector/anonymous-gender-neutral-face-avatar-incognito-head-silhouette-stock-illustration.jpg?s=170667a&w=0&k=20&c=hdSlOI6dkmjABHFBYK2ZsA0_-iSENg7k9u_Sa4R9GxY="}
+                        alt="" />
+                    <div className="chatOnlineBadge">"" </div>
+                </div>
+                <span className="chatOnlineName"> {o.username} </span>
+            </div>
+))}
         </div>
     );
+}
 }

@@ -1,10 +1,8 @@
 import React from 'react';
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
-import { useParams } from "react-router-dom";
+import { Link} from 'react-router-dom';
 import axios from 'axios';
-import StoryDetail from './StoryEdit';
 import Comment from './Comment';
 
 const StoryHome = () => {
@@ -41,9 +39,7 @@ const StoryHome = () => {
   return (
     <>
       {storyData.map((s) => (
-
-        <div className="block  mt-4 mb-3 bg-white transition hover:shadow-xl">
-
+        <div className="block  mt-4 mb-3 bg-white transition hover:shadow-xl" >
           <article className="flex"
             key={s._id}
           >
@@ -53,7 +49,7 @@ const StoryHome = () => {
             <div className="hidden sm:block sm:basis-56">
               <img
                 alt="story photo"
-                src={s.storyPhotos}
+                src={s.storyPhotos ? s.storyPhotos : "https://w0.peakpx.com/wallpaper/867/933/HD-wallpaper-writing-pen-neon-icon-blue-background-neon-symbols-writing-pen-neon-icons-writing-pen-sign-education-signs-writing-pen-icon-education-icons.jpg"}
                 className="aspect-square h-full w-full object-cover"
               />
             </div>
@@ -122,6 +118,8 @@ const StoryHome = () => {
           />
 
         </div>
+  
+      
       ))}
     </>
   );
@@ -129,64 +127,6 @@ const StoryHome = () => {
 
 export default StoryHome;
 
-{/* <div className="sticky top-0 ml-0">              
-              <details className="group relative mt-0">
-                <summary className="block">
-                  <div>
-                    <div className="prose max-w-none group-open:hidden">
-                      <p>
-                        p1
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa
-                        veniam dicta beatae eos ex error culpa delectus rem tenetur,
-                        architecto quam nesciunt, dolor veritatis nisi minus
-                        inventore, rerum at recusandae?
-                      </p>
-                    </div>
-                    <span className="mt-4 cursor-pointer text-sm font-medium underline group-open:absolute group-open:bottom-0 group-open:left-0 group-open:mt-0">
-                      Read More
-                    </span>
-                  </div>
-                </summary>
-
-                <div className="prose max-w-none pb-6">
-                  <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa
-                    veniam dicta beatae eos ex error culpa delectus rem tenetur,
-                    architecto quam nesciunt, dolor veritatis nisi minus inventore,
-                    rerum at recusandae?
-                  </p>
-                  <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat
-                    nam sapiente nobis ea veritatis error consequatur nisi
-                    exercitationem iure laudantium culpa, animi temporibus non! Maxime
-                    et quisquam amet. A, deserunt!
-                  </p>
-                </div>
-              </details>
-              <form className="mt-8">
-                
-                <div className="mt-8 flex">
-                  <div>
-                    <label htmlFor="quantity" className="sr-only">
-                      Qty
-                    </label>
-                    <input
-                      type="number"
-                      id="quantity"
-                      min={1}
-                      defaultValue={1}
-                      className="w-12 rounded border-gray-200 py-3 text-center text-xs [-moz-appearance:_textfield] [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none"
-                    />
-                  </div>
-                  <button
-                    type="submit"
-                    className="ml-3 block rounded bg-green-600 px-5 py-3 text-xs font-medium text-white hover:bg-green-500"
-                  >
-                    Add to Cart
-                  </button>
-                </div>
-              </form>
-            </div> */}
 
 
 

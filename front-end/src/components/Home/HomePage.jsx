@@ -4,9 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import React from 'react';
 import { createAxios } from '../../createInstance';
 import { loginSuccess } from '../../redux/authSlice';
-import jwtDecode from "jwt-decode";
 import Header from "../Header/Header";
-import StoryHome from '../Story/StoryData';
 import Mid from './Mid'
 import "./home.css"
 import ListStoryType from './ListStoryType';
@@ -15,10 +13,10 @@ const HomePage = () => {
   const user = useSelector((state) => state.auth.login?.currentUser);
 
 
-  const msg = useSelector((state) => state.user?.msg);
-  const dispatch = useDispatch();
+  // const msg = useSelector((state) => state.user?.msg);
+  // const dispatch = useDispatch();
+  // let axiosJWT = createAxios(user, dispatch, loginSuccess)
   const navigate = useNavigate();
-  let axiosJWT = createAxios(user, dispatch, loginSuccess)
   // axios.create();
 
   useEffect(() => {

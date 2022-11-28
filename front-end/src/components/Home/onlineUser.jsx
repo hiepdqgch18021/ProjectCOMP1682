@@ -7,8 +7,6 @@ import './home.css'
 import axios from "axios";
 import { Link } from 'react-router-dom';
 
-
-
 export default function OnlineUser() {
 
   const [friends, setFriends] = useState([])

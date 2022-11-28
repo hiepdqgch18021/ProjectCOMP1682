@@ -3,23 +3,23 @@ import NavAdmin from './NavAdmin';
 import axios from "axios";
 
 
+const token = localStorage.getItem('jwtLogin')
+const url = process.env.REACT_APP_URL_AXIOS;
 
 const AddTopic = () => {
-  const url = process.env.REACT_APP_URL_AXIOS;
   const [type, setType] = useState('');
   const addType = async (e) => {
-    // const token = localStorage.getItem('jwtLogin')
     try {
       const res = await axios.post(url + '/admin/addType', {
         type: type
       },
-        // {
-        //   headers: {
-        //     "Content-Type": "multipart/form-data",
-        //     token: `Bearer ${token}`,
-        //     accept: 'application/json'
-        //   }
-        // }
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            token: `Bearer ${token}`,
+            accept: 'application/json'
+          }
+        }
       );
       console.log(res);
       alert("Add Story's type success")
@@ -33,7 +33,15 @@ const AddTopic = () => {
 
   const deleteType = async (_id) => {
     try {
-      await axios.delete(url + `/admin/deleteType/${_id}`)
+      await axios.delete(url + `/admin/deleteType/${_id}`,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            token: `Bearer ${token}`,
+            accept: 'application/json'
+          }
+        }
+      )
       console.log("delete Type success");
       alert("delete story's type success");
 
@@ -47,13 +55,13 @@ const AddTopic = () => {
   useEffect(() => {
     (async () => {
       try {
-        const res = await axios.get(url + '/admin/getAllTypes'
-          // {
-          //     headers: {
-          //         token: `Bearer ${token}`,
-          //         accept: 'application/json'
-          //     }
-          // }
+        const res = await axios.get(url + '/admin/getAllTypes',
+          {
+              headers: {
+                  token: `Bearer ${token}`,
+                  accept: 'application/json'
+              }
+          }
         );
         console.log(res);
         setTypeData(res.data);

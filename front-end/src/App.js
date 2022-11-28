@@ -12,9 +12,7 @@ import Messenger from "./components/Messenger/Messenger";
 import UserProfile from "./components/User/UserProfile"
 import EditProfile from './components/User/EditProfile';
 import DiaryDetail from './components/Diary/DiaryDetail';
-import DiaryEdit from './components/Diary/DiaryEdit';
 import DiaryForm from './components/Diary/DiaryForm';
-// import StoryForm from './components/Story/StoryForm.jsx';
 import { useEffect } from 'react'
 import ListAllUser from './components/AdminScreen/ListAllUser';
 import AdminScreen from './components/AdminScreen/AdminScreen.jsx';
@@ -25,13 +23,7 @@ import './App.css';
 import { authToken } from "../src/redux/apiRequest"
 
 function App() {
-  // const [user, setUser] = useState(null);
 
-  // useEffect(() => {
-  //   const data = JSON.parse(localStorage.getItem('persist:root'));//get JWT
-  //   const user = JSON.parse(data?.auth);
-  //   if(user?.login?.currentUser) setUser(user?.login?.currentUser)
-  // }, [])
   const location = useLocation();
   const user = useSelector((state) => state.auth.login.currentUser);
   const navigate = useNavigate()
@@ -62,10 +54,7 @@ function App() {
         <Route path="/UserProfile/:id" element={<UserProfile />} />
         <Route path="/EditProfile/:id" element={<EditProfile />} />
         <Route path="/DiaryDetail/:id" element={<DiaryDetail />} />
-        <Route path="/DiaryEdit/:id" element={<DiaryEdit />} />
         <Route path="/DiaryForm" element={<DiaryForm />} />
-        {/* <Route path="/StoryForm" element={<StoryForm />} /> */}
-
         <Route path="/ListAllUser" element={<ListAllUser />} />
         <Route path="/AdminScreen" element={<AdminScreen />} />
         <Route path="/AddTopic" element={<AddTopic />} />

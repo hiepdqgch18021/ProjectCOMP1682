@@ -9,11 +9,8 @@ const Comment = ({ storyID }) => {
   const user = useSelector((state) => state.auth.login.currentUser);
   const navigate = useNavigate()
   const url = process.env.REACT_APP_URL_AXIOS;
-
   const [commentInput, setCommentInput] = useState('')
-
   const token = localStorage.getItem('jwtLogin');
-
   const addComment = async (e) => {
     e.preventDefault();
     try {
@@ -22,7 +19,6 @@ const Comment = ({ storyID }) => {
       },
         {
           headers: {
-            // "Content-Type": "multipart/form-data",
             token: `Bearer ${token}`,
             accept: 'application/json'
           }
@@ -55,24 +51,6 @@ const Comment = ({ storyID }) => {
     }
   }
   const [commentData, setCommentData] = useState([])
-  // useEffect(() => {
-  //   (async () => {
-  //     try {
-  //       const res = await axios.get(url + '/story/getAllComments',
-  //         {
-  //           headers: {
-  //             token: `Bearer ${token}`, //Authorization
-  //             accept: 'application/json' //Content-Type
-  //           }
-  //         }
-  //       );
-  //       console.log(res);
-  //       setCommentData(res.data);
-  //     } catch (err) {
-  //       console.log(err);
-  //     }
-  //   })()
-  // }, []);
 
   return (
     <div className="comment">

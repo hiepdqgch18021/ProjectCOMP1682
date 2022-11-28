@@ -10,9 +10,9 @@ import { useSelector } from 'react-redux';
 import { useParams } from "react-router-dom";
 
 const UserProfile = () => {
-    const user = useSelector((state) => state.auth.login?.currentUser);
     const url = process.env.REACT_APP_URL_AXIOS;
     const token = localStorage.getItem("jwtLogin")
+    const user = useSelector((state) => state.auth.login?.currentUser);
     const { id } = useParams();
 
     const [storyData, setStoryData] = useState({});
@@ -53,7 +53,6 @@ const UserProfile = () => {
                             {/* -----------profile-container---- */}
                             <UserInfo
                                 users={storyData.user}
-                                checkUser={user._id === id}
                             />
 
                         </div>

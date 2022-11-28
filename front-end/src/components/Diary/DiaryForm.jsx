@@ -44,8 +44,7 @@ const DiaryForm = () => {
         <>
          
                 <Header />
-           
-
+        
                 <section>
                     <div className="md:grid md:grid-cols-3 md:gap-6">
                         <div className="mt-5 ml-20 md:col-span-2 md:mt-0">

@@ -1,9 +1,6 @@
 import React,{ Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-
-
 
 const StoryEdit = (e,args) => {
   const [open, setOpen] = useState(true);
