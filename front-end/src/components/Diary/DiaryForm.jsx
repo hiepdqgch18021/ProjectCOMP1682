@@ -45,7 +45,7 @@ const DiaryForm = () => {
          
                 <Header />
         
-                <section>
+                <section className="mt-24 pl-52">
                     <div className="md:grid md:grid-cols-3 md:gap-6">
                         <div className="mt-5 ml-20 md:col-span-2 md:mt-0">
                             <form onSubmit={(e)=>submitDiary(e)}>

@@ -44,6 +44,8 @@ export default function ChatOnline({ onlineUsers, setCurrentChat }) {
 
     return (
         <div className="chatOnline mt-0">
+            <span >online friend</span>
+
             {onlineFriends.map((o) => (
 
                 <div className="chatOnlineFriend"

@@ -33,7 +33,7 @@ const DiaryDetail = () => {
          
                   <Header/>
 
-                <section>
+                <section className="mt-28">
                     <div className="container">
                         <div className="row">
                             <div className="col-2 d-none d-lg-block d-md-block"></div>

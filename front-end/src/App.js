@@ -7,7 +7,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import Login from "./components/Login/Login";
 import HomePage from "./components/Home/HomePage";
 import Register from "./components/Register/Register";
-import Header from "./components/Header/Header";
 import Messenger from "./components/Messenger/Messenger";
 import UserProfile from "./components/User/UserProfile"
 import EditProfile from './components/User/EditProfile';
@@ -18,7 +17,7 @@ import ListAllUser from './components/AdminScreen/ListAllUser';
 import AdminScreen from './components/AdminScreen/AdminScreen.jsx';
 import AddTopic from './components/AdminScreen/AddTopic';
 import StoryTypeDetail from './components/Home/StoryTypeDetail.jsx'
-// import { useState } from "react";
+
 import './App.css';
 import { authToken } from "../src/redux/apiRequest"
 
