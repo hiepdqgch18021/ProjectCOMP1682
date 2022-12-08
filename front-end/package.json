@@ -21,8 +21,10 @@
     "classnames": "^2.3.1",
     "draft-js": "^0.11.7",
     "jwt-decode": "^3.1.2",
+    "moment": "^2.29.4",
     "react": "^18.2.0",
     "react-bootstrap": "^2.5.0",
+    "react-datetime": "^3.2.0",
     "react-dom": "^18.2.0",
     "react-draft-wysiwyg": "^1.15.0",
     "react-redux": "^8.0.2",
@@ -32,6 +34,7 @@
     "redux": "^4.2.0",
     "redux-persist": "^6.0.0",
     "socket.io-client": "^4.5.3",
+    "timeago.js": "^4.0.2",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

@@ -124,9 +124,7 @@ const UserInfo = () => {
                                 <div className="profile-parameter">
 
                                     <List type="inline">
-                                        <ListInlineItem>
-                                             <span>Post</span>
-                                        </ListInlineItem>
+                                        
                                         <ListInlineItem>
                                             {userInfoData.followers.length} <span>Follower</span>
                                         </ListInlineItem>

@@ -2,6 +2,8 @@ import axios from 'axios';
 import React, { useEffect } from 'react'
 import { useState } from 'react';
 import { NavLink } from "reactstrap";
+import { format } from "timeago.js";
+import "./diary.css"
 
 const ListDiary = () => {
 
@@ -58,7 +60,7 @@ const ListDiary = () => {
                                 <span>{d.diaryTitle}</span>
                             </div>
                             <div className="topic-amount">
-                                <span> {d.createdAt}</span>
+                                <span className='text-gray-400'> Wrote at: {format(d.createdAt)}</span>
                             </div>
                         </NavLink>
                     </div>

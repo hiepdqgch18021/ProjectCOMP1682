@@ -12,6 +12,7 @@ import {
   ModalFooter,
   Input,
 } from 'reactstrap';
+import { format } from "timeago.js";
 
 
 
@@ -158,7 +159,7 @@ const StoryIndividual = ({ stories, name, imageAvatar, checkUser, loading }) => 
                         dateTime=""
                         className="flex items-center justify-between gap-4 text-xs text-gray-400"
                       >
-                        <p>update at : {s.updatedAt}</p>
+                        <p>update at : {format(s.updatedAt)}</p>
                       </time>
                     </div>
 

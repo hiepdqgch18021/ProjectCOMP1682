@@ -20,7 +20,7 @@ const ListStoryType = () => {
                             accept: 'application/json'
                         }
                     }
-                );
+                    );
                 setTypeData(res.data);
             } catch (err) {
                 console.log(err);

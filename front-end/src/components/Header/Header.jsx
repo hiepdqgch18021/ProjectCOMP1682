@@ -22,8 +22,27 @@ const Header = ({ direction, ...args }) => {
   let axiosJWT = createAxios(user, dispatch, logoutSuccess)
   const url = process.env.REACT_APP_URL_AXIOS;
 
-  const handleLogout = async () => {   
-    logout(dispatch, id,navigate,accessToken, axiosJWT)
+  const handleLogout = async () => {
+    // logout(dispatch, id,navigate,accessToken)
+    dispatch(logoutStart());
+    try {
+      await axios.post(url + "/auth/logout", id, {
+        // headers: { token: `Bearer ${accessToken}` },
+
+        headers: {
+          token: `Bearer ${token}`,
+          accept: 'application/json'
+        }
+
+      });
+      localStorage.clear("jwtLogin");
+      dispatch(logoutSuccess())
+      navigate("/login");
+    } catch (err) {
+      console.log(err);
+      dispatch(logoutFailed())
+    }
+
   };
 
   const [searchUser, setSearchUser] = useState([])
@@ -155,27 +174,27 @@ const Header = ({ direction, ...args }) => {
               </div>
 
 
-              <div class="sticky inset-x-0 bottom-0 border-t border-gray-100 bg-white p-2">             
-                  <Link 
-                    to={"/logout"}
-                    class="group relative flex w-full justify-center rounded-lg px-2 py-1.5 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700"
-                    onClick={handleLogout}
+              <div class="sticky inset-x-0 bottom-0 border-t border-gray-100 bg-white p-2">
+                <Link
+                  to={"/logout"}
+                  class="group relative flex w-full justify-center rounded-lg px-2 py-1.5 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700"
+                  onClick={handleLogout}
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5 opacity-75"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="2"
                   >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      class="h-5 w-5 opacity-75"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      stroke-width="2"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
-                      />
-                    </svg>
-                  </Link>
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+                    />
+                  </svg>
+                </Link>
               </div>
             </div>
           </div>

@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { Link} from 'react-router-dom';
 import axios from 'axios';
 import Comment from './Comment';
-
+import { format } from "timeago.js";
 const StoryHome = () => {
   const user = useSelector((state) => state.auth.login?.currentUser);
   const url = process.env.REACT_APP_URL_AXIOS;
@@ -87,7 +87,7 @@ const StoryHome = () => {
                     dateTime=""
                     className="flex items-center justify-between gap-4 text-xs text-gray-400"
                   >
-                    <p>update at : {s.updatedAt}</p>
+                    <p>update at : {format(s.updatedAt)}</p>
                   </time>
                 </div>
 
