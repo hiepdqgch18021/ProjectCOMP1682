@@ -4,23 +4,23 @@ const userSchema = new mongoose.Schema({
     username:{
         type: String,
         required: true, 
-        // minlength:3,
-        // maxlength:30 ,
+        minlength:3,
+        maxlength:30 ,
         unique: true
     },
 
     password:{ 
         type: String,
-        // minlength:6,              
-        // maxlength:255,
+        minlength:6,              
+        maxlength:255,
         required: true,
        
      },
     email:{ 
         type: String, 
         required: true,
-        // minlength:12,
-        // maxlength:50,
+        minlength:12,
+        maxlength:50,
         unique: true
     },
     admin:{

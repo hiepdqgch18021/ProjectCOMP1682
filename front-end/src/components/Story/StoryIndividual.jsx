@@ -58,6 +58,7 @@ const StoryIndividual = ({ stories, name, imageAvatar, checkUser, loading }) => 
       )
       console.log(res.data);
       alert("edit content of story success")
+      window.location.reload();
     } catch (error) {
       console.log(error);
     }

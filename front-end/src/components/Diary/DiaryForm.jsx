@@ -35,6 +35,7 @@ const DiaryForm = () => {
             ); 
             console.log(res);
             navigate(`/UserProfile/${user._id}`)
+            window.location.reload();
         } catch (err) {
             console.log(err);
         }

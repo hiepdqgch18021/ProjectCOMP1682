@@ -39,10 +39,7 @@ export default function Messenger() {
     }, []);
 
     useEffect(()=>{
-        arrivalMessages && 
-        currentChat?.members.includes(arrivalMessages.sender) && 
-        setMessages(( prev) => [...prev,arrivalMessages]);
-
+        arrivalMessages && currentChat?.members.includes(arrivalMessages.sender) && setMessages(( prev) => [...prev,arrivalMessages]);
     },[arrivalMessages,currentChat])
 
     useEffect(() => {
@@ -87,7 +84,7 @@ export default function Messenger() {
             text: newMessages,
             conversationId: currentChat._id
         }
-        const receiverId = currentChat.members.find(member => member !== user._id)
+        const receiverId = currentChat.members.find((member) => member !== user._id)
 
         socketRef.current.emit("sendMessage", {
             senderId: user._id,  //current user

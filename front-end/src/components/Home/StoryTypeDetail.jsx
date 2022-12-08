@@ -37,7 +37,7 @@ const StoryTypeDetail = () => {
       
         {oneTypeStoryData.map((stdt) => (    
 
-        <div className="block  mt-4 mb-3 bg-white transition hover:shadow-xl">
+        <div className="block mt-28 mb-3 bg-white transition hover:shadow-xl">
 
           <article className="flex"
             key={stdt._id}

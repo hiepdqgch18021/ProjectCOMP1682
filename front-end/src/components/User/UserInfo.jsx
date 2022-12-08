@@ -49,22 +49,19 @@ const UserInfo = () => {
 
     }, [id]);
 
-
-
-
     const [followed, setFollowed] = useState(user.followings.includes(id));
 
     const handleFollow = async (req, res) => {
-
         try {
             if (!followed) {
                const res = await axios.put(url + "/user/follow/" + id, { userId: user._id })
                 setFollowed(!followed)
                 console.log(res)
-
+                window.location.reload();
             } else {
                 await axios.put(url + "/user/unFollow/" + id, { userId: user._id })
                 setFollowed(!followed)
+                window.location.reload();
             }
         } catch (error) {
             console.log(error)

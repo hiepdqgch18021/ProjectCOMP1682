@@ -12,7 +12,7 @@ router.post("/register",upload.single('imageAvatar'),authController.registerUser
 router.post("/login",authController.loginUser);
 
 //REFRESH
-router.post("/refreshToken",authController.requestRefreshToken);
+router.post("/refreshToken",middlewareController.verifyToken,authController.requestRefreshToken);
 
 //log out
 router.post("/logout",middlewareController.verifyToken,authController.userLogout);//middlewareController.verifyToken,

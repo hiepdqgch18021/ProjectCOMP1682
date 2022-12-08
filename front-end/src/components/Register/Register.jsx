@@ -28,7 +28,6 @@ const Register = () => {
             aboutMe: aboutMe,
             imageAvatar: avatar,
         };
-
         registerUser(newUser, dispatch, navigate);
     }
     return (

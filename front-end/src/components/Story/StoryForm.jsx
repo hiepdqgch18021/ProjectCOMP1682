@@ -15,7 +15,6 @@ const StoryForm = () => {
     const token = localStorage.getItem('jwtLogin')
 
     const submitStory = async (e) => {
-        console.log(storyFile);
         e.preventDefault();
         try {
             const res = await axios.post(url + '/story/uploadStory', {
@@ -35,6 +34,7 @@ const StoryForm = () => {
             console.log(res);
             navigate("/")
             alert("upload story success")
+            window.location.reload();
         } catch (err) {
             console.log(err);
             alert("upload story fail")

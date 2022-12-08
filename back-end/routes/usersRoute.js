@@ -7,7 +7,7 @@ router.get("/",(req,res) => {
 })
 
 //get all user
-router.get("/getAllUsers",userController.getAllUsers); //,middlewareController.verifyToken
+router.get("/getAllUsers",middlewareController.verifyToken,userController.getAllUsers); //,middlewareController.verifyToken
 
 
 router.get("/searchUser",middlewareController.verifyToken,userController.searchUser); //,middlewareController.verifyToken

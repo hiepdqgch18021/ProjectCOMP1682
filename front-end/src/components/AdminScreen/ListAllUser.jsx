@@ -43,6 +43,7 @@ const deleteAccount = async(_id)=>{
         alert("delete user success")
         console.log("delete user success")
         navigate("/ListAllUser")
+        window.location.reload();
       } catch (error) {
         console.log(error);
       }

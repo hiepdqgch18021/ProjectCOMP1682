@@ -26,7 +26,7 @@ const Comment = ({ storyID }) => {
       );
       console.log(res);
       navigate("/")
-      alert("upload comment success")
+      window.location.reload();
     } catch (err) {
       console.log(err);
       alert("upload comment fail")
@@ -46,6 +46,7 @@ const Comment = ({ storyID }) => {
       );
       console.log(res);
       setCommentData(res.data);
+
     } catch (err) {
       console.log(err);
     }
@@ -97,7 +98,7 @@ const Comment = ({ storyID }) => {
             </div>
 
             {commentData.map((cm) => (
-              <div className="commentContent flex bg-slate-300 rounded-lg mt-2" key={cm._id}>
+              <div className="commentContent flex bg-slate-300 rounded-lg mt-1" key={cm._id}>
 
                 <Link to={`/UserProfile/${cm.userID._id}`}
                   className="group flex shrink-0 ml-4 items-center rounded-lg transition"
@@ -105,17 +106,17 @@ const Comment = ({ storyID }) => {
                   <img
                     alt="avatar"
                     src={cm.userID.imageAvatar}
-                    className="h-10 w-10 rounded-full mt-2 object-cover"
+                    className="h-10 w-10 rounded-full mt-0 object-cover"
                   />
 
                 </Link>
 
-                <div className=" ml-0 mt-4 block mb-0">
+                <div className=" ml-0 mt-2 block pb-0">
                   <Link to={`/UserProfile/${cm.userID._id}`}
                     className="group shrink-0  items-center rounded-lg"
                   >
-                    <p className="ml-2 text-black text-left text-xs sm:block">
-                      <div className="font-semibold">{cm.userID.name}</div>
+                    <p className=" text-black text-left text-xs sm:block mt-4">
+                      <div className="font-semibold ml-2 mt-8">{cm.userID.name}</div>
                     </p>
                   </Link>
 

@@ -54,6 +54,7 @@ const saveEdit = async()=>{
         );
         console.log(res.data);       
         alert("Edit profile success!");
+        window.location.reload();
     } catch (err) {
         console.log(err);
     }

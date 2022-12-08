@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import React from 'react';
 import { createAxios } from '../../createInstance';
 import { loginSuccess } from '../../redux/authSlice';
+import jwtDecode from"jwt-decode";
 import Header from "../Header/Header";
 import Mid from './Mid'
 import "./home.css"
@@ -18,7 +19,6 @@ const HomePage = () => {
   // let axiosJWT = createAxios(user, dispatch, loginSuccess)
   const navigate = useNavigate();
   // axios.create();
-
   useEffect(() => {
     if (!user) {
       navigate("/login");
@@ -42,33 +42,33 @@ const HomePage = () => {
 
 export default HomePage;
 
-
-//const refreshToken = async()=>{
-  //   try {
-  //     const res = await axiosJWT.post("http://localhost:5000/api/auth/refreshToken",{
-  //       withCredentials: true,
-  //     });
-  //     return res.data;
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+ 
+// const refreshToken = async()=>{
+//   try {
+//     const res = await axiosJWT.post("http://localhost:5000/api/auth/refreshToken",{
+//       withCredentials: true,
+//     });
+//     return res.data;
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
 
 // axiosJWT.interceptors.request.use(async(config) =>{
-//   let date = new Date();
-//   const decodedToken = jwtDecode(user?.accessToken);
-//   if(decodedToken.exp < date.getTime()/1000){
-//     const data = await refreshToken();
-//     const refreshUser ={
-//       ...user,
-//       accessToken: data.accessToken,
-//     };
-//     dispatch(loginSuccess(refreshUser))
-//     config.headers["token"] = "Bearer " + data.accessToken;
+// let date = new Date();
+// const decodedToken = jwtDecode(user?.accessToken);
+// if(decodedToken.exp < date.getTime()/1000){
+//   const data = await refreshToken();
+//   const refreshUser ={
+//     ...user,
+//     accessToken: data.accessToken,
 //   };
-//   return config;
+//   dispatch(loginSuccess(refreshUser))
+//   config.headers["token"] = "Bearer " + data.accessToken;
+// };
+// return config;
 // },
 // (error) => {
-//   return Promise.reject(error);
+// return Promise.reject(error);
 // }
 // )

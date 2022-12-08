@@ -4,7 +4,6 @@ const app = express();
 const mongoose = require('mongoose');
 const helmet = require("helmet");
 const morgan = require('morgan');
-
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
@@ -26,13 +25,15 @@ mongoose.connect(process.env.MONGODB_URL,
       process.exit();
     });
 
+
+
+
 //middleware 
 app.use(express.json());
 app.use(helmet());
 app.use(bodyParser.json({ limit: "50mb" }));
 app.use(cookieParser());
 app.use(express.json());
-
 app.use(morgan("common"));
 app.use(cors());
 app.use(bodyParser.json());
@@ -63,8 +64,6 @@ app.use("/api/conversation",conversationRoute);
 
 const messageRoute = require("./routes/messageRoute");
 app.use("/api/message",messageRoute);
-
-
 
 app.get('/',(req, res) => {
     res.send("welcome Home!");

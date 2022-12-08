@@ -22,6 +22,7 @@ const AddTopic = () => {
       );
       console.log(res);
       alert("Add Story's type success")
+      window.location.reload();
     } catch (err) {
       console.log(err);
       alert("Add Story's type fail")
@@ -42,7 +43,7 @@ const AddTopic = () => {
       )
       console.log("delete Type success");
       alert("delete story's type success");
-
+      window.location.reload();
     } catch (error) {
       console.log(error);
       alert("delete story's type fail");
