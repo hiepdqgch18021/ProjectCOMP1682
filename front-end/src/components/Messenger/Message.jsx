@@ -1,5 +1,6 @@
 import React from 'react'
 import "./messenger.css"
+import { format } from "timeago.js";
 
 export default function Message({own,messages}) {
     return (
@@ -13,7 +14,7 @@ export default function Message({own,messages}) {
                 </div>
 
                 <div className="messageBottom">
-                    {messages.createdAt}
+                    {format(messages.createdAt)}
                 </div>
             </div>
         </>
